@@ -1,0 +1,617 @@
+
+
+<!DOCTYPE html>
+<!--[if IE 8]><html class="no-js lt-ie9" lang="en" > <![endif]-->
+<!--[if gt IE 8]><!--> <html class="no-js" lang="en" > <!--<![endif]-->
+<head>
+  <meta charset="utf-8">
+  
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  
+  <title>Rectangular Plane &mdash; OWCsim-Py 0.0.1 documentation</title>
+  
+
+  
+  
+  
+  
+
+  
+  <script type="text/javascript" src="../../../_static/js/modernizr.min.js"></script>
+  
+    
+      <script type="text/javascript" id="documentation_options" data-url_root="../../../" src="../../../_static/documentation_options.js"></script>
+        <script type="text/javascript" src="../../../_static/jquery.js"></script>
+        <script type="text/javascript" src="../../../_static/underscore.js"></script>
+        <script type="text/javascript" src="../../../_static/doctools.js"></script>
+        <script type="text/javascript" src="../../../_static/language_data.js"></script>
+        <script async="async" type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.5/latest.js?config=TeX-AMS-MML_HTMLorMML"></script>
+        <script type="text/x-mathjax-config">MathJax.Hub.Config({"tex2jax": {"inlineMath": [["$", "$"], ["\\(", "\\)"]], "processEscapes": true, "ignoreClass": "document", "processClass": "math|output_area"}})</script>
+    
+    <script type="text/javascript" src="../../../_static/js/theme.js"></script>
+
+    
+
+  
+  <link rel="stylesheet" href="../../../_static/css/theme.css" type="text/css" />
+  <link rel="stylesheet" href="../../../_static/pygments.css" type="text/css" />
+  <link rel="stylesheet" href="../../../_static/graphviz.css" type="text/css" />
+    <link rel="index" title="Index" href="../../../genindex.html" />
+    <link rel="search" title="Search" href="../../../search.html" />
+    <link rel="next" title="Cube" href="cube.html" />
+    <link rel="prev" title="Circle" href="circle.html" /> 
+</head>
+
+<body class="wy-body-for-nav">
+
+   
+  <div class="wy-grid-for-nav">
+    
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side">
+      <div class="wy-side-scroll">
+        <div class="wy-side-nav-search" >
+          
+
+          
+            <a href="../../../index.html" class="icon icon-home"> OWCsim-Py
+          
+
+          
+          </a>
+
+          
+            
+            
+          
+
+          
+<div role="search">
+  <form id="rtd-search-form" class="wy-form" action="../../../search.html" method="get">
+    <input type="text" name="q" placeholder="Search docs" />
+    <input type="hidden" name="check_keywords" value="yes" />
+    <input type="hidden" name="area" value="default" />
+  </form>
+</div>
+
+          
+        </div>
+
+        <div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="main navigation">
+          
+            
+            
+              
+            
+            
+              <p class="caption"><span class="caption-text">Contents:</span></p>
+<ul class="current">
+<li class="toctree-l1 current"><a class="reference internal" href="../../index.html">OWCsim-Py’s Module References</a><ul class="current">
+<li class="toctree-l2 current"><a class="reference internal" href="../index.html">Geometry Objects</a><ul class="current">
+<li class="toctree-l3 current"><a class="reference internal" href="index.html">Geometry Objects: Basics</a><ul class="current">
+<li class="toctree-l4"><a class="reference internal" href="index.html#introduction">Introduction</a></li>
+<li class="toctree-l4"><a class="reference internal" href="index.html#available-entities">Available Entities</a></li>
+<li class="toctree-l4"><a class="reference internal" href="index.html#related-modules">Related Modules</a></li>
+<li class="toctree-l4 current"><a class="reference internal" href="index.html#miscellaneous-notes">Miscellaneous Notes</a></li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="../models/index.html">Geometry Objects: Models</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="../../utilities/index.html">Utilities</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="../../../usecases/index.html">OWCsim-Py’s Use Cases</a></li>
+</ul>
+
+            
+          
+        </div>
+      </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap">
+
+      
+      <nav class="wy-nav-top" aria-label="top navigation">
+        
+          <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+          <a href="../../../index.html">OWCsim-Py</a>
+        
+      </nav>
+
+
+      <div class="wy-nav-content">
+        
+        <div class="rst-content">
+        
+          
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<div role="navigation" aria-label="breadcrumbs navigation">
+
+  <ul class="wy-breadcrumbs">
+    
+      <li><a href="../../../index.html">Docs</a> &raquo;</li>
+        
+          <li><a href="../../index.html">OWCsim-Py’s Module References</a> &raquo;</li>
+        
+          <li><a href="../index.html">Geometry Objects</a> &raquo;</li>
+        
+          <li><a href="index.html">Geometry Objects: Basics</a> &raquo;</li>
+        
+      <li>Rectangular Plane</li>
+    
+    
+      <li class="wy-breadcrumbs-aside">
+        
+            
+            <a href="../../../_sources/modulerefs/geoobjects/basics/rectplane.rst.txt" rel="nofollow"> View page source</a>
+          
+        
+      </li>
+    
+  </ul>
+
+  
+  <hr/>
+</div>
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+           <div itemprop="articleBody">
+            
+  
+<style>
+/* CSS overrides for sphinx_rtd_theme */
+
+/* 24px margin */
+.nbinput.nblast,
+.nboutput.nblast {
+    margin-bottom: 19px;  /* padding has already 5px */
+}
+
+/* ... except between code cells! */
+.nblast + .nbinput {
+    margin-top: -19px;
+}
+
+.admonition > p:before {
+    margin-right: 4px;  /* make room for the exclamation icon */
+}
+
+/* Fix math alignment, see https://github.com/rtfd/sphinx_rtd_theme/pull/686 */
+.math {
+    text-align: unset;
+}
+</style>
+<div class="section" id="module-owcsimpy.geoobjects.bases.rectplane_py">
+<span id="rectangular-plane"></span><h1>Rectangular Plane<a class="headerlink" href="#module-owcsimpy.geoobjects.bases.rectplane_py" title="Permalink to this headline">¶</a></h1>
+<dl class="class">
+<dt id="owcsimpy.geoobjects.bases.rectplane_py.RectPlane_py">
+<em class="property">class </em><code class="descclassname">owcsimpy.geoobjects.bases.rectplane_py.</code><code class="descname">RectPlane_py</code><span class="sig-paren">(</span><em>normalVect, ctrPoint=None, RodriguesAngle=0, dimensions=None, verts=None, identity=[inf], m=1, FoV=1.5707963267948966, reflectivity=1</em><span class="sig-paren">)</span><a class="reference internal" href="../../../_modules/owcsimpy/geoobjects/bases/rectplane_py.html#RectPlane_py"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#owcsimpy.geoobjects.bases.rectplane_py.RectPlane_py" title="Permalink to this definition">¶</a></dt>
+<dd><p>A 3D rectangular plane.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters</dt>
+<dd class="field-odd"><dl class="simple">
+<dt><strong>normalVect: Vector_py</strong></dt><dd><p>Its normal vector.</p>
+</dd>
+<dt><strong>ctrPoint: ndarray(3,)</strong></dt><dd><p>Defines the center point of the rectangular plane.</p>
+</dd>
+<dt><strong>RodriguesAngle: float</strong></dt><dd><p>The angle of Rodrigues rotation w.r.t. the normal vector. This follows 
+the right-hand rule.</p>
+</dd>
+<dt><strong>dimensions: array-like with 2 elements</strong></dt><dd><p>The dimensions are defined as, for example, [L,W], where L is the length
+and W is the width.</p>
+</dd>
+<dt><strong>verts: ndarray(4,3)</strong></dt><dd><p>The four vertices of the plane.</p>
+</dd>
+<dt><strong>identity: list</strong></dt><dd><p>Identity of the object. It is used to track down which parent object this object 
+is from. Mainly used for debugging purposes.</p>
+</dd>
+<dt><strong>m: float</strong></dt><dd><p>The Lambertian mode.</p>
+</dd>
+<dt><strong>FoV: float</strong></dt><dd><p>Field of view in rads.</p>
+</dd>
+<dt><strong>reflectivity: float</strong></dt><dd><p>Reflectivity of the surface.</p>
+</dd>
+</dl>
+</dd>
+<dt class="field-even">Raises</dt>
+<dd class="field-even"><dl class="simple">
+<dt>NotImplementedError:</dt><dd><p>When the parameters don’t follow neither of two methods.</p>
+</dd>
+</dl>
+</dd>
+</dl>
+<div class="admonition seealso">
+<p class="admonition-title">See also</p>
+<dl class="simple">
+<dt><a class="reference internal" href="../../utilities/checkblockage.html#owcsimpy.geoutils.cutils.checkBlockage" title="owcsimpy.geoutils.cutils.checkBlockage"><code class="xref py py-mod docutils literal notranslate"><span class="pre">checkBlockage</span></code></a></dt><dd></dd>
+</dl>
+</div>
+<p class="rubric">Notes</p>
+<p>There are two different ways of instantiating a rectangular plane, i.e.,:</p>
+<ol class="arabic simple">
+<li><p>defining its normal vector, its center point, its Rodrigues angle 
+(w.r.t. its normal vector), and its dimensions (length and width),</p></li>
+<li><p>defining its four vertices.</p></li>
+</ol>
+<p>Following is the original position of a rectangular plane, i.e., 
+the plane faces upwards.</p>
+<div class="highlight-text notranslate"><div class="highlight"><pre><span></span>                          z                                                        
+                          :                                               
+                          *                                               
+                          *                                               
+                          *                                               
+                          *                                               
+                          *                                               
+                          ^                                               
+                     n   +++                                               
+                        +++++                                               
+                          *                                               
+                          *                              y                 
+                          *                          :::                  
+       W            :***: *                    :::::::                    
+            :*IIVFNN$$$$$NNVII*:         ::::::                           
+     :**IV$$N$$$$$$$$$$$$$M$$$$NN$VVII*:::                                
+*IVF$N$$$$$$$$$$$$$$$$$$$$M$$NNNNNNN$$N$FVI*::                            
+ :*IV$NN$$$$$$$$$$$$$$$$$$MNNN$$$$$$$$$$$$$$$N$VVI*:                      
+       *II$NN$$$$$$$$$$$$$$$$NNNNNNN$$$$$$$$$$$$$$NN$I                    
+            :*IF$N$$$$$$$$$$$$$$$$$NNNNNNN$$$NN$VI:                       
+                 :*IV$N$$$$$$$$$$$$$$$$$$N$VVI::                          
+      L             :*IV$NN$$$$$$$N$VI*:     :::::::                    
+                            *IV$$VI*:                :::::::              
+                                                           :::::::        
+                                                                 ::::::  x 
+</pre></div>
+</div>
+<p class="rubric">Examples</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="kn">import</span> <span class="nn">matplotlib.pyplot</span> <span class="k">as</span> <span class="nn">plt</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="kn">import</span> <span class="nn">numpy</span> <span class="k">as</span> <span class="nn">np</span>
+<span class="gp">&gt;&gt;&gt; </span>
+<span class="gp">&gt;&gt;&gt; </span><span class="kn">from</span> <span class="nn">owcsimpy.geoobjects.bases.vector_py</span> <span class="k">import</span> <span class="n">Vector_py</span> <span class="k">as</span> <span class="n">Vector</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="kn">from</span> <span class="nn">owcsimpy.geoobjects.bases.rectplane_py</span> <span class="k">import</span> <span class="n">RectPlane_py</span> <span class="k">as</span> <span class="n">RectPlane</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="kn">from</span> <span class="nn">owcsimpy.geoutils.draw</span> <span class="k">import</span> <span class="n">draw</span>
+<span class="gp">&gt;&gt;&gt; </span>
+<span class="gp">&gt;&gt;&gt; </span><span class="k">def</span> <span class="nf">genPlane</span><span class="p">(</span><span class="n">polar</span><span class="p">,</span><span class="n">az</span><span class="p">,</span><span class="n">Rod</span><span class="p">,</span><span class="n">translation</span><span class="p">):</span>
+<span class="gp">&gt;&gt;&gt; </span>    
+<span class="gp">&gt;&gt;&gt; </span>    <span class="n">v</span> <span class="o">=</span> <span class="n">Vector</span><span class="p">(</span><span class="n">np</span><span class="o">.</span><span class="n">array</span><span class="p">([</span><span class="mi">1</span><span class="p">,</span><span class="n">np</span><span class="o">.</span><span class="n">deg2rad</span><span class="p">(</span><span class="n">polar</span><span class="p">),</span><span class="n">np</span><span class="o">.</span><span class="n">deg2rad</span><span class="p">(</span><span class="n">az</span><span class="p">)]))</span>
+<span class="gp">&gt;&gt;&gt; </span>    <span class="n">ctrPoint</span><span class="o">=</span><span class="n">np</span><span class="o">.</span><span class="n">array</span><span class="p">(</span><span class="mi">3</span><span class="o">*</span><span class="p">[</span><span class="n">translation</span><span class="p">])</span>
+<span class="gp">&gt;&gt;&gt; </span>    <span class="n">plane</span> <span class="o">=</span> <span class="n">RectPlane</span><span class="p">(</span><span class="n">normalVect</span><span class="o">=</span><span class="n">v</span><span class="p">,</span><span class="n">ctrPoint</span><span class="o">=</span><span class="n">ctrPoint</span><span class="p">,</span>
+<span class="gp">&gt;&gt;&gt; </span>        <span class="n">RodriguesAngle</span><span class="o">=</span><span class="n">np</span><span class="o">.</span><span class="n">deg2rad</span><span class="p">(</span><span class="n">Rod</span><span class="p">),</span><span class="n">dimensions</span><span class="o">=</span><span class="p">[</span><span class="mi">2</span><span class="p">,</span><span class="mi">1</span><span class="p">])</span>
+<span class="gp">&gt;&gt;&gt; </span>
+<span class="gp">&gt;&gt;&gt; </span>    <span class="k">return</span> <span class="n">plane</span>
+<span class="gp">&gt;&gt;&gt; </span>
+<span class="gp">&gt;&gt;&gt; </span>
+<span class="gp">&gt;&gt;&gt; </span><span class="c1"># Will draw 4 different canvases</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">fig</span><span class="p">,</span><span class="n">axs</span> <span class="o">=</span> <span class="n">draw</span><span class="p">(</span><span class="n">subplots</span><span class="o">=</span><span class="kc">True</span><span class="p">,</span><span class="n">figsize</span><span class="o">=</span><span class="p">(</span><span class="mi">14</span><span class="p">,</span><span class="mi">6</span><span class="p">),</span><span class="n">nrows</span><span class="o">=</span><span class="mi">1</span><span class="p">,</span><span class="n">ncols</span><span class="o">=</span><span class="mi">4</span><span class="p">,</span><span class="n">xlim</span><span class="o">=</span><span class="p">[</span><span class="o">-</span><span class="mi">2</span><span class="p">,</span><span class="mi">2</span><span class="p">],</span><span class="n">ylim</span><span class="o">=</span><span class="p">[</span><span class="o">-</span><span class="mi">2</span><span class="p">,</span><span class="mi">2</span><span class="p">],</span><span class="n">zlim</span><span class="o">=</span><span class="p">[</span><span class="o">-</span><span class="mi">2</span><span class="p">,</span><span class="mi">2</span><span class="p">])</span>
+<span class="gp">&gt;&gt;&gt; </span>
+<span class="gp">&gt;&gt;&gt; </span><span class="c1"># Original position</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">polar</span><span class="p">,</span><span class="n">az</span><span class="p">,</span><span class="n">Rod</span><span class="o">=</span><span class="mi">0</span><span class="p">,</span><span class="mi">0</span><span class="p">,</span><span class="mi">0</span> <span class="c1"># polar, azimuth, Rodrigues</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">translation</span><span class="o">=</span><span class="mi">0</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">plane</span> <span class="o">=</span> <span class="n">genPlane</span><span class="p">(</span><span class="n">polar</span><span class="p">,</span><span class="n">az</span><span class="p">,</span><span class="n">Rod</span><span class="p">,</span><span class="n">translation</span><span class="p">)</span>
+<span class="gp">&gt;&gt;&gt; </span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">fig</span><span class="p">,</span><span class="n">axs</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span> <span class="o">=</span> <span class="n">draw</span><span class="p">(</span><span class="n">figure</span><span class="o">=</span><span class="n">fig</span><span class="p">,</span><span class="n">axes</span><span class="o">=</span><span class="n">axs</span><span class="p">[</span><span class="mi">0</span><span class="p">],</span><span class="n">planes</span><span class="o">=</span><span class="n">plane</span><span class="p">,</span><span class="n">colors</span><span class="o">=</span><span class="s1">&#39;blue&#39;</span><span class="p">,</span><span class="n">facecolors</span><span class="o">=</span><span class="s1">&#39;blue&#39;</span><span class="p">)</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">axs</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span><span class="o">.</span><span class="n">set_title</span><span class="p">(</span><span class="s2">&quot;angles=(</span><span class="si">{}</span><span class="s2">,</span><span class="si">{}</span><span class="s2">,</span><span class="si">{}</span><span class="s2">), x=y=z=</span><span class="si">{}</span><span class="s2">&quot;</span><span class="o">.</span><span class="n">format</span><span class="p">(</span><span class="n">polar</span><span class="p">,</span><span class="n">az</span><span class="p">,</span><span class="n">Rod</span><span class="p">,</span><span class="n">translation</span><span class="p">))</span>
+<span class="gp">&gt;&gt;&gt; </span>
+<span class="gp">&gt;&gt;&gt; </span><span class="c1"># Polar and azimuth</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="c1"># Copy previous object as a reference (black)</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">fig</span><span class="p">,</span><span class="n">axs</span><span class="p">[</span><span class="mi">1</span><span class="p">]</span> <span class="o">=</span> <span class="n">draw</span><span class="p">(</span><span class="n">figure</span><span class="o">=</span><span class="n">fig</span><span class="p">,</span><span class="n">axes</span><span class="o">=</span><span class="n">axs</span><span class="p">[</span><span class="mi">1</span><span class="p">],</span><span class="n">planes</span><span class="o">=</span><span class="n">plane</span><span class="p">,</span><span class="n">colors</span><span class="o">=</span><span class="s1">&#39;black&#39;</span><span class="p">,</span><span class="n">facecolors</span><span class="o">=</span><span class="s1">&#39;black&#39;</span><span class="p">)</span>
+<span class="gp">&gt;&gt;&gt; </span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">polar</span><span class="p">,</span><span class="n">az</span><span class="p">,</span><span class="n">Rod</span><span class="o">=</span><span class="mi">90</span><span class="p">,</span><span class="mi">45</span><span class="p">,</span><span class="mi">0</span> <span class="c1"># polar, azimuth, Rodrigues</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">translation</span><span class="o">=</span><span class="mi">0</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">plane</span> <span class="o">=</span> <span class="n">genPlane</span><span class="p">(</span><span class="n">polar</span><span class="p">,</span><span class="n">az</span><span class="p">,</span><span class="n">Rod</span><span class="p">,</span><span class="n">translation</span><span class="p">)</span>
+<span class="gp">&gt;&gt;&gt; </span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">fig</span><span class="p">,</span><span class="n">axs</span><span class="p">[</span><span class="mi">1</span><span class="p">]</span> <span class="o">=</span> <span class="n">draw</span><span class="p">(</span><span class="n">figure</span><span class="o">=</span><span class="n">fig</span><span class="p">,</span><span class="n">axes</span><span class="o">=</span><span class="n">axs</span><span class="p">[</span><span class="mi">1</span><span class="p">],</span><span class="n">planes</span><span class="o">=</span><span class="n">plane</span><span class="p">,</span><span class="n">colors</span><span class="o">=</span><span class="s1">&#39;blue&#39;</span><span class="p">,</span><span class="n">facecolors</span><span class="o">=</span><span class="s1">&#39;blue&#39;</span><span class="p">)</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">axs</span><span class="p">[</span><span class="mi">1</span><span class="p">]</span><span class="o">.</span><span class="n">set_title</span><span class="p">(</span><span class="s2">&quot;angles=(</span><span class="si">{}</span><span class="s2">,</span><span class="si">{}</span><span class="s2">,</span><span class="si">{}</span><span class="s2">), x=y=z=</span><span class="si">{}</span><span class="s2">&quot;</span><span class="o">.</span><span class="n">format</span><span class="p">(</span><span class="n">polar</span><span class="p">,</span><span class="n">az</span><span class="p">,</span><span class="n">Rod</span><span class="p">,</span><span class="n">translation</span><span class="p">))</span>
+<span class="gp">&gt;&gt;&gt; </span>
+<span class="gp">&gt;&gt;&gt; </span><span class="c1"># Rodrigues</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="c1"># Copy previous object as a reference (black)</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">fig</span><span class="p">,</span><span class="n">axs</span><span class="p">[</span><span class="mi">2</span><span class="p">]</span> <span class="o">=</span> <span class="n">draw</span><span class="p">(</span><span class="n">figure</span><span class="o">=</span><span class="n">fig</span><span class="p">,</span><span class="n">axes</span><span class="o">=</span><span class="n">axs</span><span class="p">[</span><span class="mi">2</span><span class="p">],</span><span class="n">planes</span><span class="o">=</span><span class="n">plane</span><span class="p">,</span><span class="n">colors</span><span class="o">=</span><span class="s1">&#39;black&#39;</span><span class="p">,</span><span class="n">facecolors</span><span class="o">=</span><span class="s1">&#39;black&#39;</span><span class="p">)</span>
+<span class="gp">&gt;&gt;&gt; </span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">polar</span><span class="p">,</span><span class="n">az</span><span class="p">,</span><span class="n">Rod</span><span class="o">=</span><span class="mi">90</span><span class="p">,</span><span class="mi">45</span><span class="p">,</span><span class="mi">30</span> <span class="c1"># polar, azimuth, Rodrigues</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">translation</span><span class="o">=</span><span class="mi">0</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">plane</span> <span class="o">=</span> <span class="n">genPlane</span><span class="p">(</span><span class="n">polar</span><span class="p">,</span><span class="n">az</span><span class="p">,</span><span class="n">Rod</span><span class="p">,</span><span class="n">translation</span><span class="p">)</span>
+<span class="gp">&gt;&gt;&gt; </span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">fig</span><span class="p">,</span><span class="n">axs</span><span class="p">[</span><span class="mi">2</span><span class="p">]</span> <span class="o">=</span> <span class="n">draw</span><span class="p">(</span><span class="n">figure</span><span class="o">=</span><span class="n">fig</span><span class="p">,</span><span class="n">axes</span><span class="o">=</span><span class="n">axs</span><span class="p">[</span><span class="mi">2</span><span class="p">],</span><span class="n">planes</span><span class="o">=</span><span class="n">plane</span><span class="p">,</span><span class="n">colors</span><span class="o">=</span><span class="s1">&#39;blue&#39;</span><span class="p">,</span><span class="n">facecolors</span><span class="o">=</span><span class="s1">&#39;blue&#39;</span><span class="p">)</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">axs</span><span class="p">[</span><span class="mi">2</span><span class="p">]</span><span class="o">.</span><span class="n">set_title</span><span class="p">(</span><span class="s2">&quot;angles=(</span><span class="si">{}</span><span class="s2">,</span><span class="si">{}</span><span class="s2">,</span><span class="si">{}</span><span class="s2">), x=y=z=</span><span class="si">{}</span><span class="s2">&quot;</span><span class="o">.</span><span class="n">format</span><span class="p">(</span><span class="n">polar</span><span class="p">,</span><span class="n">az</span><span class="p">,</span><span class="n">Rod</span><span class="p">,</span><span class="n">translation</span><span class="p">))</span>
+<span class="gp">&gt;&gt;&gt; </span>
+<span class="gp">&gt;&gt;&gt; </span><span class="c1"># Translation</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="c1"># Copy previous object as a reference (black)</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">fig</span><span class="p">,</span><span class="n">axs</span><span class="p">[</span><span class="mi">3</span><span class="p">]</span> <span class="o">=</span> <span class="n">draw</span><span class="p">(</span><span class="n">figure</span><span class="o">=</span><span class="n">fig</span><span class="p">,</span><span class="n">axes</span><span class="o">=</span><span class="n">axs</span><span class="p">[</span><span class="mi">3</span><span class="p">],</span><span class="n">planes</span><span class="o">=</span><span class="n">plane</span><span class="p">,</span><span class="n">colors</span><span class="o">=</span><span class="s1">&#39;black&#39;</span><span class="p">,</span><span class="n">facecolors</span><span class="o">=</span><span class="s1">&#39;black&#39;</span><span class="p">)</span>
+<span class="gp">&gt;&gt;&gt; </span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">polar</span><span class="p">,</span><span class="n">az</span><span class="p">,</span><span class="n">Rod</span><span class="o">=</span><span class="mi">90</span><span class="p">,</span><span class="mi">45</span><span class="p">,</span><span class="mi">30</span> <span class="c1"># polar, azimuth, Rodrigues</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">translation</span><span class="o">=</span><span class="mf">0.5</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">plane</span> <span class="o">=</span> <span class="n">genPlane</span><span class="p">(</span><span class="n">polar</span><span class="p">,</span><span class="n">az</span><span class="p">,</span><span class="n">Rod</span><span class="p">,</span><span class="n">translation</span><span class="p">)</span>
+<span class="gp">&gt;&gt;&gt; </span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">fig</span><span class="p">,</span><span class="n">axs</span><span class="p">[</span><span class="mi">3</span><span class="p">]</span> <span class="o">=</span> <span class="n">draw</span><span class="p">(</span><span class="n">figure</span><span class="o">=</span><span class="n">fig</span><span class="p">,</span><span class="n">axes</span><span class="o">=</span><span class="n">axs</span><span class="p">[</span><span class="mi">3</span><span class="p">],</span><span class="n">planes</span><span class="o">=</span><span class="n">plane</span><span class="p">,</span><span class="n">colors</span><span class="o">=</span><span class="s1">&#39;blue&#39;</span><span class="p">,</span><span class="n">facecolors</span><span class="o">=</span><span class="s1">&#39;blue&#39;</span><span class="p">)</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">axs</span><span class="p">[</span><span class="mi">3</span><span class="p">]</span><span class="o">.</span><span class="n">set_title</span><span class="p">(</span><span class="s2">&quot;angles=(</span><span class="si">{}</span><span class="s2">,</span><span class="si">{}</span><span class="s2">,</span><span class="si">{}</span><span class="s2">), x=y=z=</span><span class="si">{}</span><span class="s2">&quot;</span><span class="o">.</span><span class="n">format</span><span class="p">(</span><span class="n">polar</span><span class="p">,</span><span class="n">az</span><span class="p">,</span><span class="n">Rod</span><span class="p">,</span><span class="n">translation</span><span class="p">))</span>
+<span class="gp">&gt;&gt;&gt; </span>
+<span class="gp">&gt;&gt;&gt; </span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">plt</span><span class="o">.</span><span class="n">show</span><span class="p">()</span>
+</pre></div>
+</div>
+<p>(<a class="reference external" href="../../../modulerefs/geoobjects/basics/rectplane-1.py">Source code</a>)</p>
+<div class="figure align-center">
+<img alt="../../../_images/rectplane-1.png" src="../../../_images/rectplane-1.png" />
+</div>
+<p>Angles are defined as polar, azimuth and Rodrigues’ angles in order. The left figure shows 
+a rectangular plane in its original position (no rotation and translation). Then, transformations 
+are carried out w.r.t. the spherical coordinates rotation, Rodrigues’ rotation and translation 
+in order.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Attributes</dt>
+<dd class="field-odd"><dl class="simple">
+<dt><strong>normalVect: ndarray(3,)</strong></dt><dd><p>Normal vector as a <strong>ndarray</strong> type</p>
+</dd>
+<dt><strong>ctrPoint: ndarray(3,)</strong></dt><dd></dd>
+<dt><strong>verts: ndarray(4,3)</strong></dt><dd></dd>
+<dt><strong>area: float</strong></dt><dd><p>Area of the square plane</p>
+</dd>
+<dt><strong>L: float</strong></dt><dd><p>Length</p>
+</dd>
+<dt><strong>W: float</strong></dt><dd><p>Width</p>
+</dd>
+<dt><strong>identity: list</strong></dt><dd></dd>
+<dt><strong>m: float</strong></dt><dd></dd>
+<dt><strong>FoV: float</strong></dt><dd></dd>
+<dt><strong>reflectivity: float</strong></dt><dd></dd>
+</dl>
+</dd>
+</dl>
+<dl class="method">
+<dt id="owcsimpy.geoobjects.bases.rectplane_py.RectPlane_py.getPartition">
+<code class="descname">getPartition</code><span class="sig-paren">(</span><em>self, Ps=[1, 1], delta=None</em><span class="sig-paren">)</span><a class="reference internal" href="../../../_modules/owcsimpy/geoobjects/bases/rectplane_py.html#RectPlane_py.getPartition"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#owcsimpy.geoobjects.bases.rectplane_py.RectPlane_py.getPartition" title="Permalink to this definition">¶</a></dt>
+<dd><p>Get a list of partitioned planes.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters</dt>
+<dd class="field-odd"><dl class="simple">
+<dt><strong>Ps: list</strong></dt><dd><p>List of number of partition of each side.</p>
+</dd>
+<dt><strong>delta: list</strong></dt><dd><p>Define the partition based on partition lengths</p>
+</dd>
+</dl>
+</dd>
+<dt class="field-even">Returns</dt>
+<dd class="field-even"><dl class="simple">
+<dt>list:</dt><dd><p>A list of partitioned planes. Each plane is an instant of 
+RectPlane_py.</p>
+</dd>
+</dl>
+</dd>
+</dl>
+<p class="rubric">Notes</p>
+<div class="highlight-text notranslate"><div class="highlight"><pre><span></span>      0                             1
+       _________,_________,_________,
+       |        |         |         |
+       |        |         |         |
+       |________|_________|_________|
+       |        |         |         |
+l_03   |        |         |         | l_12
+       |________|_________|_________|
+       |        |         |         |
+       |        |         |         |
+      \./_______|_________|________\./
+     3                              2
+</pre></div>
+</div>
+<dl class="simple">
+<dt>Steps:</dt><dd><ol class="arabic simple">
+<li><p>Get parametric lines l_03 and l_12</p></li>
+<li><p>Get row-major parametric lines whose initial 
+and end points are obtained from l_03 and l_12</p></li>
+<li><p>Get matrix of vertices</p></li>
+<li><p>Create a subplane from the matrix</p></li>
+</ol>
+</dd>
+</dl>
+<p>For future works, it would be more efficient if we have private attributes 
+on the spherical and Rodrigues’ rotations, then we can partition the original 
+position rectangular plane and do rotation and translation afterwards.</p>
+<p class="rubric">Examples</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="kn">import</span> <span class="nn">matplotlib.pyplot</span> <span class="k">as</span> <span class="nn">plt</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="kn">import</span> <span class="nn">numpy</span> <span class="k">as</span> <span class="nn">np</span>
+<span class="gp">&gt;&gt;&gt; </span>
+<span class="gp">&gt;&gt;&gt; </span><span class="kn">from</span> <span class="nn">owcsimpy.geoobjects.bases.vector_py</span> <span class="k">import</span> <span class="n">Vector_py</span> <span class="k">as</span> <span class="n">Vector</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="kn">from</span> <span class="nn">owcsimpy.geoobjects.bases.rectplane_py</span> <span class="k">import</span> <span class="n">RectPlane_py</span> <span class="k">as</span> <span class="n">RectPlane</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="kn">from</span> <span class="nn">owcsimpy.geoutils.draw</span> <span class="k">import</span> <span class="n">draw</span>
+<span class="gp">&gt;&gt;&gt; </span>
+<span class="gp">&gt;&gt;&gt; </span><span class="c1"># Original position</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">polar</span><span class="p">,</span><span class="n">az</span><span class="p">,</span><span class="n">Rod</span><span class="o">=</span><span class="mi">90</span><span class="p">,</span><span class="o">-</span><span class="mi">90</span><span class="p">,</span><span class="mi">30</span> <span class="c1"># polar, azimuth, Rodrigues</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">translation</span><span class="o">=</span><span class="mf">0.5</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">v</span> <span class="o">=</span> <span class="n">Vector</span><span class="p">(</span><span class="n">np</span><span class="o">.</span><span class="n">array</span><span class="p">([</span><span class="mi">1</span><span class="p">,</span><span class="n">np</span><span class="o">.</span><span class="n">deg2rad</span><span class="p">(</span><span class="n">polar</span><span class="p">),</span><span class="n">np</span><span class="o">.</span><span class="n">deg2rad</span><span class="p">(</span><span class="n">az</span><span class="p">)]))</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">ctrPoint</span><span class="o">=</span><span class="n">np</span><span class="o">.</span><span class="n">array</span><span class="p">(</span><span class="mi">3</span><span class="o">*</span><span class="p">[</span><span class="n">translation</span><span class="p">])</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">plane</span> <span class="o">=</span> <span class="n">RectPlane</span><span class="p">(</span><span class="n">normalVect</span><span class="o">=</span><span class="n">v</span><span class="p">,</span><span class="n">ctrPoint</span><span class="o">=</span><span class="n">ctrPoint</span><span class="p">,</span>
+<span class="gp">&gt;&gt;&gt; </span>    <span class="n">RodriguesAngle</span><span class="o">=</span><span class="n">np</span><span class="o">.</span><span class="n">deg2rad</span><span class="p">(</span><span class="n">Rod</span><span class="p">),</span><span class="n">dimensions</span><span class="o">=</span><span class="p">[</span><span class="mi">2</span><span class="p">,</span><span class="mi">1</span><span class="p">])</span>
+<span class="gp">&gt;&gt;&gt; </span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">subplanes</span> <span class="o">=</span> <span class="n">plane</span><span class="o">.</span><span class="n">getPartition</span><span class="p">(</span><span class="mi">2</span><span class="p">)</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">fig</span><span class="p">,</span><span class="n">ax</span> <span class="o">=</span> <span class="n">draw</span><span class="p">(</span><span class="n">planes</span><span class="o">=</span><span class="n">subplanes</span><span class="p">,</span><span class="n">xlim</span><span class="o">=</span><span class="p">[</span><span class="o">-</span><span class="mi">2</span><span class="p">,</span><span class="mi">2</span><span class="p">],</span><span class="n">ylim</span><span class="o">=</span><span class="p">[</span><span class="o">-</span><span class="mi">2</span><span class="p">,</span><span class="mi">2</span><span class="p">],</span><span class="n">zlim</span><span class="o">=</span><span class="p">[</span><span class="o">-</span><span class="mi">2</span><span class="p">,</span><span class="mi">2</span><span class="p">])</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="c1"># For reference</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">draw</span><span class="p">(</span><span class="n">figure</span><span class="o">=</span><span class="n">fig</span><span class="p">,</span><span class="n">axes</span><span class="o">=</span><span class="n">ax</span><span class="p">,</span><span class="n">planes</span><span class="o">=</span><span class="n">plane</span><span class="p">,</span><span class="n">facecolors</span><span class="o">=</span><span class="s1">&#39;black&#39;</span><span class="p">,</span><span class="n">colors</span><span class="o">=</span><span class="s1">&#39;black&#39;</span><span class="p">)</span>
+<span class="gp">&gt;&gt;&gt; </span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">plt</span><span class="o">.</span><span class="n">show</span><span class="p">()</span>
+</pre></div>
+</div>
+<p>(<a class="reference external" href="../../../modulerefs/geoobjects/basics/rectplane-2.py">Source code</a>)</p>
+<div class="figure align-center">
+<img alt="../../../_images/rectplane-2.png" src="../../../_images/rectplane-2.png" />
+</div>
+</dd></dl>
+
+<dl class="method">
+<dt id="owcsimpy.geoobjects.bases.rectplane_py.RectPlane_py.getSimplePlane">
+<code class="descname">getSimplePlane</code><span class="sig-paren">(</span><em>self</em><span class="sig-paren">)</span><a class="reference internal" href="../../../_modules/owcsimpy/geoobjects/bases/rectplane_py.html#RectPlane_py.getSimplePlane"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#owcsimpy.geoobjects.bases.rectplane_py.RectPlane_py.getSimplePlane" title="Permalink to this definition">¶</a></dt>
+<dd><p>Extract necessary information as ndarray without methods.</p>
+<p>A simpleplane will be simply as a tuple of 
+normalVect, ctrPoint, verts and area.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Returns</dt>
+<dd class="field-odd"><dl class="simple">
+<dt>(revised)</dt><dd></dd>
+<dt>tuple:</dt><dd><dl class="simple">
+<dt>(normalVect: ndarray(3,)</dt><dd><p>ctrPoint: ndarray(3,) 
+verts: ndarray(4,3)
+area: double
+m: double
+FoV: double
+reflectivity: double)</p>
+</dd>
+</dl>
+</dd>
+<dt>(previous)</dt><dd></dd>
+<dt>tuple:</dt><dd><p>(normalVect: ndarray(3,)
+ctrPoint: ndarray(3,) 
+verts: ndarray(4,3)
+area: double)</p>
+</dd>
+</dl>
+</dd>
+</dl>
+<p class="rubric">Notes</p>
+<p>The order of the output matters.</p>
+</dd></dl>
+
+<dl class="method">
+<dt id="owcsimpy.geoobjects.bases.rectplane_py.RectPlane_py.rotate">
+<code class="descname">rotate</code><span class="sig-paren">(</span><em>self</em>, <em>theta</em>, <em>refVector</em><span class="sig-paren">)</span><a class="reference internal" href="../../../_modules/owcsimpy/geoobjects/bases/rectplane_py.html#RectPlane_py.rotate"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#owcsimpy.geoobjects.bases.rectplane_py.RectPlane_py.rotate" title="Permalink to this definition">¶</a></dt>
+<dd><p>Rotate the plane w.r.t. to a reference vector.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters</dt>
+<dd class="field-odd"><dl class="simple">
+<dt><strong>theta: float</strong></dt><dd></dd>
+<dt><strong>refVector: ndarray(3,) or Vector_py</strong></dt><dd></dd>
+</dl>
+</dd>
+<dt class="field-even">Returns</dt>
+<dd class="field-even"><dl class="simple">
+<dt>RectPlane_py</dt><dd></dd>
+</dl>
+</dd>
+</dl>
+<p class="rubric">Examples</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="kn">import</span> <span class="nn">matplotlib.pyplot</span> <span class="k">as</span> <span class="nn">plt</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="kn">import</span> <span class="nn">numpy</span> <span class="k">as</span> <span class="nn">np</span>
+<span class="gp">&gt;&gt;&gt; </span>
+<span class="gp">&gt;&gt;&gt; </span><span class="kn">from</span> <span class="nn">owcsimpy.geoobjects.bases.vector_py</span> <span class="k">import</span> <span class="n">Vector_py</span> <span class="k">as</span> <span class="n">Vector</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="kn">from</span> <span class="nn">owcsimpy.geoobjects.bases.rectplane_py</span> <span class="k">import</span> <span class="n">RectPlane_py</span> <span class="k">as</span> <span class="n">RectPlane</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="kn">from</span> <span class="nn">owcsimpy.geoutils.draw</span> <span class="k">import</span> <span class="n">draw</span>
+<span class="gp">&gt;&gt;&gt; </span>
+<span class="gp">&gt;&gt;&gt; </span><span class="c1"># Prepare a canvas</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">fig</span><span class="p">,</span><span class="n">ax</span> <span class="o">=</span> <span class="n">draw</span><span class="p">(</span><span class="n">xlim</span><span class="o">=</span><span class="p">[</span><span class="o">-</span><span class="mi">2</span><span class="p">,</span><span class="mi">2</span><span class="p">],</span><span class="n">ylim</span><span class="o">=</span><span class="p">[</span><span class="o">-</span><span class="mi">2</span><span class="p">,</span><span class="mi">2</span><span class="p">],</span><span class="n">zlim</span><span class="o">=</span><span class="p">[</span><span class="o">-</span><span class="mi">2</span><span class="p">,</span><span class="mi">2</span><span class="p">])</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">v</span> <span class="o">=</span> <span class="n">Vector</span><span class="p">(</span><span class="n">np</span><span class="o">.</span><span class="n">array</span><span class="p">([</span><span class="mi">1</span><span class="p">,</span><span class="n">np</span><span class="o">.</span><span class="n">deg2rad</span><span class="p">(</span><span class="mi">90</span><span class="p">),</span><span class="n">np</span><span class="o">.</span><span class="n">deg2rad</span><span class="p">(</span><span class="mi">90</span><span class="p">)]))</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">plane</span> <span class="o">=</span> <span class="n">RectPlane</span><span class="p">(</span><span class="n">normalVect</span><span class="o">=</span><span class="n">v</span><span class="p">,</span><span class="n">ctrPoint</span><span class="o">=</span><span class="n">np</span><span class="o">.</span><span class="n">zeros</span><span class="p">(</span><span class="mi">3</span><span class="p">),</span><span class="n">dimensions</span><span class="o">=</span><span class="p">[</span><span class="mi">2</span><span class="p">,</span><span class="mi">1</span><span class="p">])</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">fig</span><span class="p">,</span><span class="n">ax</span> <span class="o">=</span> <span class="n">draw</span><span class="p">(</span><span class="n">figure</span><span class="o">=</span><span class="n">fig</span><span class="p">,</span><span class="n">axes</span><span class="o">=</span><span class="n">ax</span><span class="p">,</span><span class="n">planes</span><span class="o">=</span><span class="n">plane</span><span class="p">,</span><span class="n">facecolors</span><span class="o">=</span><span class="s1">&#39;black&#39;</span><span class="p">,</span><span class="n">colors</span><span class="o">=</span><span class="s1">&#39;black&#39;</span><span class="p">)</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">plane</span> <span class="o">=</span> <span class="n">plane</span><span class="o">.</span><span class="n">rotate</span><span class="p">(</span><span class="n">np</span><span class="o">.</span><span class="n">deg2rad</span><span class="p">(</span><span class="mi">45</span><span class="p">),</span><span class="n">plane</span><span class="o">.</span><span class="n">normalVect</span><span class="p">)</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">fig</span><span class="p">,</span><span class="n">ax</span> <span class="o">=</span> <span class="n">draw</span><span class="p">(</span><span class="n">figure</span><span class="o">=</span><span class="n">fig</span><span class="p">,</span><span class="n">axes</span><span class="o">=</span><span class="n">ax</span><span class="p">,</span><span class="n">planes</span><span class="o">=</span><span class="n">plane</span><span class="p">,</span><span class="n">facecolors</span><span class="o">=</span><span class="s1">&#39;red&#39;</span><span class="p">,</span><span class="n">colors</span><span class="o">=</span><span class="s1">&#39;red&#39;</span><span class="p">)</span>
+</pre></div>
+</div>
+<p>(<a class="reference external" href="../../../modulerefs/geoobjects/basics/rectplane-3.py">Source code</a>)</p>
+<div class="figure align-center">
+<img alt="../../../_images/rectplane-3.png" src="../../../_images/rectplane-3.png" />
+</div>
+</dd></dl>
+
+<dl class="method">
+<dt id="owcsimpy.geoobjects.bases.rectplane_py.RectPlane_py.translate">
+<code class="descname">translate</code><span class="sig-paren">(</span><em>self</em>, <em>newCtrPoint</em><span class="sig-paren">)</span><a class="reference internal" href="../../../_modules/owcsimpy/geoobjects/bases/rectplane_py.html#RectPlane_py.translate"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#owcsimpy.geoobjects.bases.rectplane_py.RectPlane_py.translate" title="Permalink to this definition">¶</a></dt>
+<dd><p>Translate the plane to a new center point.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters</dt>
+<dd class="field-odd"><dl class="simple">
+<dt><strong>newCtrPoint: ndarray(3,)</strong></dt><dd></dd>
+</dl>
+</dd>
+<dt class="field-even">Returns</dt>
+<dd class="field-even"><dl class="simple">
+<dt>RectPlane_py</dt><dd></dd>
+</dl>
+</dd>
+</dl>
+<p class="rubric">Examples</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="kn">import</span> <span class="nn">matplotlib.pyplot</span> <span class="k">as</span> <span class="nn">plt</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="kn">import</span> <span class="nn">numpy</span> <span class="k">as</span> <span class="nn">np</span>
+<span class="gp">&gt;&gt;&gt; </span>
+<span class="gp">&gt;&gt;&gt; </span><span class="kn">from</span> <span class="nn">owcsimpy.geoobjects.bases.vector_py</span> <span class="k">import</span> <span class="n">Vector_py</span> <span class="k">as</span> <span class="n">Vector</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="kn">from</span> <span class="nn">owcsimpy.geoobjects.bases.rectplane_py</span> <span class="k">import</span> <span class="n">RectPlane_py</span> <span class="k">as</span> <span class="n">RectPlane</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="kn">from</span> <span class="nn">owcsimpy.geoutils.draw</span> <span class="k">import</span> <span class="n">draw</span>
+<span class="gp">&gt;&gt;&gt; </span>
+<span class="gp">&gt;&gt;&gt; </span><span class="c1"># Prepare a canvas</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">fig</span><span class="p">,</span><span class="n">ax</span> <span class="o">=</span> <span class="n">draw</span><span class="p">(</span><span class="n">xlim</span><span class="o">=</span><span class="p">[</span><span class="o">-</span><span class="mi">2</span><span class="p">,</span><span class="mi">2</span><span class="p">],</span><span class="n">ylim</span><span class="o">=</span><span class="p">[</span><span class="o">-</span><span class="mi">2</span><span class="p">,</span><span class="mi">2</span><span class="p">],</span><span class="n">zlim</span><span class="o">=</span><span class="p">[</span><span class="o">-</span><span class="mi">2</span><span class="p">,</span><span class="mi">2</span><span class="p">])</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">v</span> <span class="o">=</span> <span class="n">Vector</span><span class="p">(</span><span class="n">np</span><span class="o">.</span><span class="n">array</span><span class="p">([</span><span class="mi">1</span><span class="p">,</span><span class="n">np</span><span class="o">.</span><span class="n">deg2rad</span><span class="p">(</span><span class="mi">90</span><span class="p">),</span><span class="n">np</span><span class="o">.</span><span class="n">deg2rad</span><span class="p">(</span><span class="mi">90</span><span class="p">)]))</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">plane</span> <span class="o">=</span> <span class="n">RectPlane</span><span class="p">(</span><span class="n">normalVect</span><span class="o">=</span><span class="n">v</span><span class="p">,</span><span class="n">ctrPoint</span><span class="o">=</span><span class="n">np</span><span class="o">.</span><span class="n">zeros</span><span class="p">(</span><span class="mi">3</span><span class="p">),</span><span class="n">dimensions</span><span class="o">=</span><span class="p">[</span><span class="mi">2</span><span class="p">,</span><span class="mi">1</span><span class="p">])</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">fig</span><span class="p">,</span><span class="n">ax</span> <span class="o">=</span> <span class="n">draw</span><span class="p">(</span><span class="n">figure</span><span class="o">=</span><span class="n">fig</span><span class="p">,</span><span class="n">axes</span><span class="o">=</span><span class="n">ax</span><span class="p">,</span><span class="n">planes</span><span class="o">=</span><span class="n">plane</span><span class="p">,</span><span class="n">facecolors</span><span class="o">=</span><span class="s1">&#39;black&#39;</span><span class="p">,</span><span class="n">colors</span><span class="o">=</span><span class="s1">&#39;black&#39;</span><span class="p">)</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">plane</span> <span class="o">=</span> <span class="n">plane</span><span class="o">.</span><span class="n">translate</span><span class="p">(</span><span class="n">np</span><span class="o">.</span><span class="n">ones</span><span class="p">(</span><span class="mi">3</span><span class="p">))</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">fig</span><span class="p">,</span><span class="n">ax</span> <span class="o">=</span> <span class="n">draw</span><span class="p">(</span><span class="n">figure</span><span class="o">=</span><span class="n">fig</span><span class="p">,</span><span class="n">axes</span><span class="o">=</span><span class="n">ax</span><span class="p">,</span><span class="n">planes</span><span class="o">=</span><span class="n">plane</span><span class="p">,</span><span class="n">facecolors</span><span class="o">=</span><span class="s1">&#39;red&#39;</span><span class="p">,</span><span class="n">colors</span><span class="o">=</span><span class="s1">&#39;red&#39;</span><span class="p">)</span>
+</pre></div>
+</div>
+<p>(<a class="reference external" href="../../../modulerefs/geoobjects/basics/rectplane-4.py">Source code</a>)</p>
+<div class="figure align-center">
+<img alt="../../../_images/rectplane-4.png" src="../../../_images/rectplane-4.png" />
+</div>
+</dd></dl>
+
+</dd></dl>
+
+</div>
+
+
+           </div>
+           
+          </div>
+          <footer>
+  
+    <div class="rst-footer-buttons" role="navigation" aria-label="footer navigation">
+      
+        <a href="cube.html" class="btn btn-neutral float-right" title="Cube" accesskey="n" rel="next">Next <span class="fa fa-arrow-circle-right"></span></a>
+      
+      
+        <a href="circle.html" class="btn btn-neutral float-left" title="Circle" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left"></span> Previous</a>
+      
+    </div>
+  
+
+  <hr/>
+
+  <div role="contentinfo">
+    <p>
+        &copy; Copyright 2019, Ardimas
+
+    </p>
+  </div>
+  Built with <a href="http://sphinx-doc.org/">Sphinx</a> using a <a href="https://github.com/rtfd/sphinx_rtd_theme">theme</a> provided by <a href="https://readthedocs.org">Read the Docs</a>. 
+
+</footer>
+
+        </div>
+      </div>
+
+    </section>
+
+  </div>
+  
+
+
+  <script type="text/javascript">
+      jQuery(function () {
+          SphinxRtdTheme.Navigation.enable(true);
+      });
+  </script>
+
+  
+  
+    
+   
+
+</body>
+</html>

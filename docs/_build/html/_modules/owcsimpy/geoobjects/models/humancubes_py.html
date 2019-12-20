@@ -1,0 +1,317 @@
+
+
+<!DOCTYPE html>
+<!--[if IE 8]><html class="no-js lt-ie9" lang="en" > <![endif]-->
+<!--[if gt IE 8]><!--> <html class="no-js" lang="en" > <!--<![endif]-->
+<head>
+  <meta charset="utf-8">
+  
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  
+  <title>owcsimpy.geoobjects.models.humancubes_py &mdash; OWCsim-Py 0.0.1 documentation</title>
+  
+
+  
+  
+  
+  
+
+  
+  <script type="text/javascript" src="../../../../_static/js/modernizr.min.js"></script>
+  
+    
+      <script type="text/javascript" id="documentation_options" data-url_root="../../../../" src="../../../../_static/documentation_options.js"></script>
+        <script type="text/javascript" src="../../../../_static/jquery.js"></script>
+        <script type="text/javascript" src="../../../../_static/underscore.js"></script>
+        <script type="text/javascript" src="../../../../_static/doctools.js"></script>
+        <script type="text/javascript" src="../../../../_static/language_data.js"></script>
+        <script async="async" type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.5/latest.js?config=TeX-AMS-MML_HTMLorMML"></script>
+        <script type="text/x-mathjax-config">MathJax.Hub.Config({"tex2jax": {"inlineMath": [["$", "$"], ["\\(", "\\)"]], "processEscapes": true, "ignoreClass": "document", "processClass": "math|output_area"}})</script>
+    
+    <script type="text/javascript" src="../../../../_static/js/theme.js"></script>
+
+    
+
+  
+  <link rel="stylesheet" href="../../../../_static/css/theme.css" type="text/css" />
+  <link rel="stylesheet" href="../../../../_static/pygments.css" type="text/css" />
+  <link rel="stylesheet" href="../../../../_static/graphviz.css" type="text/css" />
+    <link rel="index" title="Index" href="../../../../genindex.html" />
+    <link rel="search" title="Search" href="../../../../search.html" /> 
+</head>
+
+<body class="wy-body-for-nav">
+
+   
+  <div class="wy-grid-for-nav">
+    
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side">
+      <div class="wy-side-scroll">
+        <div class="wy-side-nav-search" >
+          
+
+          
+            <a href="../../../../index.html" class="icon icon-home"> OWCsim-Py
+          
+
+          
+          </a>
+
+          
+            
+            
+          
+
+          
+<div role="search">
+  <form id="rtd-search-form" class="wy-form" action="../../../../search.html" method="get">
+    <input type="text" name="q" placeholder="Search docs" />
+    <input type="hidden" name="check_keywords" value="yes" />
+    <input type="hidden" name="area" value="default" />
+  </form>
+</div>
+
+          
+        </div>
+
+        <div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="main navigation">
+          
+            
+            
+              
+            
+            
+              <p class="caption"><span class="caption-text">Contents:</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../../../../modulerefs/index.html">OWCsim-Py’s Module References</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../../usecases/index.html">OWCsim-Py’s Use Cases</a></li>
+</ul>
+
+            
+          
+        </div>
+      </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap">
+
+      
+      <nav class="wy-nav-top" aria-label="top navigation">
+        
+          <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+          <a href="../../../../index.html">OWCsim-Py</a>
+        
+      </nav>
+
+
+      <div class="wy-nav-content">
+        
+        <div class="rst-content">
+        
+          
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<div role="navigation" aria-label="breadcrumbs navigation">
+
+  <ul class="wy-breadcrumbs">
+    
+      <li><a href="../../../../index.html">Docs</a> &raquo;</li>
+        
+          <li><a href="../../../index.html">Module code</a> &raquo;</li>
+        
+      <li>owcsimpy.geoobjects.models.humancubes_py</li>
+    
+    
+      <li class="wy-breadcrumbs-aside">
+        
+      </li>
+    
+  </ul>
+
+  
+  <hr/>
+</div>
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+           <div itemprop="articleBody">
+            
+  <h1>Source code for owcsimpy.geoobjects.models.humancubes_py</h1><div class="highlight"><pre>
+<span></span><span class="kn">import</span> <span class="nn">numpy</span> <span class="k">as</span> <span class="nn">np</span>
+<span class="kn">import</span> <span class="nn">matplotlib.pyplot</span> <span class="k">as</span> <span class="nn">plt</span>
+
+<span class="kn">from</span> <span class="nn">owcsimpy.geoutils.draw</span> <span class="k">import</span> <span class="n">draw</span>
+<span class="kn">from</span> <span class="nn">owcsimpy.geoobjects.bases.vector_py</span> <span class="k">import</span> <span class="n">Vector_py</span> <span class="k">as</span> <span class="n">Vector</span>
+<span class="kn">from</span> <span class="nn">owcsimpy.geoobjects.bases.cube_py</span> <span class="k">import</span> <span class="n">Cube_py</span> <span class="k">as</span> <span class="n">Cube</span>
+<span class="kn">from</span> <span class="nn">owcsimpy.misc</span> <span class="k">import</span> <span class="n">flatten</span>
+
+<div class="viewcode-block" id="HumanCubes_py"><a class="viewcode-back" href="../../../../modulerefs/geoobjects/models/humancubes.html#owcsimpy.geoobjects.models.humancubes_py.HumanCubes_py">[docs]</a><span class="k">class</span> <span class="nc">HumanCubes_py</span><span class="p">(</span><span class="nb">object</span><span class="p">):</span>
+    <span class="sd">&quot;&quot;&quot; This is a quick implementation of a more realistic human body model.</span>
+
+<span class="sd">    Parameters</span>
+<span class="sd">    ----------</span>
+<span class="sd">    loc: ndarray(2,)</span>
+<span class="sd">        Location of the human in xy-plane.</span>
+<span class="sd">    direction: double</span>
+<span class="sd">        Azimuth angle.</span>
+<span class="sd">    reflectivities: dict</span>
+<span class="sd">        The default value is {&#39;hair&#39;:1,&#39;face&#39;:1,&#39;shirt&#39;:1}</span>
+
+<span class="sd">    Notes</span>
+<span class="sd">    -----</span>
+<span class="sd">    The dimensions are fixed, which is 1.8 m height and 0.4 m width.</span>
+
+<span class="sd">    Examples</span>
+<span class="sd">    --------</span>
+<span class="sd">    .. plot:: </span>
+<span class="sd">            :format: doctest</span>
+<span class="sd">            :include-source: True</span>
+
+<span class="sd">            &gt;&gt;&gt; import matplotlib.pyplot as plt</span>
+<span class="sd">            &gt;&gt;&gt; import numpy as np</span>
+<span class="sd">            &gt;&gt;&gt; </span>
+<span class="sd">            &gt;&gt;&gt; from owcsimpy.geoobjects.models.humancubes_py import HumanCubes_py as Human</span>
+<span class="sd">            &gt;&gt;&gt; from owcsimpy.geoutils.draw import draw</span>
+<span class="sd">            &gt;&gt;&gt; person = Human(np.array([1,1]),np.deg2rad(30),reflectivities={&#39;hair&#39;:0.7,&#39;face&#39;:0.5,&#39;shirt&#39;:0.3})</span>
+<span class="sd">            &gt;&gt;&gt; </span>
+<span class="sd">            &gt;&gt;&gt; draw(models3d=person,figsize=(6,6),azim=-100,elev=25,xlim=[0,3],ylim=[0,3],zlim=[0,3]);</span>
+<span class="sd">            &gt;&gt;&gt; </span>
+<span class="sd">            &gt;&gt;&gt; plt.show()</span>
+<span class="sd">    </span>
+<span class="sd">    &quot;&quot;&quot;</span>
+    
+    <span class="k">def</span> <span class="nf">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span><span class="n">loc</span><span class="p">,</span><span class="n">direction</span><span class="p">,</span>
+                <span class="n">reflectivities</span><span class="o">=</span><span class="p">{</span><span class="s1">&#39;hair&#39;</span><span class="p">:</span><span class="mi">1</span><span class="p">,</span><span class="s1">&#39;face&#39;</span><span class="p">:</span><span class="mi">1</span><span class="p">,</span><span class="s1">&#39;shirt&#39;</span><span class="p">:</span><span class="mi">1</span><span class="p">}):</span>
+        
+        <span class="k">assert</span> <span class="nb">len</span><span class="p">(</span><span class="n">loc</span><span class="p">)</span><span class="o">==</span><span class="mi">2</span>
+        
+        <span class="bp">self</span><span class="o">.</span><span class="n">head</span> <span class="o">=</span> <span class="n">Cube</span><span class="p">(</span>
+            <span class="n">Vector</span><span class="p">(</span><span class="n">np</span><span class="o">.</span><span class="n">array</span><span class="p">([</span><span class="mi">1</span><span class="p">,</span><span class="n">np</span><span class="o">.</span><span class="n">deg2rad</span><span class="p">(</span><span class="mi">90</span><span class="p">),</span><span class="n">np</span><span class="o">.</span><span class="n">deg2rad</span><span class="p">(</span><span class="mi">0</span><span class="p">)])),</span>
+            <span class="n">ctrPoint</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">array</span><span class="p">([</span><span class="mi">0</span><span class="p">,</span><span class="mi">0</span><span class="p">,</span><span class="mf">1.7</span><span class="p">]),</span>
+            <span class="n">dimensions</span> <span class="o">=</span> <span class="p">[</span><span class="mf">0.2</span><span class="p">,</span><span class="mf">0.15</span><span class="p">,</span><span class="mf">0.15</span><span class="p">],</span>
+            <span class="n">reflectivities</span><span class="o">=</span><span class="p">{</span><span class="s1">&#39;p0&#39;</span><span class="p">:</span><span class="n">reflectivities</span><span class="p">[</span><span class="s1">&#39;hair&#39;</span><span class="p">],</span>
+                            <span class="s1">&#39;p1&#39;</span><span class="p">:</span><span class="n">reflectivities</span><span class="p">[</span><span class="s1">&#39;face&#39;</span><span class="p">],</span>
+                            <span class="s1">&#39;p2&#39;</span><span class="p">:</span><span class="n">reflectivities</span><span class="p">[</span><span class="s1">&#39;hair&#39;</span><span class="p">],</span>
+                            <span class="s1">&#39;p3&#39;</span><span class="p">:</span><span class="n">reflectivities</span><span class="p">[</span><span class="s1">&#39;face&#39;</span><span class="p">],</span>
+                            <span class="s1">&#39;p4&#39;</span><span class="p">:</span><span class="n">reflectivities</span><span class="p">[</span><span class="s1">&#39;face&#39;</span><span class="p">],</span>
+                            <span class="s1">&#39;p5&#39;</span><span class="p">:</span><span class="n">reflectivities</span><span class="p">[</span><span class="s1">&#39;face&#39;</span><span class="p">]}</span>
+        <span class="p">)</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">head</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">head</span><span class="o">.</span><span class="n">rotate</span><span class="p">(</span><span class="n">direction</span><span class="p">,</span><span class="n">np</span><span class="o">.</span><span class="n">array</span><span class="p">([</span><span class="mi">0</span><span class="p">,</span><span class="mi">0</span><span class="p">,</span><span class="mi">1</span><span class="p">]));</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">head</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">head</span><span class="o">.</span><span class="n">translate</span><span class="p">(</span><span class="n">np</span><span class="o">.</span><span class="n">array</span><span class="p">([</span><span class="o">*</span><span class="n">loc</span><span class="p">,</span><span class="bp">self</span><span class="o">.</span><span class="n">head</span><span class="o">.</span><span class="n">ctrPoint</span><span class="p">[</span><span class="mi">2</span><span class="p">]]));</span>
+        
+
+        <span class="bp">self</span><span class="o">.</span><span class="n">body</span> <span class="o">=</span> <span class="n">Cube</span><span class="p">(</span>
+            <span class="n">Vector</span><span class="p">(</span><span class="n">np</span><span class="o">.</span><span class="n">array</span><span class="p">([</span><span class="mi">1</span><span class="p">,</span><span class="n">np</span><span class="o">.</span><span class="n">deg2rad</span><span class="p">(</span><span class="mi">90</span><span class="p">),</span><span class="n">np</span><span class="o">.</span><span class="n">deg2rad</span><span class="p">(</span><span class="mi">0</span><span class="p">)])),</span>
+            <span class="n">ctrPoint</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">array</span><span class="p">([</span><span class="mi">0</span><span class="p">,</span><span class="mi">0</span><span class="p">,</span><span class="mf">1.2</span><span class="p">]),</span>
+            <span class="n">dimensions</span> <span class="o">=</span> <span class="p">[</span><span class="mf">0.8</span><span class="p">,</span><span class="mf">0.4</span><span class="p">,</span><span class="mf">0.15</span><span class="p">],</span>
+            <span class="n">reflectivities</span><span class="o">=</span><span class="p">{</span><span class="s1">&#39;p0&#39;</span><span class="p">:</span><span class="n">reflectivities</span><span class="p">[</span><span class="s1">&#39;shirt&#39;</span><span class="p">],</span>
+                            <span class="s1">&#39;p1&#39;</span><span class="p">:</span><span class="n">reflectivities</span><span class="p">[</span><span class="s1">&#39;shirt&#39;</span><span class="p">],</span>
+                            <span class="s1">&#39;p2&#39;</span><span class="p">:</span><span class="n">reflectivities</span><span class="p">[</span><span class="s1">&#39;shirt&#39;</span><span class="p">],</span>
+                            <span class="s1">&#39;p3&#39;</span><span class="p">:</span><span class="n">reflectivities</span><span class="p">[</span><span class="s1">&#39;shirt&#39;</span><span class="p">],</span>
+                            <span class="s1">&#39;p4&#39;</span><span class="p">:</span><span class="n">reflectivities</span><span class="p">[</span><span class="s1">&#39;shirt&#39;</span><span class="p">],</span>
+                            <span class="s1">&#39;p5&#39;</span><span class="p">:</span><span class="n">reflectivities</span><span class="p">[</span><span class="s1">&#39;shirt&#39;</span><span class="p">]}</span>
+        <span class="p">)</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">body</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">body</span><span class="o">.</span><span class="n">rotate</span><span class="p">(</span><span class="n">direction</span><span class="p">,</span><span class="n">np</span><span class="o">.</span><span class="n">array</span><span class="p">([</span><span class="mi">0</span><span class="p">,</span><span class="mi">0</span><span class="p">,</span><span class="mi">1</span><span class="p">]));</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">body</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">body</span><span class="o">.</span><span class="n">translate</span><span class="p">(</span><span class="n">np</span><span class="o">.</span><span class="n">array</span><span class="p">([</span><span class="o">*</span><span class="n">loc</span><span class="p">,</span><span class="bp">self</span><span class="o">.</span><span class="n">body</span><span class="o">.</span><span class="n">ctrPoint</span><span class="p">[</span><span class="mi">2</span><span class="p">]]));</span>
+        
+
+        <span class="bp">self</span><span class="o">.</span><span class="n">leg</span> <span class="o">=</span> <span class="n">Cube</span><span class="p">(</span>
+            <span class="n">Vector</span><span class="p">(</span><span class="n">np</span><span class="o">.</span><span class="n">array</span><span class="p">([</span><span class="mi">1</span><span class="p">,</span><span class="n">np</span><span class="o">.</span><span class="n">deg2rad</span><span class="p">(</span><span class="mi">90</span><span class="p">),</span><span class="n">np</span><span class="o">.</span><span class="n">deg2rad</span><span class="p">(</span><span class="mi">0</span><span class="p">)])),</span>
+            <span class="n">ctrPoint</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">array</span><span class="p">([</span><span class="mi">0</span><span class="p">,</span><span class="mi">0</span><span class="p">,</span><span class="mf">0.4</span><span class="p">]),</span>
+            <span class="n">dimensions</span> <span class="o">=</span> <span class="p">[</span><span class="mf">0.8</span><span class="p">,</span><span class="mf">0.3</span><span class="p">,</span><span class="mf">0.15</span><span class="p">],</span>
+            <span class="n">reflectivities</span><span class="o">=</span><span class="p">{</span><span class="s1">&#39;p0&#39;</span><span class="p">:</span><span class="n">reflectivities</span><span class="p">[</span><span class="s1">&#39;shirt&#39;</span><span class="p">],</span>
+                            <span class="s1">&#39;p1&#39;</span><span class="p">:</span><span class="n">reflectivities</span><span class="p">[</span><span class="s1">&#39;shirt&#39;</span><span class="p">],</span>
+                            <span class="s1">&#39;p2&#39;</span><span class="p">:</span><span class="n">reflectivities</span><span class="p">[</span><span class="s1">&#39;shirt&#39;</span><span class="p">],</span>
+                            <span class="s1">&#39;p3&#39;</span><span class="p">:</span><span class="n">reflectivities</span><span class="p">[</span><span class="s1">&#39;shirt&#39;</span><span class="p">],</span>
+                            <span class="s1">&#39;p4&#39;</span><span class="p">:</span><span class="n">reflectivities</span><span class="p">[</span><span class="s1">&#39;shirt&#39;</span><span class="p">],</span>
+                            <span class="s1">&#39;p5&#39;</span><span class="p">:</span><span class="n">reflectivities</span><span class="p">[</span><span class="s1">&#39;shirt&#39;</span><span class="p">]}</span>
+        <span class="p">)</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">leg</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">leg</span><span class="o">.</span><span class="n">rotate</span><span class="p">(</span><span class="n">direction</span><span class="p">,</span><span class="n">np</span><span class="o">.</span><span class="n">array</span><span class="p">([</span><span class="mi">0</span><span class="p">,</span><span class="mi">0</span><span class="p">,</span><span class="mi">1</span><span class="p">]));</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">leg</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">leg</span><span class="o">.</span><span class="n">translate</span><span class="p">(</span><span class="n">np</span><span class="o">.</span><span class="n">array</span><span class="p">([</span><span class="o">*</span><span class="n">loc</span><span class="p">,</span><span class="bp">self</span><span class="o">.</span><span class="n">leg</span><span class="o">.</span><span class="n">ctrPoint</span><span class="p">[</span><span class="mi">2</span><span class="p">]]));</span>
+        
+        <span class="bp">self</span><span class="o">.</span><span class="n">ctrPoint</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">array</span><span class="p">([</span><span class="mi">0</span><span class="p">,</span><span class="mi">0</span><span class="p">,</span><span class="mf">1.2</span><span class="p">])</span><span class="o">+</span><span class="n">np</span><span class="o">.</span><span class="n">array</span><span class="p">([</span><span class="o">*</span><span class="n">loc</span><span class="p">,</span><span class="mi">0</span><span class="p">])</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">normalVect</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">head</span><span class="o">.</span><span class="n">normalVect</span><span class="p">;</span>
+        
+        <span class="c1"># This is for draw method</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">listPlanes</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">getPartition</span><span class="p">(</span><span class="n">Ps</span><span class="o">=</span><span class="mi">1</span><span class="p">)</span>
+        
+    <span class="k">def</span> <span class="nf">getPartition</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span><span class="n">Ps</span><span class="o">=</span><span class="mi">1</span><span class="p">,</span><span class="n">delta</span><span class="o">=</span><span class="kc">None</span><span class="p">):</span>
+        
+        <span class="n">planes</span><span class="o">=</span><span class="p">[]</span>
+        <span class="k">if</span> <span class="n">delta</span> <span class="o">==</span> <span class="kc">None</span><span class="p">:</span>
+            <span class="n">planes</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">head</span><span class="o">.</span><span class="n">getPartition</span><span class="p">(</span><span class="n">Ps</span><span class="o">=</span><span class="n">Ps</span><span class="p">))</span>
+            <span class="n">planes</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">body</span><span class="o">.</span><span class="n">getPartition</span><span class="p">(</span><span class="n">Ps</span><span class="o">=</span><span class="n">Ps</span><span class="p">))</span>
+            <span class="n">planes</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">leg</span><span class="o">.</span><span class="n">getPartition</span><span class="p">(</span><span class="n">Ps</span><span class="o">=</span><span class="n">Ps</span><span class="p">))</span>
+        <span class="k">else</span><span class="p">:</span>
+            <span class="k">if</span> <span class="n">delta</span> <span class="o">&gt;</span> <span class="mf">0.15</span><span class="p">:</span>
+                <span class="n">delta</span> <span class="o">=</span> <span class="mf">0.15</span>
+            <span class="n">planes</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">head</span><span class="o">.</span><span class="n">getPartition</span><span class="p">(</span><span class="n">delta</span><span class="o">=</span><span class="n">delta</span><span class="p">))</span>
+            <span class="n">planes</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">body</span><span class="o">.</span><span class="n">getPartition</span><span class="p">(</span><span class="n">delta</span><span class="o">=</span><span class="n">delta</span><span class="p">))</span>
+            <span class="n">planes</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">leg</span><span class="o">.</span><span class="n">getPartition</span><span class="p">(</span><span class="n">delta</span><span class="o">=</span><span class="n">delta</span><span class="p">))</span>
+        
+        <span class="n">planes</span> <span class="o">=</span> <span class="nb">list</span><span class="p">(</span><span class="n">flatten</span><span class="p">(</span><span class="n">planes</span><span class="p">))</span>
+        <span class="k">return</span> <span class="n">planes</span>
+        
+    <span class="k">def</span> <span class="nf">draw</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+        <span class="n">fig</span><span class="p">,</span><span class="n">ax</span> <span class="o">=</span> <span class="n">draw</span><span class="p">(</span><span class="n">cubes</span><span class="o">=</span><span class="p">[</span><span class="bp">self</span><span class="o">.</span><span class="n">head</span><span class="p">,</span><span class="bp">self</span><span class="o">.</span><span class="n">body</span><span class="p">,</span><span class="bp">self</span><span class="o">.</span><span class="n">leg</span><span class="p">],</span>
+             <span class="n">xlim</span><span class="o">=</span><span class="p">[</span><span class="mi">0</span><span class="p">,</span><span class="mi">3</span><span class="p">],</span><span class="n">ylim</span><span class="o">=</span><span class="p">[</span><span class="mi">0</span><span class="p">,</span><span class="mi">3</span><span class="p">],</span><span class="n">zlim</span><span class="o">=</span><span class="p">[</span><span class="mi">0</span><span class="p">,</span><span class="mi">3</span><span class="p">],</span>
+             <span class="n">lengths</span><span class="o">=</span><span class="mi">0</span><span class="p">,</span><span class="n">enablevect</span><span class="o">=</span><span class="s1">&#39;False&#39;</span>
+                     <span class="p">);</span>
+        <span class="n">fig</span><span class="p">,</span><span class="n">ax</span> <span class="o">=</span> <span class="n">draw</span><span class="p">(</span><span class="n">figure</span><span class="o">=</span><span class="n">fig</span><span class="p">,</span><span class="n">axes</span><span class="o">=</span><span class="n">ax</span><span class="p">,</span>
+                      <span class="n">vectors</span><span class="o">=</span><span class="n">Vector</span><span class="p">(</span>
+                          <span class="n">coord</span><span class="o">=</span><span class="bp">self</span><span class="o">.</span><span class="n">normalVect</span><span class="p">,</span><span class="n">refPoint</span><span class="o">=</span><span class="bp">self</span><span class="o">.</span><span class="n">ctrPoint</span><span class="p">,</span><span class="n">which</span><span class="o">=</span><span class="s1">&#39;cartesian&#39;</span><span class="p">))</span></div>
+        
+        
+</pre></div>
+
+           </div>
+           
+          </div>
+          <footer>
+  
+
+  <hr/>
+
+  <div role="contentinfo">
+    <p>
+        &copy; Copyright 2019, Ardimas
+
+    </p>
+  </div>
+  Built with <a href="http://sphinx-doc.org/">Sphinx</a> using a <a href="https://github.com/rtfd/sphinx_rtd_theme">theme</a> provided by <a href="https://readthedocs.org">Read the Docs</a>. 
+
+</footer>
+
+        </div>
+      </div>
+
+    </section>
+
+  </div>
+  
+
+
+  <script type="text/javascript">
+      jQuery(function () {
+          SphinxRtdTheme.Navigation.enable(true);
+      });
+  </script>
+
+  
+  
+    
+   
+
+</body>
+</html>

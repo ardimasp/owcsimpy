@@ -1,0 +1,356 @@
+
+
+<!DOCTYPE html>
+<!--[if IE 8]><html class="no-js lt-ie9" lang="en" > <![endif]-->
+<!--[if gt IE 8]><!--> <html class="no-js" lang="en" > <!--<![endif]-->
+<head>
+  <meta charset="utf-8">
+  
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  
+  <title>OWCsim-Py &mdash; OWCsim-Py 0.0.1 documentation</title>
+  
+
+  
+  
+  
+  
+
+  
+  <script type="text/javascript" src="_static/js/modernizr.min.js"></script>
+  
+    
+      <script type="text/javascript" id="documentation_options" data-url_root="./" src="_static/documentation_options.js"></script>
+        <script type="text/javascript" src="_static/jquery.js"></script>
+        <script type="text/javascript" src="_static/underscore.js"></script>
+        <script type="text/javascript" src="_static/doctools.js"></script>
+        <script type="text/javascript" src="_static/language_data.js"></script>
+        <script async="async" type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.5/latest.js?config=TeX-AMS-MML_HTMLorMML"></script>
+        <script type="text/x-mathjax-config">MathJax.Hub.Config({"tex2jax": {"inlineMath": [["$", "$"], ["\\(", "\\)"]], "processEscapes": true, "ignoreClass": "document", "processClass": "math|output_area"}})</script>
+    
+    <script type="text/javascript" src="_static/js/theme.js"></script>
+
+    
+
+  
+  <link rel="stylesheet" href="_static/css/theme.css" type="text/css" />
+  <link rel="stylesheet" href="_static/pygments.css" type="text/css" />
+  <link rel="stylesheet" href="_static/graphviz.css" type="text/css" />
+    <link rel="index" title="Index" href="genindex.html" />
+    <link rel="search" title="Search" href="search.html" />
+    <link rel="next" title="OWCsim-Py’s Module References" href="modulerefs/index.html" /> 
+</head>
+
+<body class="wy-body-for-nav">
+
+   
+  <div class="wy-grid-for-nav">
+    
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side">
+      <div class="wy-side-scroll">
+        <div class="wy-side-nav-search" >
+          
+
+          
+            <a href="#" class="icon icon-home"> OWCsim-Py
+          
+
+          
+          </a>
+
+          
+            
+            
+          
+
+          
+<div role="search">
+  <form id="rtd-search-form" class="wy-form" action="search.html" method="get">
+    <input type="text" name="q" placeholder="Search docs" />
+    <input type="hidden" name="check_keywords" value="yes" />
+    <input type="hidden" name="area" value="default" />
+  </form>
+</div>
+
+          
+        </div>
+
+        <div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="main navigation">
+          
+            
+            
+              
+            
+            
+              <p class="caption"><span class="caption-text">Contents:</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="modulerefs/index.html">OWCsim-Py’s Module References</a></li>
+<li class="toctree-l1"><a class="reference internal" href="usecases/index.html">OWCsim-Py’s Use Cases</a></li>
+</ul>
+
+            
+          
+        </div>
+      </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap">
+
+      
+      <nav class="wy-nav-top" aria-label="top navigation">
+        
+          <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+          <a href="#">OWCsim-Py</a>
+        
+      </nav>
+
+
+      <div class="wy-nav-content">
+        
+        <div class="rst-content">
+        
+          
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<div role="navigation" aria-label="breadcrumbs navigation">
+
+  <ul class="wy-breadcrumbs">
+    
+      <li><a href="#">Docs</a> &raquo;</li>
+        
+      <li>OWCsim-Py</li>
+    
+    
+      <li class="wy-breadcrumbs-aside">
+        
+            
+            <a href="_sources/index.rst.txt" rel="nofollow"> View page source</a>
+          
+        
+      </li>
+    
+  </ul>
+
+  
+  <hr/>
+</div>
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+           <div itemprop="articleBody">
+            
+  
+<style>
+/* CSS overrides for sphinx_rtd_theme */
+
+/* 24px margin */
+.nbinput.nblast,
+.nboutput.nblast {
+    margin-bottom: 19px;  /* padding has already 5px */
+}
+
+/* ... except between code cells! */
+.nblast + .nbinput {
+    margin-top: -19px;
+}
+
+.admonition > p:before {
+    margin-right: 4px;  /* make room for the exclamation icon */
+}
+
+/* Fix math alignment, see https://github.com/rtfd/sphinx_rtd_theme/pull/686 */
+.math {
+    text-align: unset;
+}
+</style>
+<div class="section" id="owcsim-py">
+<h1>OWCsim-Py<a class="headerlink" href="#owcsim-py" title="Permalink to this headline">¶</a></h1>
+<div class="section" id="summary">
+<h2>Summary<a class="headerlink" href="#summary" title="Permalink to this headline">¶</a></h2>
+<p>OWCsim-Py is a Python simulator for optical wireless communications (OWC).</p>
+<p>This package is still in its very early version and only contains channel impulse response (CIR) generator.</p>
+<p>The CIR generator contains two main modules, i.e., geometry modules and signal processing modules. The geometry modules are written by using Python for readability. The signal processing modules are written in C for fast computation. The documentation is available under the ‘doc’ folder.</p>
+</div>
+<div class="section" id="features">
+<h2>Features<a class="headerlink" href="#features" title="Permalink to this headline">¶</a></h2>
+<ol class="arabic simple">
+<li><p>Geometry</p></li>
+</ol>
+<p>Currently, OWCsim-Py supports modules to generate a basic geometric object. What I have in mind now is to have a codebase that can generate Minecraft-like objects. In addition, basic primitives such as blocking detection and partitioning an object are also supported.</p>
+<p>Figures below show a few objects that can be generated, e.g., a human model, point source models, or simple furniture.</p>
+<a class="reference internal image-reference" href="_images/example1.png"><img alt="_images/example1.png" src="_images/example1.png" style="width: 400px;" /></a>
+<a class="reference internal image-reference" href="_images/example2.png"><img alt="_images/example2.png" src="_images/example2.png" style="width: 400px;" /></a>
+<ol class="arabic simple" start="2">
+<li><p>Use case</p></li>
+</ol>
+<p>Freq. and time domain CIR calculations by Schulze and Carruthers (modified version of Kahn and Barry’s), respectively. Both of them have been C-optimized and multi-thread-enabled. I also add a quick implementation of a sphere model by Jungnickel.</p>
+<p>Figures below show frequency responses of the frequency domain approach (‘FD’), the time domain approach (‘TD’), and the sphere model (‘SP’).</p>
+<a class="reference internal image-reference" href="_images/cirsexample.png"><img alt="_images/cirsexample.png" src="_images/cirsexample.png" style="width: 400px;" /></a>
+</div>
+<div class="section" id="installation">
+<h2>Installation<a class="headerlink" href="#installation" title="Permalink to this headline">¶</a></h2>
+<div class="admonition note">
+<p class="admonition-title">Note</p>
+<p>I haven’t spent enough time to optimize this installation process. I have tried this installation process in MacOS, Linux (university’s machine and Ubuntu) and Ubuntu shell in Windows 10.</p>
+</div>
+<p>Following is my dependencies list. You don’t need to necessarily have the same version as mine.</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">python</span><span class="o">=</span><span class="mf">3.7</span><span class="o">.</span><span class="mi">3</span>
+<span class="n">gcc</span><span class="o">=</span><span class="mf">4.8</span><span class="o">.</span><span class="mi">5</span>
+<span class="n">openmp</span><span class="o">=</span><span class="mf">8.0</span><span class="o">.</span><span class="mi">0</span>
+<span class="n">numpy</span><span class="o">=</span><span class="mf">1.16</span><span class="o">.</span><span class="mi">3</span>
+<span class="n">scipy</span><span class="o">=</span><span class="mf">1.2</span><span class="o">.</span><span class="mi">1</span>
+<span class="n">matplotlib</span><span class="o">=</span><span class="mf">3.0</span><span class="o">.</span><span class="mi">3</span>
+<span class="n">cython</span><span class="o">=</span><span class="mf">0.29</span><span class="o">.</span><span class="mi">7</span>
+<span class="n">jupyter</span><span class="o">=</span><span class="mf">1.0</span><span class="o">.</span><span class="mi">0</span>
+<span class="n">sphinx</span><span class="o">=</span><span class="mf">2.0</span><span class="o">.</span><span class="mi">1</span>
+<span class="n">numpydoc</span><span class="o">=</span><span class="mf">0.9</span><span class="o">.</span><span class="mi">1</span>
+<span class="n">nbsphinx</span><span class="o">=</span><span class="mf">0.4</span><span class="o">.</span><span class="mi">2</span>
+<span class="n">sphinx_rtd_theme</span><span class="o">=</span><span class="mf">0.4</span><span class="o">.</span><span class="mi">3</span>
+</pre></div>
+</div>
+<p>Once you have the dependencies, you can simply run:</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">python</span> <span class="n">setup</span><span class="o">.</span><span class="n">py</span> <span class="o">--</span><span class="n">cython</span> <span class="n">install</span>
+</pre></div>
+</div>
+<p>Here is my go-to steps in installing this package in a new machine.</p>
+<ol class="arabic">
+<li><p>Install <a class="reference external" href="https://docs.conda.io/en/latest/miniconda.html">miniconda3</a></p></li>
+<li><p>Create a virtual env using conda and install the necessary packages</p>
+<blockquote>
+<div><div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">conda</span> <span class="n">create</span> <span class="o">--</span><span class="n">name</span> <span class="n">owcsimpy</span><span class="o">-</span><span class="n">build</span> <span class="o">--</span><span class="n">file</span> <span class="n">spec</span><span class="o">-</span><span class="n">file</span><span class="o">.</span><span class="n">txt</span>
+<span class="n">bash</span> <span class="o">./</span><span class="n">installpackageconda</span><span class="o">.</span><span class="n">sh</span>
+</pre></div>
+</div>
+</div></blockquote>
+</li>
+<li><p>Run setup.py</p>
+<blockquote>
+<div><div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">python3</span> <span class="n">setup</span><span class="o">.</span><span class="n">py</span> <span class="o">--</span><span class="n">cython</span> <span class="n">install</span> <span class="o">--</span><span class="n">record</span> <span class="n">installation</span><span class="o">.</span><span class="n">txt</span> <span class="o">&gt;&amp;</span><span class="mi">1</span> <span class="o">|</span> <span class="n">tee</span> <span class="n">record</span><span class="o">.</span><span class="n">txt</span>
+</pre></div>
+</div>
+<div class="admonition note">
+<p class="admonition-title">Note</p>
+<p>If you have Intel processors, I recommend you to use MKL and compilers from Intel.</p>
+</div>
+</div></blockquote>
+</li>
+<li><p>Verify</p>
+<blockquote>
+<div><div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">cd</span> <span class="n">notebooks</span>
+<span class="n">python</span> <span class="o">-</span><span class="n">c</span> <span class="s2">&quot;import owcsimpy&quot;</span>
+</pre></div>
+</div>
+<p>This should return nothing, otherwise it returns an error message.</p>
+<p>Then, you can play around with the tutorials.</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">jupyter</span><span class="o">-</span><span class="n">notebook</span>
+</pre></div>
+</div>
+</div></blockquote>
+</li>
+</ol>
+</div>
+<div class="section" id="tutorial">
+<h2>Tutorial<a class="headerlink" href="#tutorial" title="Permalink to this headline">¶</a></h2>
+<p>Please checkout brief snippets of what this package can currently do.</p>
+<ul class="simple">
+<li><p><a class="reference external" href="../../../notebooks/UseCase_1_CIR.ipynb">CIR</a></p></li>
+<li><p><a class="reference external" href="../../../notebooks/Basic_1_Geometry-Bases.ipynb">Basic Geometry_bases</a></p></li>
+<li><p><a class="reference external" href="../../../notebooks/Basic_2_Geometry-Models.ipynb">Basic Geometry_model</a></p></li>
+<li><p><a class="reference external" href="../../../notebooks/UseCase_2_SimpleOfficeEnv.ipynb">Simple Office Environment</a></p></li>
+</ul>
+<div class="toctree-wrapper compound">
+<p class="caption"><span class="caption-text">Contents:</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="modulerefs/index.html">OWCsim-Py’s Module References</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="modulerefs/geoobjects/index.html">Geometry Objects</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="modulerefs/geoobjects/basics/index.html">Geometry Objects: Basics</a></li>
+<li class="toctree-l3"><a class="reference internal" href="modulerefs/geoobjects/models/index.html">Geometry Objects: Models</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="modulerefs/utilities/index.html">Utilities</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="modulerefs/utilities/index.html#check-blockage">Check Blockage</a></li>
+</ul>
+</li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="usecases/index.html">OWCsim-Py’s Use Cases</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="usecases/cir/index.html">Channel Impulse Response (CIR)</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="usecases/cir/index.html#introduction">Introduction</a></li>
+<li class="toctree-l3"><a class="reference internal" href="usecases/cir/index.html#cir-for-im-dd">CIR for IM/DD</a></li>
+<li class="toctree-l3"><a class="reference internal" href="usecases/cir/index.html#references">References</a></li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+</div>
+</div>
+</div>
+<div class="section" id="indices-and-tables">
+<h1>Indices and tables<a class="headerlink" href="#indices-and-tables" title="Permalink to this headline">¶</a></h1>
+<ul class="simple">
+<li><p><a class="reference internal" href="genindex.html"><span class="std std-ref">Index</span></a></p></li>
+<li><p><a class="reference internal" href="py-modindex.html"><span class="std std-ref">Module Index</span></a></p></li>
+<li><p><a class="reference internal" href="search.html"><span class="std std-ref">Search Page</span></a></p></li>
+</ul>
+</div>
+
+
+           </div>
+           
+          </div>
+          <footer>
+  
+    <div class="rst-footer-buttons" role="navigation" aria-label="footer navigation">
+      
+        <a href="modulerefs/index.html" class="btn btn-neutral float-right" title="OWCsim-Py’s Module References" accesskey="n" rel="next">Next <span class="fa fa-arrow-circle-right"></span></a>
+      
+      
+    </div>
+  
+
+  <hr/>
+
+  <div role="contentinfo">
+    <p>
+        &copy; Copyright 2019, Ardimas
+
+    </p>
+  </div>
+  Built with <a href="http://sphinx-doc.org/">Sphinx</a> using a <a href="https://github.com/rtfd/sphinx_rtd_theme">theme</a> provided by <a href="https://readthedocs.org">Read the Docs</a>. 
+
+</footer>
+
+        </div>
+      </div>
+
+    </section>
+
+  </div>
+  
+
+
+  <script type="text/javascript">
+      jQuery(function () {
+          SphinxRtdTheme.Navigation.enable(true);
+      });
+  </script>
+
+  
+  
+    
+   
+
+</body>
+</html>

@@ -1,0 +1,449 @@
+
+
+<!DOCTYPE html>
+<!--[if IE 8]><html class="no-js lt-ie9" lang="en" > <![endif]-->
+<!--[if gt IE 8]><!--> <html class="no-js" lang="en" > <!--<![endif]-->
+<head>
+  <meta charset="utf-8">
+  
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  
+  <title>owcsimpy.geoobjects.models.humancube_py &mdash; OWCsim-Py 0.0.1 documentation</title>
+  
+
+  
+  
+  
+  
+
+  
+  <script type="text/javascript" src="../../../../_static/js/modernizr.min.js"></script>
+  
+    
+      <script type="text/javascript" id="documentation_options" data-url_root="../../../../" src="../../../../_static/documentation_options.js"></script>
+        <script type="text/javascript" src="../../../../_static/jquery.js"></script>
+        <script type="text/javascript" src="../../../../_static/underscore.js"></script>
+        <script type="text/javascript" src="../../../../_static/doctools.js"></script>
+        <script type="text/javascript" src="../../../../_static/language_data.js"></script>
+        <script async="async" type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.5/latest.js?config=TeX-AMS-MML_HTMLorMML"></script>
+        <script type="text/x-mathjax-config">MathJax.Hub.Config({"tex2jax": {"inlineMath": [["$", "$"], ["\\(", "\\)"]], "processEscapes": true, "ignoreClass": "document", "processClass": "math|output_area"}})</script>
+    
+    <script type="text/javascript" src="../../../../_static/js/theme.js"></script>
+
+    
+
+  
+  <link rel="stylesheet" href="../../../../_static/css/theme.css" type="text/css" />
+  <link rel="stylesheet" href="../../../../_static/pygments.css" type="text/css" />
+  <link rel="stylesheet" href="../../../../_static/graphviz.css" type="text/css" />
+    <link rel="index" title="Index" href="../../../../genindex.html" />
+    <link rel="search" title="Search" href="../../../../search.html" /> 
+</head>
+
+<body class="wy-body-for-nav">
+
+   
+  <div class="wy-grid-for-nav">
+    
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side">
+      <div class="wy-side-scroll">
+        <div class="wy-side-nav-search" >
+          
+
+          
+            <a href="../../../../index.html" class="icon icon-home"> OWCsim-Py
+          
+
+          
+          </a>
+
+          
+            
+            
+          
+
+          
+<div role="search">
+  <form id="rtd-search-form" class="wy-form" action="../../../../search.html" method="get">
+    <input type="text" name="q" placeholder="Search docs" />
+    <input type="hidden" name="check_keywords" value="yes" />
+    <input type="hidden" name="area" value="default" />
+  </form>
+</div>
+
+          
+        </div>
+
+        <div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="main navigation">
+          
+            
+            
+              
+            
+            
+              <p class="caption"><span class="caption-text">Contents:</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../../../../modulerefs/index.html">OWCsim-Py’s Module References</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../../usecases/index.html">OWCsim-Py’s Use Cases</a></li>
+</ul>
+
+            
+          
+        </div>
+      </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap">
+
+      
+      <nav class="wy-nav-top" aria-label="top navigation">
+        
+          <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+          <a href="../../../../index.html">OWCsim-Py</a>
+        
+      </nav>
+
+
+      <div class="wy-nav-content">
+        
+        <div class="rst-content">
+        
+          
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<div role="navigation" aria-label="breadcrumbs navigation">
+
+  <ul class="wy-breadcrumbs">
+    
+      <li><a href="../../../../index.html">Docs</a> &raquo;</li>
+        
+          <li><a href="../../../index.html">Module code</a> &raquo;</li>
+        
+      <li>owcsimpy.geoobjects.models.humancube_py</li>
+    
+    
+      <li class="wy-breadcrumbs-aside">
+        
+      </li>
+    
+  </ul>
+
+  
+  <hr/>
+</div>
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+           <div itemprop="articleBody">
+            
+  <h1>Source code for owcsimpy.geoobjects.models.humancube_py</h1><div class="highlight"><pre>
+<span></span><span class="kn">import</span> <span class="nn">math</span>
+<span class="kn">import</span> <span class="nn">itertools</span>
+<span class="kn">import</span> <span class="nn">numpy</span> <span class="k">as</span> <span class="nn">np</span>
+
+<span class="kn">from</span> <span class="nn">owcsimpy.geoobjects.bases.vector_py</span> <span class="k">import</span> <span class="n">Vector_py</span> <span class="k">as</span> <span class="n">Vector</span>
+<span class="kn">from</span> <span class="nn">owcsimpy.geoobjects.bases.cube_py</span> <span class="k">import</span> <span class="n">Cube_py</span> <span class="k">as</span> <span class="n">Cube</span>
+
+<div class="viewcode-block" id="HumanCube_py"><a class="viewcode-back" href="../../../../modulerefs/geoobjects/models/humancube.html#owcsimpy.geoobjects.models.humancube_py.HumanCube_py">[docs]</a><span class="k">class</span> <span class="nc">HumanCube_py</span><span class="p">(</span><span class="n">Cube</span><span class="p">):</span>
+    <span class="sd">&quot;&quot;&quot; A simple human model with a 3D cube.</span>
+
+<span class="sd">    The human is assumed to have a surface touching xy-plane at z=0. </span>
+<span class="sd">    Therefore, the location will be defined as 2D array.</span>
+<span class="sd">    </span>
+<span class="sd">    Dimensions are now defined such that the cube&#39;s original position has </span>
+<span class="sd">    the polar angle of 90deg and azimuth of 0 deg (see the notes below).</span>
+
+<span class="sd">    HumanCube_py is inherited from </span>
+<span class="sd">    :class:`~owcsimpy.geoobjects.bases.cube_py.Cube_py`</span>
+
+<span class="sd">    See Also</span>
+<span class="sd">    --------</span>
+<span class="sd">    :class:`~owcsimpy.geoobjects.bases.cube_py.Cube_py`</span>
+
+<span class="sd">    Parameters</span>
+<span class="sd">    ----------</span>
+<span class="sd">    loc: ndarray(2,)</span>
+<span class="sd">        Location in xy-plane.</span>
+<span class="sd">    dimensions: ndarray(3,)</span>
+<span class="sd">    direction: float</span>
+<span class="sd">        The direction of the human is modeled as the azimuth angle.</span>
+<span class="sd">    identity: int</span>
+<span class="sd">    reflectivities: dict</span>
+<span class="sd">        The keys are &#39;shirt&#39; and &#39;hair&#39;.</span>
+
+<span class="sd">    Notes</span>
+<span class="sd">    -----</span>
+<span class="sd">    .. code-block:: text</span>
+
+
+<span class="sd">                                     z                                                  </span>
+<span class="sd">                                     ;                                                  </span>
+<span class="sd">                                     V                                                  </span>
+<span class="sd">                                     V                                                  </span>
+<span class="sd">                          W          V ;**I**;                                          </span>
+<span class="sd">                              ;;**IIVMFVVVVVVFFVIII**;;                                 </span>
+<span class="sd">                     ;;*IIIVVFVVVVVVVMVVVVVVVVVVVVVVVV$$VI;                             </span>
+<span class="sd">                *IVVVFVVVVVVVVVVVVVVVVVVVVVVVVVVVIII**;;;;*                             </span>
+<span class="sd">                *;**IIIVFVVVVVVVVVVVVVVVFVIII**;;;;;;;;;;;;                             </span>
+<span class="sd">                I;;;;;;;;**IIVVFVFVVII**;;;;;;;;;;;;;;;;;*                              </span>
+<span class="sd">                *;;;;;;;;;;;;;;;I;;;;;;;;;;;;;;;;;;;;;;;;I                              </span>
+<span class="sd">                *;;;;;;;;;;;;;;;*;;;;;;;;;;;;;;;;;;;;;;;;I                              </span>
+<span class="sd">                *;;;;;;;;;;;;;;;*;;;;;;;;;;;;;;;;;;;;;;;;I                              </span>
+<span class="sd">                *;;;;;;;;;;;;;;;*;;;;;;;;;;;;;;;;;;;;;;;;I                              </span>
+<span class="sd">                *;;;;;;;;;;;;;;;*;;;;;;;;;;;;;;;;;;;;;;;;*                              </span>
+<span class="sd">                ;;;;;;;;;;;;;;;;*;;;;;;;;;;;;;;;;;;;;;;;;I                              </span>
+<span class="sd">                ;*;;;;;;;;;;;;;;*;;;;;;;;;;;;;;;;;;;;;;;;*                              </span>
+<span class="sd">            H    *;;;;;;;;;;;;;;*;;;;;;;;;;;;;;;;;;;;;;;;*                              </span>
+<span class="sd">                 I;;;;;;;;;;;;;;I;;;;;;;;;;;;;III;;;;;;;;I            y                  </span>
+<span class="sd">                 I;;;;;;;;;;;;;;I;;;;;;;;;;;;;;;*IIIII;;;*        ***;                  </span>
+<span class="sd">                 *;;;;;;;;;;;;;;*;;;;;;;;;;;;;;;;;;;;;*IIV**;*****                      </span>
+<span class="sd">                 *;;;;;;;;;;;;;;*;;;;;;;;;;;;;;;;;;;;;;;;I*IVI***;                      </span>
+<span class="sd">                 *;;;;;;;;;;;;;;*;;;;;;;;;;;;;;;;;;;;;;;;I       ******                 </span>
+<span class="sd">                 *;;;;;;;;;;;;;;*;;;;;;;;;;;;;;;;;;;;;;;;*             ******           </span>
+<span class="sd">                 *;;;;;;;;;;;;;;*;;;;;;;;;;;;;;;;;;;;;;;;*                  ;*****;     </span>
+<span class="sd">                 I;;;;;;;;;;;;;;*;;;;;;;;;;;;;;;;;;;;;;**;                       ;** n   </span>
+<span class="sd">                 *;;;;;;;;;;;;;;*;;;;;;;;;;;;;;;;;;****                                 </span>
+<span class="sd">                 ***;;;;;;;;;;;;*;;;;;;;;;;;;;****;                                     </span>
+<span class="sd">                   ;***;;;;;;;;;*;;;;;;;;;;***V**                                       </span>
+<span class="sd">                       ****;;;;;I;;;;;;***;     ;****                                   </span>
+<span class="sd">                   L       ****;I;****;              *****                              </span>
+<span class="sd">                               *I*;                      ;****                          </span>
+<span class="sd">                                                              ****;                     </span>
+<span class="sd">                                                                  ****;                 </span>
+<span class="sd">                                                                      ;****;            </span>
+<span class="sd">                                                                           ****;        </span>
+<span class="sd">                                                                               *****    </span>
+<span class="sd">                                                                                    * x  </span>
+<span class="sd">                                                                                </span>
+
+<span class="sd">    Examples</span>
+<span class="sd">    --------</span>
+<span class="sd">    .. plot:: </span>
+<span class="sd">            :format: doctest</span>
+<span class="sd">            :include-source: True</span>
+
+<span class="sd">            &gt;&gt;&gt; import matplotlib.pyplot as plt</span>
+<span class="sd">            &gt;&gt;&gt; import numpy as np</span>
+<span class="sd">            &gt;&gt;&gt; </span>
+<span class="sd">            &gt;&gt;&gt; from owcsimpy.geoobjects.models.humancube_py import HumanCube_py as Human</span>
+<span class="sd">            &gt;&gt;&gt; from owcsimpy.geoutils.draw import draw</span>
+<span class="sd">            &gt;&gt;&gt; </span>
+<span class="sd">            &gt;&gt;&gt; rho_keys = [&#39;shirt&#39;,&#39;hair&#39;]</span>
+<span class="sd">            &gt;&gt;&gt; rho_vals = [0.3,0.6]</span>
+<span class="sd">            &gt;&gt;&gt; reflectivities = {rho_keys[i]:rho_vals[i] for i in range(2)}</span>
+<span class="sd">            &gt;&gt;&gt; </span>
+<span class="sd">            &gt;&gt;&gt; persons = []</span>
+<span class="sd">            &gt;&gt;&gt; persons.append(Human(</span>
+<span class="sd">            &gt;&gt;&gt;     direction=np.deg2rad(45),</span>
+<span class="sd">            &gt;&gt;&gt;     loc=np.array([2,2]),</span>
+<span class="sd">            &gt;&gt;&gt;     dimensions=[0.3,0.5,1.7],</span>
+<span class="sd">            &gt;&gt;&gt;     identity=2,</span>
+<span class="sd">            &gt;&gt;&gt;     reflectivities=reflectivities))</span>
+<span class="sd">            &gt;&gt;&gt; persons.append(Human(</span>
+<span class="sd">            &gt;&gt;&gt;     direction=np.deg2rad(180),</span>
+<span class="sd">            &gt;&gt;&gt;     loc=np.array([4,1]),</span>
+<span class="sd">            &gt;&gt;&gt;     dimensions=[0.3,0.5,1.7],</span>
+<span class="sd">            &gt;&gt;&gt;     identity=2,</span>
+<span class="sd">            &gt;&gt;&gt;     reflectivities=reflectivities))</span>
+<span class="sd">            &gt;&gt;&gt; draw(models3d=persons,xlim=[0,5],ylim=[0,4],zlim=[0,3],</span>
+<span class="sd">            &gt;&gt;&gt;     facecolors=[&#39;red&#39;,&#39;blue&#39;],colors=[&#39;red&#39;,&#39;blue&#39;]);</span>
+<span class="sd">            &gt;&gt;&gt;</span>
+<span class="sd">            &gt;&gt;&gt; plt.show() </span>
+
+<span class="sd">    &quot;&quot;&quot;</span>
+
+    <span class="k">def</span> <span class="nf">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span><span class="n">direction</span><span class="p">,</span><span class="n">loc</span><span class="p">,</span><span class="n">dimensions</span><span class="p">,</span><span class="n">identity</span><span class="p">,</span>
+        <span class="n">reflectivities</span><span class="o">=</span><span class="p">{</span><span class="s1">&#39;shirt&#39;</span><span class="p">:</span><span class="mi">1</span><span class="p">,</span><span class="s1">&#39;hair&#39;</span><span class="p">:</span><span class="mi">1</span><span class="p">}):</span>
+
+        <span class="k">assert</span> <span class="nb">isinstance</span><span class="p">(</span><span class="n">reflectivities</span><span class="p">,</span><span class="nb">dict</span><span class="p">),</span> <span class="s2">&quot;must be a dictionary&quot;</span>
+        <span class="k">assert</span> <span class="nb">len</span><span class="p">(</span><span class="n">reflectivities</span><span class="p">)</span> <span class="o">==</span> <span class="mi">2</span><span class="p">,</span> <span class="p">(</span>
+           <span class="s2">&quot;the length must be 2&quot;</span><span class="p">)</span>
+        <span class="k">assert</span> <span class="nb">sorted</span><span class="p">(</span> 
+           <span class="p">[</span><span class="n">string</span><span class="o">.</span><span class="n">lower</span><span class="p">()</span> <span class="k">for</span> <span class="n">string</span> <span class="ow">in</span> <span class="nb">list</span><span class="p">(</span><span class="n">reflectivities</span><span class="o">.</span><span class="n">keys</span><span class="p">())]</span>
+           <span class="p">)</span> <span class="o">==</span> <span class="nb">sorted</span><span class="p">([</span><span class="s1">&#39;shirt&#39;</span><span class="p">,</span><span class="s1">&#39;hair&#39;</span><span class="p">]),</span> <span class="s2">&quot;keys name are wrong&quot;</span>
+
+        <span class="n">L</span><span class="p">,</span><span class="n">W</span><span class="p">,</span><span class="n">H</span> <span class="o">=</span> <span class="n">dimensions</span>
+
+        <span class="nb">super</span><span class="p">()</span><span class="o">.</span><span class="fm">__init__</span><span class="p">(</span>
+            <span class="n">normalVect</span><span class="o">=</span><span class="n">Vector</span><span class="p">(</span><span class="n">np</span><span class="o">.</span><span class="n">array</span><span class="p">([</span><span class="mi">1</span><span class="p">,</span><span class="n">np</span><span class="o">.</span><span class="n">pi</span><span class="o">/</span><span class="mi">2</span><span class="p">,</span><span class="n">direction</span><span class="p">])),</span>
+            <span class="n">ctrPoint</span><span class="o">=</span><span class="n">np</span><span class="o">.</span><span class="n">array</span><span class="p">([</span><span class="n">loc</span><span class="p">[</span><span class="mi">0</span><span class="p">],</span><span class="n">loc</span><span class="p">[</span><span class="mi">1</span><span class="p">],</span><span class="n">H</span><span class="o">/</span><span class="mi">2</span><span class="p">]),</span>
+            <span class="n">dimensions</span><span class="o">=</span><span class="n">np</span><span class="o">.</span><span class="n">array</span><span class="p">([</span><span class="n">H</span><span class="p">,</span><span class="n">W</span><span class="p">,</span><span class="n">L</span><span class="p">]),</span>
+            <span class="n">identity</span><span class="o">=</span><span class="n">identity</span><span class="p">,</span>
+            <span class="n">reflectivities</span><span class="o">=</span><span class="p">{</span>
+            <span class="s1">&#39;p0&#39;</span><span class="p">:</span><span class="n">reflectivities</span><span class="p">[</span><span class="s1">&#39;shirt&#39;</span><span class="p">],</span>
+            <span class="s1">&#39;p1&#39;</span><span class="p">:</span><span class="n">reflectivities</span><span class="p">[</span><span class="s1">&#39;shirt&#39;</span><span class="p">],</span>
+            <span class="s1">&#39;p2&#39;</span><span class="p">:</span><span class="n">reflectivities</span><span class="p">[</span><span class="s1">&#39;hair&#39;</span><span class="p">],</span>
+            <span class="s1">&#39;p3&#39;</span><span class="p">:</span><span class="n">reflectivities</span><span class="p">[</span><span class="s1">&#39;shirt&#39;</span><span class="p">],</span>
+            <span class="s1">&#39;p4&#39;</span><span class="p">:</span><span class="n">reflectivities</span><span class="p">[</span><span class="s1">&#39;shirt&#39;</span><span class="p">],</span>
+            <span class="s1">&#39;p5&#39;</span><span class="p">:</span><span class="n">reflectivities</span><span class="p">[</span><span class="s1">&#39;shirt&#39;</span><span class="p">]}</span>
+            <span class="p">)</span>
+
+<div class="viewcode-block" id="HumanCube_py.getOuterVerts"><a class="viewcode-back" href="../../../../modulerefs/geoobjects/models/humancube.html#owcsimpy.geoobjects.models.humancube_py.HumanCube_py.getOuterVerts">[docs]</a>    <span class="k">def</span> <span class="nf">getOuterVerts</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+        <span class="sd">&quot;&quot;&quot; Get outer vertices of a 3D object.</span>
+<span class="sd">        </span>
+<span class="sd">        This is used to check whether a 3D object intersects with another 3D object by </span>
+<span class="sd">        means of convex hull.</span>
+
+<span class="sd">        &quot;&quot;&quot;</span>
+
+        <span class="n">listVerts</span> <span class="o">=</span> <span class="p">[</span><span class="bp">self</span><span class="o">.</span><span class="n">listPlanes</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span><span class="o">.</span><span class="n">verts</span><span class="o">.</span><span class="n">tolist</span><span class="p">(),</span><span class="bp">self</span><span class="o">.</span><span class="n">listPlanes</span><span class="p">[</span><span class="mi">1</span><span class="p">]</span><span class="o">.</span><span class="n">verts</span><span class="o">.</span><span class="n">tolist</span><span class="p">()]</span>
+        <span class="n">listVerts</span> <span class="o">=</span> <span class="nb">list</span><span class="p">(</span><span class="n">itertools</span><span class="o">.</span><span class="n">chain</span><span class="o">.</span><span class="n">from_iterable</span><span class="p">(</span><span class="n">listVerts</span><span class="p">))</span>
+
+        <span class="k">return</span> <span class="n">np</span><span class="o">.</span><span class="n">array</span><span class="p">(</span><span class="n">listVerts</span><span class="p">)</span></div>
+
+<div class="viewcode-block" id="HumanCube_py.getPartition"><a class="viewcode-back" href="../../../../modulerefs/geoobjects/models/humancube.html#owcsimpy.geoobjects.models.humancube_py.HumanCube_py.getPartition">[docs]</a>    <span class="k">def</span> <span class="nf">getPartition</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span><span class="n">Ps</span><span class="o">=</span><span class="p">[</span><span class="mi">1</span><span class="p">,</span><span class="mi">1</span><span class="p">,</span><span class="mi">1</span><span class="p">],</span><span class="n">delta</span><span class="o">=</span><span class="kc">None</span><span class="p">):</span>
+        <span class="sd">&quot;&quot;&quot;Get a list of partitioned planes of each face.</span>
+
+<span class="sd">        Overriding the method from the parent class as we don&#39;t need the bottom face.</span>
+
+<span class="sd">        Parameters</span>
+<span class="sd">        ----------</span>
+<span class="sd">        Ps: list</span>
+<span class="sd">            List of number of partition of each face. </span>
+<span class="sd">        delta: list</span>
+<span class="sd">            Define the partition based on partition lengths</span>
+
+<span class="sd">        Returns</span>
+<span class="sd">        -------</span>
+<span class="sd">        list:</span>
+<span class="sd">            A list of partitioned planes. Each plane is an instant of </span>
+<span class="sd">            RectPlane_py.</span>
+<span class="sd">        </span>
+<span class="sd">        See Also</span>
+<span class="sd">        --------</span>
+<span class="sd">        :mod:`owcsimpy.geoobjects.bases.rectplane_py.RectPlane_py.getPartition`</span>
+<span class="sd">        </span>
+<span class="sd">        Examples</span>
+<span class="sd">        --------</span>
+
+<span class="sd">        .. plot::</span>
+<span class="sd">            :format: doctest</span>
+<span class="sd">            :include-source: True</span>
+
+<span class="sd">            &gt;&gt;&gt; import matplotlib.pyplot as plt</span>
+<span class="sd">            &gt;&gt;&gt; import numpy as np</span>
+<span class="sd">            &gt;&gt;&gt; </span>
+<span class="sd">            &gt;&gt;&gt; from owcsimpy.geoobjects.bases.vector_py import Vector_py as Vector</span>
+<span class="sd">            &gt;&gt;&gt; from owcsimpy.geoobjects.bases.cube_py import Cube_py as Cube</span>
+<span class="sd">            &gt;&gt;&gt; from owcsimpy.geoutils.draw import draw</span>
+<span class="sd">            &gt;&gt;&gt; cube = Cube(</span>
+<span class="sd">            &gt;&gt;&gt;     Vector(np.array([1,np.deg2rad(90),np.deg2rad(90)])),</span>
+<span class="sd">            &gt;&gt;&gt;     ctrPoint = np.array([0.5,0.5,0.5]),</span>
+<span class="sd">            &gt;&gt;&gt;     dimensions = [2,1,1],</span>
+<span class="sd">            &gt;&gt;&gt;     RodriguesAngle = np.deg2rad(30)</span>
+<span class="sd">            &gt;&gt;&gt; )</span>
+<span class="sd">            &gt;&gt;&gt; planes = cube.getPartition(delta=0.5)</span>
+<span class="sd">            &gt;&gt;&gt; fig,ax = draw(planes=planes,alphas=0.2,xlim=[-2,2],ylim=[-2,2],zlim=[-2,2])</span>
+<span class="sd">            &gt;&gt;&gt; plt.show()</span>
+
+
+
+<span class="sd">        &quot;&quot;&quot;</span>
+
+        <span class="k">if</span> <span class="n">delta</span> <span class="o">==</span> <span class="kc">None</span><span class="p">:</span>
+            <span class="c1"># Casting to list if it is a constant</span>
+            <span class="n">Ps</span> <span class="o">=</span> <span class="p">[</span><span class="n">Ps</span><span class="p">]</span> <span class="k">if</span> <span class="ow">not</span> <span class="nb">isinstance</span><span class="p">(</span><span class="n">Ps</span><span class="p">,</span><span class="nb">list</span><span class="p">)</span> <span class="k">else</span> <span class="n">Ps</span>
+
+            <span class="k">assert</span> <span class="nb">isinstance</span><span class="p">(</span><span class="n">Ps</span><span class="p">,</span><span class="nb">list</span><span class="p">)</span>
+            <span class="k">assert</span> <span class="mi">0</span> <span class="o">&lt;</span> <span class="nb">len</span><span class="p">(</span><span class="n">Ps</span><span class="p">)</span> <span class="o">&lt;=</span> <span class="mi">3</span>
+
+            <span class="k">if</span> <span class="nb">len</span><span class="p">(</span><span class="n">Ps</span><span class="p">)</span> <span class="o">==</span> <span class="mi">1</span><span class="p">:</span>
+                <span class="c1">#  If the length is one then replicate</span>
+                <span class="n">Ps</span> <span class="o">=</span> <span class="mi">3</span><span class="o">*</span><span class="n">Ps</span> 
+            <span class="k">else</span><span class="p">:</span> 
+                <span class="k">raise</span> <span class="ne">ValueError</span><span class="p">(</span><span class="s1">&#39;Either assign one for all or all of them at once&#39;</span><span class="p">)</span>
+
+            <span class="c1"># Unpack</span>
+            <span class="n">Px</span><span class="p">,</span><span class="n">Py</span><span class="p">,</span><span class="n">Pz</span> <span class="o">=</span> <span class="n">Ps</span>
+        <span class="k">else</span><span class="p">:</span>
+            <span class="c1"># Casting to a list</span>
+            <span class="n">delta</span> <span class="o">=</span> <span class="p">[</span><span class="n">delta</span><span class="p">]</span> <span class="k">if</span> <span class="ow">not</span> <span class="nb">isinstance</span><span class="p">(</span><span class="n">delta</span><span class="p">,</span><span class="nb">list</span><span class="p">)</span> <span class="k">else</span> <span class="n">delta</span>
+            
+            <span class="k">assert</span> <span class="nb">isinstance</span><span class="p">(</span><span class="n">delta</span><span class="p">,</span><span class="nb">list</span><span class="p">)</span>
+            <span class="k">assert</span> <span class="mi">0</span> <span class="o">&lt;</span> <span class="nb">len</span><span class="p">(</span><span class="n">delta</span><span class="p">)</span> <span class="o">&lt;=</span> <span class="mi">3</span>
+
+            <span class="k">if</span> <span class="nb">len</span><span class="p">(</span><span class="n">delta</span><span class="p">)</span> <span class="o">==</span> <span class="mi">1</span><span class="p">:</span>
+                <span class="c1">#  If the length is one then replicate</span>
+                <span class="n">delta</span> <span class="o">=</span> <span class="mi">3</span><span class="o">*</span><span class="n">delta</span> 
+            <span class="k">else</span><span class="p">:</span> 
+                <span class="k">raise</span> <span class="ne">ValueError</span><span class="p">(</span><span class="s1">&#39;Either assign one for all or all of them at once&#39;</span><span class="p">)</span>
+
+            <span class="c1"># Unpack</span>
+            <span class="n">delta_x</span><span class="p">,</span><span class="n">delta_y</span><span class="p">,</span><span class="n">delta_z</span> <span class="o">=</span> <span class="n">delta</span>
+
+            <span class="k">assert</span> <span class="mi">0</span> <span class="o">&lt;</span> <span class="n">delta_x</span> <span class="o">&lt;=</span> <span class="bp">self</span><span class="o">.</span><span class="n">L</span> <span class="ow">and</span> <span class="mi">0</span> <span class="o">&lt;</span> <span class="n">delta_y</span> <span class="o">&lt;=</span> <span class="bp">self</span><span class="o">.</span><span class="n">W</span> <span class="ow">and</span> <span class="mi">0</span> <span class="o">&lt;</span> <span class="n">delta_z</span> <span class="o">&lt;=</span> <span class="bp">self</span><span class="o">.</span><span class="n">H</span>
+
+            <span class="n">Px</span> <span class="o">=</span> <span class="nb">int</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">L</span><span class="o">/</span><span class="n">delta_x</span><span class="p">)</span>
+            <span class="n">Py</span> <span class="o">=</span> <span class="nb">int</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">W</span><span class="o">/</span><span class="n">delta_y</span><span class="p">)</span>
+            <span class="n">Pz</span> <span class="o">=</span> <span class="nb">int</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">H</span><span class="o">/</span><span class="n">delta_z</span><span class="p">)</span>
+
+        <span class="n">partitionedPlanes</span> <span class="o">=</span> <span class="p">[]</span>
+
+        <span class="n">Ps</span> <span class="o">=</span> <span class="p">[[</span><span class="n">Px</span><span class="p">,</span><span class="n">Py</span><span class="p">],[</span><span class="n">Px</span><span class="p">,</span><span class="n">Py</span><span class="p">],[</span><span class="n">Py</span><span class="p">,</span><span class="n">Pz</span><span class="p">],[</span><span class="n">Py</span><span class="p">,</span><span class="n">Pz</span><span class="p">],[</span><span class="n">Px</span><span class="p">,</span><span class="n">Pz</span><span class="p">],[</span><span class="n">Px</span><span class="p">,</span><span class="n">Pz</span><span class="p">]]</span>
+
+
+        <span class="c1"># The bottom face is the fourth face</span>
+        <span class="k">for</span> <span class="n">idx</span> <span class="ow">in</span> <span class="p">[</span><span class="mi">0</span><span class="p">,</span><span class="mi">1</span><span class="p">,</span><span class="mi">2</span><span class="p">,</span><span class="mi">4</span><span class="p">,</span><span class="mi">5</span><span class="p">]:</span> <span class="c1"># iteration over each face</span>
+            <span class="n">partitionedPlanes</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">listPlanes</span><span class="p">[</span><span class="n">idx</span><span class="p">]</span><span class="o">.</span><span class="n">getPartition</span><span class="p">(</span><span class="n">Ps</span><span class="o">=</span><span class="n">Ps</span><span class="p">[</span><span class="n">idx</span><span class="p">]))</span>
+
+        <span class="k">return</span> <span class="nb">list</span><span class="p">(</span><span class="n">itertools</span><span class="o">.</span><span class="n">chain</span><span class="o">.</span><span class="n">from_iterable</span><span class="p">(</span><span class="n">partitionedPlanes</span><span class="p">))</span></div></div>
+
+
+
+
+
+
+
+</pre></div>
+
+           </div>
+           
+          </div>
+          <footer>
+  
+
+  <hr/>
+
+  <div role="contentinfo">
+    <p>
+        &copy; Copyright 2019, Ardimas
+
+    </p>
+  </div>
+  Built with <a href="http://sphinx-doc.org/">Sphinx</a> using a <a href="https://github.com/rtfd/sphinx_rtd_theme">theme</a> provided by <a href="https://readthedocs.org">Read the Docs</a>. 
+
+</footer>
+
+        </div>
+      </div>
+
+    </section>
+
+  </div>
+  
+
+
+  <script type="text/javascript">
+      jQuery(function () {
+          SphinxRtdTheme.Navigation.enable(true);
+      });
+  </script>
+
+  
+  
+    
+   
+
+</body>
+</html>

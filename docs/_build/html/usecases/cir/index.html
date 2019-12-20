@@ -1,0 +1,281 @@
+
+
+<!DOCTYPE html>
+<!--[if IE 8]><html class="no-js lt-ie9" lang="en" > <![endif]-->
+<!--[if gt IE 8]><!--> <html class="no-js" lang="en" > <!--<![endif]-->
+<head>
+  <meta charset="utf-8">
+  
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  
+  <title>Channel Impulse Response (CIR) &mdash; OWCsim-Py 0.0.1 documentation</title>
+  
+
+  
+  
+  
+  
+
+  
+  <script type="text/javascript" src="../../_static/js/modernizr.min.js"></script>
+  
+    
+      <script type="text/javascript" id="documentation_options" data-url_root="../../" src="../../_static/documentation_options.js"></script>
+        <script type="text/javascript" src="../../_static/jquery.js"></script>
+        <script type="text/javascript" src="../../_static/underscore.js"></script>
+        <script type="text/javascript" src="../../_static/doctools.js"></script>
+        <script type="text/javascript" src="../../_static/language_data.js"></script>
+        <script async="async" type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.5/latest.js?config=TeX-AMS-MML_HTMLorMML"></script>
+        <script type="text/x-mathjax-config">MathJax.Hub.Config({"tex2jax": {"inlineMath": [["$", "$"], ["\\(", "\\)"]], "processEscapes": true, "ignoreClass": "document", "processClass": "math|output_area"}})</script>
+    
+    <script type="text/javascript" src="../../_static/js/theme.js"></script>
+
+    
+
+  
+  <link rel="stylesheet" href="../../_static/css/theme.css" type="text/css" />
+  <link rel="stylesheet" href="../../_static/pygments.css" type="text/css" />
+  <link rel="stylesheet" href="../../_static/graphviz.css" type="text/css" />
+    <link rel="index" title="Index" href="../../genindex.html" />
+    <link rel="search" title="Search" href="../../search.html" />
+    <link rel="next" title="Time Domain CIR" href="timedomaincir.html" />
+    <link rel="prev" title="OWCsim-Py’s Use Cases" href="../index.html" /> 
+</head>
+
+<body class="wy-body-for-nav">
+
+   
+  <div class="wy-grid-for-nav">
+    
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side">
+      <div class="wy-side-scroll">
+        <div class="wy-side-nav-search" >
+          
+
+          
+            <a href="../../index.html" class="icon icon-home"> OWCsim-Py
+          
+
+          
+          </a>
+
+          
+            
+            
+          
+
+          
+<div role="search">
+  <form id="rtd-search-form" class="wy-form" action="../../search.html" method="get">
+    <input type="text" name="q" placeholder="Search docs" />
+    <input type="hidden" name="check_keywords" value="yes" />
+    <input type="hidden" name="area" value="default" />
+  </form>
+</div>
+
+          
+        </div>
+
+        <div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="main navigation">
+          
+            
+            
+              
+            
+            
+              <p class="caption"><span class="caption-text">Contents:</span></p>
+<ul class="current">
+<li class="toctree-l1"><a class="reference internal" href="../../modulerefs/index.html">OWCsim-Py’s Module References</a></li>
+<li class="toctree-l1 current"><a class="reference internal" href="../index.html">OWCsim-Py’s Use Cases</a><ul class="current">
+<li class="toctree-l2 current"><a class="current reference internal" href="#">Channel Impulse Response (CIR)</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="#introduction">Introduction</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#cir-for-im-dd">CIR for IM/DD</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#references">References</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="timedomaincir.html">Time Domain CIR</a></li>
+<li class="toctree-l4"><a class="reference internal" href="freqdomaincir.html">Freq. Domain CIR</a></li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+
+            
+          
+        </div>
+      </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap">
+
+      
+      <nav class="wy-nav-top" aria-label="top navigation">
+        
+          <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+          <a href="../../index.html">OWCsim-Py</a>
+        
+      </nav>
+
+
+      <div class="wy-nav-content">
+        
+        <div class="rst-content">
+        
+          
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<div role="navigation" aria-label="breadcrumbs navigation">
+
+  <ul class="wy-breadcrumbs">
+    
+      <li><a href="../../index.html">Docs</a> &raquo;</li>
+        
+          <li><a href="../index.html">OWCsim-Py’s Use Cases</a> &raquo;</li>
+        
+      <li>Channel Impulse Response (CIR)</li>
+    
+    
+      <li class="wy-breadcrumbs-aside">
+        
+            
+            <a href="../../_sources/usecases/cir/index.rst.txt" rel="nofollow"> View page source</a>
+          
+        
+      </li>
+    
+  </ul>
+
+  
+  <hr/>
+</div>
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+           <div itemprop="articleBody">
+            
+  
+<style>
+/* CSS overrides for sphinx_rtd_theme */
+
+/* 24px margin */
+.nbinput.nblast,
+.nboutput.nblast {
+    margin-bottom: 19px;  /* padding has already 5px */
+}
+
+/* ... except between code cells! */
+.nblast + .nbinput {
+    margin-top: -19px;
+}
+
+.admonition > p:before {
+    margin-right: 4px;  /* make room for the exclamation icon */
+}
+
+/* Fix math alignment, see https://github.com/rtfd/sphinx_rtd_theme/pull/686 */
+.math {
+    text-align: unset;
+}
+</style>
+<div class="section" id="channel-impulse-response-cir">
+<h1>Channel Impulse Response (CIR)<a class="headerlink" href="#channel-impulse-response-cir" title="Permalink to this headline">¶</a></h1>
+<div class="section" id="introduction">
+<h2>Introduction<a class="headerlink" href="#introduction" title="Permalink to this headline">¶</a></h2>
+<p>It is obvious that the calculation of CIR is essential, yet it is easily overlooked due to its complexity. First, I will focus on the implementation of the time-domain <a class="reference internal" href="#carruthers2002" id="id1"><span>[Carruthers2002]</span></a> and frequency-domain approaches <a class="reference internal" href="#schulze2016" id="id2"><span>[Schulze2016]</span></a>.</p>
+<p>The main advantage of the frequency-domain approach is that it considers infinite number of reflections. However, when it comes to time-domain CIR, freq. domain approach needs windowing filter to transform it to time domain. To give you a concrete example of what the disadvantage of the freq. domain approach is that a flat frequency response will not give us an impulse in time-domain if the time bin is not correct. In fact, it gives us a sinc func (can be a negative value). Therefore, a careful filtering is necessary. On the other hand, the time-domain approach is more resilient in terms of transforming to other domain.</p>
+<div class="admonition tip">
+<p class="admonition-title">Tip</p>
+<p>In case you don’t know, there’s a rule of thumb on how small we can sufficiently partition a plane, i.e., <span class="math notranslate nohighlight">\(\Delta x \leq c \Delta t\)</span>, where <span class="math notranslate nohighlight">\(c\)</span> is the speed of light and <span class="math notranslate nohighlight">\(\Delta t\)</span> is time sampling. More detailed discussions can be found in [Schulze2016], <a class="reference internal" href="#barry1993" id="id3"><span>[Barry1993]</span></a> and <a class="reference internal" href="#schulze2018" id="id4"><span>[Schulze2018]</span></a> (especially the latter one).</p>
+</div>
+</div>
+<div class="section" id="cir-for-im-dd">
+<h2>CIR for IM/DD<a class="headerlink" href="#cir-for-im-dd" title="Permalink to this headline">¶</a></h2>
+<ul class="simple">
+<li><p>Time domain (<a class="reference internal" href="timedomaincir.html#owcsimpy.cir.timedomaincir.TimeDomainCIR" title="owcsimpy.cir.timedomaincir.TimeDomainCIR"><code class="xref py py-class docutils literal notranslate"><span class="pre">TimeDomainCIR</span></code></a>)</p></li>
+<li><p>Freq. domain (<a class="reference internal" href="freqdomaincir.html#owcsimpy.cir.freqdomaincir.FreqDomainCIR" title="owcsimpy.cir.freqdomaincir.FreqDomainCIR"><code class="xref py py-class docutils literal notranslate"><span class="pre">FreqDomainCIR</span></code></a>)</p></li>
+</ul>
+<p>Check following notebook for examples.</p>
+<iframe src="../../../../../notebooks/UseCase_1_CIR.html" height="345px" width="100%"></iframe></div>
+<div class="section" id="references">
+<h2>References<a class="headerlink" href="#references" title="Permalink to this headline">¶</a></h2>
+<dl class="citation">
+<dt class="label" id="carruthers2002"><span class="brackets"><a class="fn-backref" href="#id1">Carruthers2002</a></span></dt>
+<dd><p><a class="reference external" href="https://ieeexplore.ieee.org/abstract/document/1011244">J. B. Carruthers and P. Kannan, “Iterative site-based modeling for wireless infrared channels,” in IEEE Transactions on Antennas and Propagation, vol. 50, no. 5, pp. 759-765, May 2002.</a></p>
+</dd>
+<dt class="label" id="schulze2016"><span class="brackets"><a class="fn-backref" href="#id2">Schulze2016</a></span></dt>
+<dd><p><a class="reference external" href="https://ieeexplore.ieee.org/stamp/stamp.jsp?tp=&amp;arnumber=7457357">H. Schulze, “Frequency-Domain Simulation of the Indoor Wireless Optical Communication Channel,” in IEEE Transactions on Communications, vol. 64, no. 6, pp. 2551-2562, June 2016.</a></p>
+</dd>
+<dt class="label" id="barry1993"><span class="brackets"><a class="fn-backref" href="#id3">Barry1993</a></span></dt>
+<dd><p><a class="reference external" href="https://ieeexplore.ieee.org/document/219552">J. R. Barry, J. M. Kahn, W. J. Krause, E. A. Lee and D. G. Messerschmitt, “Simulation of multipath impulse response for indoor wireless optical channels,” in IEEE Journal on Selected Areas in Communications, vol. 11, no. 3, pp. 367-379, April 1993.</a></p>
+</dd>
+<dt class="label" id="schulze2018"><span class="brackets"><a class="fn-backref" href="#id4">Schulze2018</a></span></dt>
+<dd><p><a class="reference external" href="https://digital-library.theiet.org/content/journals/10.1049/iet-opt.2017.0089">Schulze, Henrik: ‘FEM simulations for the wireless optical indoor communication channel’, IET Optoelectronics, 2018, 12, (2), p. 94-105.</a></p>
+</dd>
+</dl>
+<div class="toctree-wrapper compound">
+</div>
+</div>
+</div>
+
+
+           </div>
+           
+          </div>
+          <footer>
+  
+    <div class="rst-footer-buttons" role="navigation" aria-label="footer navigation">
+      
+        <a href="timedomaincir.html" class="btn btn-neutral float-right" title="Time Domain CIR" accesskey="n" rel="next">Next <span class="fa fa-arrow-circle-right"></span></a>
+      
+      
+        <a href="../index.html" class="btn btn-neutral float-left" title="OWCsim-Py’s Use Cases" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left"></span> Previous</a>
+      
+    </div>
+  
+
+  <hr/>
+
+  <div role="contentinfo">
+    <p>
+        &copy; Copyright 2019, Ardimas
+
+    </p>
+  </div>
+  Built with <a href="http://sphinx-doc.org/">Sphinx</a> using a <a href="https://github.com/rtfd/sphinx_rtd_theme">theme</a> provided by <a href="https://readthedocs.org">Read the Docs</a>. 
+
+</footer>
+
+        </div>
+      </div>
+
+    </section>
+
+  </div>
+  
+
+
+  <script type="text/javascript">
+      jQuery(function () {
+          SphinxRtdTheme.Navigation.enable(true);
+      });
+  </script>
+
+  
+  
+    
+   
+
+</body>
+</html>

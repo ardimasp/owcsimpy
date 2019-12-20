@@ -1,0 +1,312 @@
+
+
+<!DOCTYPE html>
+<!--[if IE 8]><html class="no-js lt-ie9" lang="en" > <![endif]-->
+<!--[if gt IE 8]><!--> <html class="no-js" lang="en" > <!--<![endif]-->
+<head>
+  <meta charset="utf-8">
+  
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  
+  <title>owcsimpy.geoobjects.bases.paramline_py &mdash; OWCsim-Py 0.0.1 documentation</title>
+  
+
+  
+  
+  
+  
+
+  
+  <script type="text/javascript" src="../../../../_static/js/modernizr.min.js"></script>
+  
+    
+      <script type="text/javascript" id="documentation_options" data-url_root="../../../../" src="../../../../_static/documentation_options.js"></script>
+        <script type="text/javascript" src="../../../../_static/jquery.js"></script>
+        <script type="text/javascript" src="../../../../_static/underscore.js"></script>
+        <script type="text/javascript" src="../../../../_static/doctools.js"></script>
+        <script type="text/javascript" src="../../../../_static/language_data.js"></script>
+        <script async="async" type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.5/latest.js?config=TeX-AMS-MML_HTMLorMML"></script>
+        <script type="text/x-mathjax-config">MathJax.Hub.Config({"tex2jax": {"inlineMath": [["$", "$"], ["\\(", "\\)"]], "processEscapes": true, "ignoreClass": "document", "processClass": "math|output_area"}})</script>
+    
+    <script type="text/javascript" src="../../../../_static/js/theme.js"></script>
+
+    
+
+  
+  <link rel="stylesheet" href="../../../../_static/css/theme.css" type="text/css" />
+  <link rel="stylesheet" href="../../../../_static/pygments.css" type="text/css" />
+  <link rel="stylesheet" href="../../../../_static/graphviz.css" type="text/css" />
+    <link rel="index" title="Index" href="../../../../genindex.html" />
+    <link rel="search" title="Search" href="../../../../search.html" /> 
+</head>
+
+<body class="wy-body-for-nav">
+
+   
+  <div class="wy-grid-for-nav">
+    
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side">
+      <div class="wy-side-scroll">
+        <div class="wy-side-nav-search" >
+          
+
+          
+            <a href="../../../../index.html" class="icon icon-home"> OWCsim-Py
+          
+
+          
+          </a>
+
+          
+            
+            
+          
+
+          
+<div role="search">
+  <form id="rtd-search-form" class="wy-form" action="../../../../search.html" method="get">
+    <input type="text" name="q" placeholder="Search docs" />
+    <input type="hidden" name="check_keywords" value="yes" />
+    <input type="hidden" name="area" value="default" />
+  </form>
+</div>
+
+          
+        </div>
+
+        <div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="main navigation">
+          
+            
+            
+              
+            
+            
+              <p class="caption"><span class="caption-text">Contents:</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../../../../modulerefs/index.html">OWCsim-Py’s Module References</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../../usecases/index.html">OWCsim-Py’s Use Cases</a></li>
+</ul>
+
+            
+          
+        </div>
+      </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap">
+
+      
+      <nav class="wy-nav-top" aria-label="top navigation">
+        
+          <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+          <a href="../../../../index.html">OWCsim-Py</a>
+        
+      </nav>
+
+
+      <div class="wy-nav-content">
+        
+        <div class="rst-content">
+        
+          
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<div role="navigation" aria-label="breadcrumbs navigation">
+
+  <ul class="wy-breadcrumbs">
+    
+      <li><a href="../../../../index.html">Docs</a> &raquo;</li>
+        
+          <li><a href="../../../index.html">Module code</a> &raquo;</li>
+        
+      <li>owcsimpy.geoobjects.bases.paramline_py</li>
+    
+    
+      <li class="wy-breadcrumbs-aside">
+        
+      </li>
+    
+  </ul>
+
+  
+  <hr/>
+</div>
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+           <div itemprop="articleBody">
+            
+  <h1>Source code for owcsimpy.geoobjects.bases.paramline_py</h1><div class="highlight"><pre>
+<span></span><span class="kn">import</span> <span class="nn">numpy</span> <span class="k">as</span> <span class="nn">np</span>
+
+<div class="viewcode-block" id="ParamLine_py"><a class="viewcode-back" href="../../../../modulerefs/geoobjects/basics/paramline.html#owcsimpy.geoobjects.bases.paramline_py.ParamLine_py">[docs]</a><span class="k">class</span> <span class="nc">ParamLine_py</span><span class="p">(</span><span class="nb">object</span><span class="p">):</span>
+    <span class="sd">&quot;&quot;&quot; A 3D parametric line.</span>
+
+<span class="sd">    Parameters</span>
+<span class="sd">    ----------</span>
+
+<span class="sd">    P0: ndarray(3,)</span>
+<span class="sd">        A tail point.</span>
+<span class="sd">    P1: ndarray(3,)</span>
+<span class="sd">        A head point.</span>
+
+<span class="sd">    Attributes</span>
+<span class="sd">    ----------</span>
+<span class="sd">    P0</span>
+<span class="sd">    P1</span>
+<span class="sd">    u: ndarray(3,)</span>
+<span class="sd">        Show the direction of the parametric line</span>
+
+<span class="sd">    Examples</span>
+<span class="sd">    --------</span>
+<span class="sd">    &gt;&gt;&gt; import numpy as np</span>
+<span class="sd">    &gt;&gt;&gt; import matplotlib.pyplot as plt</span>
+<span class="sd">    &gt;&gt;&gt; from owcsimpy.geoutils.draw import draw</span>
+<span class="sd">    &gt;&gt;&gt; from owcsimpy.geoobjects.bases.paramline_py import ParamLine_py as Line</span>
+<span class="sd">    &gt;&gt;&gt; # Generate a line l</span>
+<span class="sd">    &gt;&gt;&gt; l = Line(np.array([0.5,0.5,0.5]),np.ones(3))</span>
+<span class="sd">    &gt;&gt;&gt; # Draw</span>
+<span class="sd">    &gt;&gt;&gt; fig,ax = draw(lines=l,figsize=(5,6))</span>
+<span class="sd">    &gt;&gt;&gt; # Get a point at t = 0.25</span>
+<span class="sd">    &gt;&gt;&gt; P = l.getPoint(0.25)</span>
+<span class="sd">    &gt;&gt;&gt; print(&quot;Point at t=0.25 is {}&quot;.format(P))</span>
+<span class="sd">    Point at t=0.25 is [0.625 0.625 0.625]</span>
+<span class="sd">    &gt;&gt;&gt; # Draw</span>
+<span class="sd">    &gt;&gt;&gt; x,y,z = P</span>
+<span class="sd">    &gt;&gt;&gt; ax.scatter(x,y,z)</span>
+<span class="sd">    &gt;&gt;&gt; plt.show()  </span>
+
+<span class="sd">    .. plot::</span>
+<span class="sd">       :format: doctest</span>
+
+<span class="sd">       &gt;&gt;&gt; import numpy as np</span>
+<span class="sd">        &gt;&gt;&gt; import matplotlib.pyplot as plt</span>
+<span class="sd">        &gt;&gt;&gt; from owcsimpy.geoutils.draw import draw</span>
+<span class="sd">        &gt;&gt;&gt; from owcsimpy.geoobjects.bases.paramline_py import ParamLine_py as Line</span>
+<span class="sd">        &gt;&gt;&gt; # Generate a line l</span>
+<span class="sd">        &gt;&gt;&gt; l = Line(np.array([0.5,0.5,0.5]),np.ones(3))</span>
+<span class="sd">        &gt;&gt;&gt; # Draw</span>
+<span class="sd">        &gt;&gt;&gt; fig,ax = draw(lines=l,figsize=(5,6))</span>
+<span class="sd">        &gt;&gt;&gt; # Get a point at t = 0.25</span>
+<span class="sd">        &gt;&gt;&gt; P = l.getPoint(0.25)</span>
+<span class="sd">        &gt;&gt;&gt; print(&quot;Point at t=0.25 is {}&quot;.format(P))</span>
+<span class="sd">        &gt;&gt;&gt; # Draw</span>
+<span class="sd">        &gt;&gt;&gt; x,y,z = P</span>
+<span class="sd">        &gt;&gt;&gt; ax.scatter(x,y,z)</span>
+<span class="sd">        &gt;&gt;&gt; plt.show()  </span>
+
+
+<span class="sd">    Notes</span>
+<span class="sd">    -----</span>
+<span class="sd">    A parametric line, :math:`l(t)`, is defined as:</span>
+
+
+<span class="sd">    .. math:: l(t) = P_0 + \mathbf{u} t, \mathrm{where}\ \mathbf{u} = P_1-P_0.</span>
+
+
+<span class="sd">    &quot;&quot;&quot;</span>
+
+
+    <span class="k">def</span> <span class="nf">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span><span class="n">P0</span><span class="p">,</span><span class="n">P1</span><span class="p">):</span>
+        
+        <span class="k">assert</span> <span class="n">P0</span><span class="o">.</span><span class="n">size</span> <span class="o">==</span> <span class="mi">3</span> <span class="ow">and</span> <span class="n">P1</span><span class="o">.</span><span class="n">size</span> <span class="o">==</span> <span class="mi">3</span>
+
+        <span class="bp">self</span><span class="o">.</span><span class="n">P0</span><span class="p">,</span><span class="bp">self</span><span class="o">.</span><span class="n">P1</span> <span class="o">=</span> <span class="n">P0</span><span class="p">,</span><span class="n">P1</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">u</span> <span class="o">=</span> <span class="n">P1</span><span class="o">-</span><span class="n">P0</span>
+
+<div class="viewcode-block" id="ParamLine_py.getPoint"><a class="viewcode-back" href="../../../../modulerefs/geoobjects/basics/paramline.html#owcsimpy.geoobjects.bases.paramline_py.ParamLine_py.getPoint">[docs]</a>    <span class="k">def</span> <span class="nf">getPoint</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span><span class="n">t0</span><span class="p">):</span>
+        <span class="sd">&quot;&quot;&quot; Get a point at t=t0.</span>
+<span class="sd">        </span>
+<span class="sd">        Returns</span>
+<span class="sd">        -------</span>
+<span class="sd">        ndarray(3,)</span>
+<span class="sd">            Return P0+u t0</span>
+
+<span class="sd">        &quot;&quot;&quot;</span>
+
+        <span class="k">return</span> <span class="bp">self</span><span class="o">.</span><span class="n">P0</span><span class="o">+</span><span class="bp">self</span><span class="o">.</span><span class="n">u</span><span class="o">*</span><span class="n">t0</span></div>
+
+<div class="viewcode-block" id="ParamLine_py.isValid"><a class="viewcode-back" href="../../../../modulerefs/geoobjects/basics/paramline.html#owcsimpy.geoobjects.bases.paramline_py.ParamLine_py.isValid">[docs]</a>    <span class="k">def</span> <span class="nf">isValid</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span><span class="n">P</span><span class="p">):</span>
+        <span class="sd">&quot;&quot;&quot; Check wheter the point P is in line.</span>
+
+<span class="sd">        Returns</span>
+<span class="sd">        -------</span>
+<span class="sd">        bool</span>
+
+<span class="sd">        &quot;&quot;&quot;</span> 
+
+        <span class="n">up</span> <span class="o">=</span> <span class="n">P</span><span class="o">-</span><span class="bp">self</span><span class="o">.</span><span class="n">P0</span> <span class="c1"># u prime</span>
+        <span class="k">return</span> <span class="kc">True</span> <span class="k">if</span> <span class="n">np</span><span class="o">.</span><span class="n">allclose</span><span class="p">(</span><span class="n">up</span><span class="p">,</span><span class="n">np</span><span class="o">.</span><span class="n">zeros</span><span class="p">(</span><span class="mi">3</span><span class="p">))</span> <span class="k">else</span> <span class="n">np</span><span class="o">.</span><span class="n">allclose</span><span class="p">(</span>
+            <span class="n">up</span><span class="o">/</span><span class="n">np</span><span class="o">.</span><span class="n">linalg</span><span class="o">.</span><span class="n">norm</span><span class="p">(</span><span class="n">up</span><span class="p">),</span><span class="bp">self</span><span class="o">.</span><span class="n">u</span><span class="o">/</span><span class="n">np</span><span class="o">.</span><span class="n">linalg</span><span class="o">.</span><span class="n">norm</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">u</span><span class="p">))</span></div>
+
+<div class="viewcode-block" id="ParamLine_py.getParam"><a class="viewcode-back" href="../../../../modulerefs/geoobjects/basics/paramline.html#owcsimpy.geoobjects.bases.paramline_py.ParamLine_py.getParam">[docs]</a>    <span class="k">def</span> <span class="nf">getParam</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span><span class="n">P</span><span class="p">):</span>
+        <span class="sd">&quot;&quot;&quot; Get t of P. Or, find t s.t. P0+u t = P</span>
+<span class="sd">        </span>
+<span class="sd">        Returns</span>
+<span class="sd">        -------</span>
+<span class="sd">        float or None</span>
+<span class="sd">            Return None if P is not in the line.</span>
+
+<span class="sd">        &quot;&quot;&quot;</span>
+
+        <span class="c1"># Check validity of P</span>
+        <span class="k">if</span> <span class="bp">self</span><span class="o">.</span><span class="n">isValid</span><span class="p">(</span><span class="n">P</span><span class="p">):</span>
+            <span class="n">idxnotzero</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">where</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">u</span><span class="o">!=</span><span class="mi">0</span><span class="p">)[</span><span class="mi">0</span><span class="p">]</span>
+            <span class="k">return</span> <span class="p">(</span><span class="n">P</span><span class="o">-</span><span class="bp">self</span><span class="o">.</span><span class="n">P0</span><span class="p">)[</span><span class="n">idxnotzero</span><span class="p">]</span><span class="o">/</span><span class="bp">self</span><span class="o">.</span><span class="n">u</span><span class="p">[</span><span class="n">idxnotzero</span><span class="p">]</span>
+        <span class="k">else</span><span class="p">:</span>
+            <span class="k">return</span> <span class="kc">None</span></div></div>
+
+
+</pre></div>
+
+           </div>
+           
+          </div>
+          <footer>
+  
+
+  <hr/>
+
+  <div role="contentinfo">
+    <p>
+        &copy; Copyright 2019, Ardimas
+
+    </p>
+  </div>
+  Built with <a href="http://sphinx-doc.org/">Sphinx</a> using a <a href="https://github.com/rtfd/sphinx_rtd_theme">theme</a> provided by <a href="https://readthedocs.org">Read the Docs</a>. 
+
+</footer>
+
+        </div>
+      </div>
+
+    </section>
+
+  </div>
+  
+
+
+  <script type="text/javascript">
+      jQuery(function () {
+          SphinxRtdTheme.Navigation.enable(true);
+      });
+  </script>
+
+  
+  
+    
+   
+
+</body>
+</html>

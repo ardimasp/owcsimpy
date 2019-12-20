@@ -1,0 +1,371 @@
+
+
+<!DOCTYPE html>
+<!--[if IE 8]><html class="no-js lt-ie9" lang="en" > <![endif]-->
+<!--[if gt IE 8]><!--> <html class="no-js" lang="en" > <!--<![endif]-->
+<head>
+  <meta charset="utf-8">
+  
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  
+  <title>Vector &mdash; OWCsim-Py 0.0.1 documentation</title>
+  
+
+  
+  
+  
+  
+
+  
+  <script type="text/javascript" src="../../../_static/js/modernizr.min.js"></script>
+  
+    
+      <script type="text/javascript" id="documentation_options" data-url_root="../../../" src="../../../_static/documentation_options.js"></script>
+        <script type="text/javascript" src="../../../_static/jquery.js"></script>
+        <script type="text/javascript" src="../../../_static/underscore.js"></script>
+        <script type="text/javascript" src="../../../_static/doctools.js"></script>
+        <script type="text/javascript" src="../../../_static/language_data.js"></script>
+        <script async="async" type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.5/latest.js?config=TeX-AMS-MML_HTMLorMML"></script>
+        <script type="text/x-mathjax-config">MathJax.Hub.Config({"tex2jax": {"inlineMath": [["$", "$"], ["\\(", "\\)"]], "processEscapes": true, "ignoreClass": "document", "processClass": "math|output_area"}})</script>
+    
+    <script type="text/javascript" src="../../../_static/js/theme.js"></script>
+
+    
+
+  
+  <link rel="stylesheet" href="../../../_static/css/theme.css" type="text/css" />
+  <link rel="stylesheet" href="../../../_static/pygments.css" type="text/css" />
+  <link rel="stylesheet" href="../../../_static/graphviz.css" type="text/css" />
+    <link rel="index" title="Index" href="../../../genindex.html" />
+    <link rel="search" title="Search" href="../../../search.html" />
+    <link rel="next" title="Parametric Line" href="paramline.html" />
+    <link rel="prev" title="Geometry Objects: Basics" href="index.html" /> 
+</head>
+
+<body class="wy-body-for-nav">
+
+   
+  <div class="wy-grid-for-nav">
+    
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side">
+      <div class="wy-side-scroll">
+        <div class="wy-side-nav-search" >
+          
+
+          
+            <a href="../../../index.html" class="icon icon-home"> OWCsim-Py
+          
+
+          
+          </a>
+
+          
+            
+            
+          
+
+          
+<div role="search">
+  <form id="rtd-search-form" class="wy-form" action="../../../search.html" method="get">
+    <input type="text" name="q" placeholder="Search docs" />
+    <input type="hidden" name="check_keywords" value="yes" />
+    <input type="hidden" name="area" value="default" />
+  </form>
+</div>
+
+          
+        </div>
+
+        <div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="main navigation">
+          
+            
+            
+              
+            
+            
+              <p class="caption"><span class="caption-text">Contents:</span></p>
+<ul class="current">
+<li class="toctree-l1 current"><a class="reference internal" href="../../index.html">OWCsim-Py’s Module References</a><ul class="current">
+<li class="toctree-l2 current"><a class="reference internal" href="../index.html">Geometry Objects</a><ul class="current">
+<li class="toctree-l3 current"><a class="reference internal" href="index.html">Geometry Objects: Basics</a><ul class="current">
+<li class="toctree-l4"><a class="reference internal" href="index.html#introduction">Introduction</a></li>
+<li class="toctree-l4"><a class="reference internal" href="index.html#available-entities">Available Entities</a></li>
+<li class="toctree-l4"><a class="reference internal" href="index.html#related-modules">Related Modules</a></li>
+<li class="toctree-l4 current"><a class="reference internal" href="index.html#miscellaneous-notes">Miscellaneous Notes</a></li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="../models/index.html">Geometry Objects: Models</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="../../utilities/index.html">Utilities</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="../../../usecases/index.html">OWCsim-Py’s Use Cases</a></li>
+</ul>
+
+            
+          
+        </div>
+      </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap">
+
+      
+      <nav class="wy-nav-top" aria-label="top navigation">
+        
+          <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+          <a href="../../../index.html">OWCsim-Py</a>
+        
+      </nav>
+
+
+      <div class="wy-nav-content">
+        
+        <div class="rst-content">
+        
+          
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<div role="navigation" aria-label="breadcrumbs navigation">
+
+  <ul class="wy-breadcrumbs">
+    
+      <li><a href="../../../index.html">Docs</a> &raquo;</li>
+        
+          <li><a href="../../index.html">OWCsim-Py’s Module References</a> &raquo;</li>
+        
+          <li><a href="../index.html">Geometry Objects</a> &raquo;</li>
+        
+          <li><a href="index.html">Geometry Objects: Basics</a> &raquo;</li>
+        
+      <li>Vector</li>
+    
+    
+      <li class="wy-breadcrumbs-aside">
+        
+            
+            <a href="../../../_sources/modulerefs/geoobjects/basics/vector.rst.txt" rel="nofollow"> View page source</a>
+          
+        
+      </li>
+    
+  </ul>
+
+  
+  <hr/>
+</div>
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+           <div itemprop="articleBody">
+            
+  
+<style>
+/* CSS overrides for sphinx_rtd_theme */
+
+/* 24px margin */
+.nbinput.nblast,
+.nboutput.nblast {
+    margin-bottom: 19px;  /* padding has already 5px */
+}
+
+/* ... except between code cells! */
+.nblast + .nbinput {
+    margin-top: -19px;
+}
+
+.admonition > p:before {
+    margin-right: 4px;  /* make room for the exclamation icon */
+}
+
+/* Fix math alignment, see https://github.com/rtfd/sphinx_rtd_theme/pull/686 */
+.math {
+    text-align: unset;
+}
+</style>
+<div class="section" id="module-owcsimpy.geoobjects.bases.vector_py">
+<span id="vector"></span><h1>Vector<a class="headerlink" href="#module-owcsimpy.geoobjects.bases.vector_py" title="Permalink to this headline">¶</a></h1>
+<dl class="class">
+<dt id="owcsimpy.geoobjects.bases.vector_py.Vector_py">
+<em class="property">class </em><code class="descclassname">owcsimpy.geoobjects.bases.vector_py.</code><code class="descname">Vector_py</code><span class="sig-paren">(</span><em>coord</em>, <em>refPoint=array([0.</em>, <em>0.</em>, <em>0.])</em>, <em>which='spherical'</em><span class="sig-paren">)</span><a class="reference internal" href="../../../_modules/owcsimpy/geoobjects/bases/vector_py.html#Vector_py"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#owcsimpy.geoobjects.bases.vector_py.Vector_py" title="Permalink to this definition">¶</a></dt>
+<dd><p>A 3D vector.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters</dt>
+<dd class="field-odd"><dl class="simple">
+<dt><strong>coord: ndarray(3,)</strong></dt><dd><p>coord can be either represents spherical coordinates, i.e., 
+np.array([radius,polar,azimuth]) or Cartesian coordinates, 
+i.e., np.array([radius,polar,azimuth]). The default method is
+the spherical one. Change the parameter <strong>which</strong> to change 
+the instantiation method.</p>
+</dd>
+<dt><strong>refPoint: ndarray(3,)</strong></dt><dd><p>refPoint is the reference point of the vector.</p>
+</dd>
+<dt><strong>which: {‘spherical’,’cartesian’}</strong></dt><dd><p><strong>which</strong> defines which representation that is used. 
+<strong>which</strong> is either ‘spherical’ (default) or ‘cartesian’.</p>
+</dd>
+</dl>
+</dd>
+<dt class="field-even">Raises</dt>
+<dd class="field-even"><dl class="simple">
+<dt>NotImplementedError:</dt><dd><p>When <strong>which</strong> is neither ‘spherical’ nor ‘cartesian’.</p>
+</dd>
+</dl>
+</dd>
+</dl>
+<p class="rubric">Notes</p>
+<p>This class supports a callable method (with empty argument) that returns its 
+Cartesian coordinates.</p>
+<p class="rubric">Examples</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="kn">import</span> <span class="nn">numpy</span> <span class="k">as</span> <span class="nn">np</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="kn">import</span> <span class="nn">matplotlib.pyplot</span> <span class="k">as</span> <span class="nn">plt</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="kn">from</span> <span class="nn">owcsimpy.geoutils.draw</span> <span class="k">import</span> <span class="n">draw</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="kn">from</span> <span class="nn">owcsimpy.geoobjects.bases.vector_py</span> <span class="k">import</span> <span class="n">Vector_py</span> <span class="k">as</span> <span class="n">Vector</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">r</span> <span class="o">=</span> <span class="mf">0.5</span><span class="p">;</span> <span class="n">polar</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">deg2rad</span><span class="p">(</span><span class="mi">45</span><span class="p">);</span> <span class="n">azimuth</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">deg2rad</span><span class="p">(</span><span class="mi">25</span><span class="p">)</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">v1</span> <span class="o">=</span> <span class="n">Vector</span><span class="p">(</span><span class="n">np</span><span class="o">.</span><span class="n">array</span><span class="p">([</span><span class="n">r</span><span class="p">,</span><span class="n">polar</span><span class="p">,</span><span class="n">azimuth</span><span class="p">]),</span><span class="n">refPoint</span><span class="o">=</span><span class="n">np</span><span class="o">.</span><span class="n">array</span><span class="p">([</span><span class="mf">0.25</span><span class="p">,</span><span class="mf">0.25</span><span class="p">,</span><span class="mi">0</span><span class="p">]),</span><span class="n">which</span><span class="o">=</span><span class="s1">&#39;spherical&#39;</span><span class="p">)</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="c1"># Normalize length and rotate</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">v2</span> <span class="o">=</span> <span class="n">v1</span><span class="o">.</span><span class="n">normalize</span><span class="p">()</span><span class="o">.</span><span class="n">rotate</span><span class="p">(</span><span class="n">theta</span><span class="o">=</span><span class="n">np</span><span class="o">.</span><span class="n">deg2rad</span><span class="p">(</span><span class="mi">30</span><span class="p">),</span><span class="n">refVector</span><span class="o">=</span><span class="n">np</span><span class="o">.</span><span class="n">array</span><span class="p">([</span><span class="mi">0</span><span class="p">,</span><span class="mi">0</span><span class="p">,</span><span class="mi">1</span><span class="p">]))</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="c1"># Translate</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">v3</span> <span class="o">=</span> <span class="n">v1</span><span class="o">.</span><span class="n">translate</span><span class="p">(</span><span class="n">v1</span><span class="o">.</span><span class="n">refPoint</span><span class="o">+</span><span class="n">np</span><span class="o">.</span><span class="n">array</span><span class="p">([</span><span class="mi">0</span><span class="p">,</span><span class="mi">0</span><span class="p">,</span><span class="mf">0.5</span><span class="p">]))</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="c1"># Draw</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">fig</span><span class="p">,</span><span class="n">ax</span> <span class="o">=</span> <span class="n">draw</span><span class="p">(</span><span class="n">vectors</span><span class="o">=</span><span class="p">[</span><span class="n">v1</span><span class="p">,</span><span class="n">v2</span><span class="p">,</span><span class="n">v3</span><span class="p">],</span><span class="n">colors</span><span class="o">=</span><span class="p">[</span><span class="s1">&#39;black&#39;</span><span class="p">,</span><span class="s1">&#39;red&#39;</span><span class="p">,</span><span class="s1">&#39;blue&#39;</span><span class="p">],</span><span class="n">figsize</span><span class="o">=</span><span class="p">(</span><span class="mi">5</span><span class="p">,</span><span class="mi">6</span><span class="p">))</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">plt</span><span class="o">.</span><span class="n">show</span><span class="p">()</span>
+</pre></div>
+</div>
+<p>(<a class="reference external" href="../../../modulerefs/geoobjects/basics/vector-1.py">Source code</a>, <a class="reference external" href="../../../modulerefs/geoobjects/basics/vector-1_00_00.png">png</a>, <a class="reference external" href="../../../modulerefs/geoobjects/basics/vector-1_00_00.hires.png">hires.png</a>, <a class="reference external" href="../../../modulerefs/geoobjects/basics/vector-1_00_00.pdf">pdf</a>)</p>
+<div class="figure align-center">
+<img alt="../../../_images/vector-1_00_00.png" src="../../../_images/vector-1_00_00.png" />
+</div>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="kn">import</span> <span class="nn">matplotlib.pyplot</span> <span class="k">as</span> <span class="nn">plt</span>
+</pre></div>
+</div>
+<dl class="field-list simple">
+<dt class="field-odd">Attributes</dt>
+<dd class="field-odd"><dl class="simple">
+<dt><strong>spherical: ndarray(3,)</strong></dt><dd><p>Spherical coordinates of the vector.</p>
+</dd>
+<dt><strong>cartesian: ndarray(3,)</strong></dt><dd><p>Cartesian coordinates of the vector.</p>
+</dd>
+<dt><strong>refPoint: ndarray(3,)</strong></dt><dd><p>The reference point of the vector.</p>
+</dd>
+</dl>
+</dd>
+</dl>
+<dl class="method">
+<dt id="owcsimpy.geoobjects.bases.vector_py.Vector_py.normalize">
+<code class="descname">normalize</code><span class="sig-paren">(</span><em>self</em><span class="sig-paren">)</span><a class="reference internal" href="../../../_modules/owcsimpy/geoobjects/bases/vector_py.html#Vector_py.normalize"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#owcsimpy.geoobjects.bases.vector_py.Vector_py.normalize" title="Permalink to this definition">¶</a></dt>
+<dd><p>Normalize the vector into a unit length vector.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Returns</dt>
+<dd class="field-odd"><dl class="simple">
+<dt>A new vector object.</dt><dd></dd>
+</dl>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="method">
+<dt id="owcsimpy.geoobjects.bases.vector_py.Vector_py.rotate">
+<code class="descname">rotate</code><span class="sig-paren">(</span><em>self</em>, <em>theta</em>, <em>refVector</em><span class="sig-paren">)</span><a class="reference internal" href="../../../_modules/owcsimpy/geoobjects/bases/vector_py.html#Vector_py.rotate"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#owcsimpy.geoobjects.bases.vector_py.Vector_py.rotate" title="Permalink to this definition">¶</a></dt>
+<dd><p>Rotate a matrix with theta rads w.r.t. refVector.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters</dt>
+<dd class="field-odd"><dl class="simple">
+<dt><strong>theta: float</strong></dt><dd><p>The rotatton angle theta (in rads) follows the right-hand rule.</p>
+</dd>
+<dt><strong>refVector: ndarray(3,)</strong></dt><dd><p>An axis of rotation about which the vector rotates.</p>
+</dd>
+</dl>
+</dd>
+<dt class="field-even">Returns</dt>
+<dd class="field-even"><dl class="simple">
+<dt>A new vector object.</dt><dd></dd>
+</dl>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="method">
+<dt id="owcsimpy.geoobjects.bases.vector_py.Vector_py.translate">
+<code class="descname">translate</code><span class="sig-paren">(</span><em>self</em>, <em>newRefPoint</em><span class="sig-paren">)</span><a class="reference internal" href="../../../_modules/owcsimpy/geoobjects/bases/vector_py.html#Vector_py.translate"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#owcsimpy.geoobjects.bases.vector_py.Vector_py.translate" title="Permalink to this definition">¶</a></dt>
+<dd><p>Shift the refPoint of the vector to newRefPoint.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters</dt>
+<dd class="field-odd"><dl class="simple">
+<dt><strong>newRefPoint: ndarray(3,)</strong></dt><dd><p>The new reference point to which the vector will be translated.</p>
+</dd>
+</dl>
+</dd>
+<dt class="field-even">Returns</dt>
+<dd class="field-even"><dl class="simple">
+<dt>A new vector object.</dt><dd></dd>
+</dl>
+</dd>
+</dl>
+</dd></dl>
+
+</dd></dl>
+
+</div>
+
+
+           </div>
+           
+          </div>
+          <footer>
+  
+    <div class="rst-footer-buttons" role="navigation" aria-label="footer navigation">
+      
+        <a href="paramline.html" class="btn btn-neutral float-right" title="Parametric Line" accesskey="n" rel="next">Next <span class="fa fa-arrow-circle-right"></span></a>
+      
+      
+        <a href="index.html" class="btn btn-neutral float-left" title="Geometry Objects: Basics" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left"></span> Previous</a>
+      
+    </div>
+  
+
+  <hr/>
+
+  <div role="contentinfo">
+    <p>
+        &copy; Copyright 2019, Ardimas
+
+    </p>
+  </div>
+  Built with <a href="http://sphinx-doc.org/">Sphinx</a> using a <a href="https://github.com/rtfd/sphinx_rtd_theme">theme</a> provided by <a href="https://readthedocs.org">Read the Docs</a>. 
+
+</footer>
+
+        </div>
+      </div>
+
+    </section>
+
+  </div>
+  
+
+
+  <script type="text/javascript">
+      jQuery(function () {
+          SphinxRtdTheme.Navigation.enable(true);
+      });
+  </script>
+
+  
+  
+    
+   
+
+</body>
+</html>

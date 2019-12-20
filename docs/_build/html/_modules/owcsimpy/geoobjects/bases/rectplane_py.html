@@ -1,0 +1,756 @@
+
+
+<!DOCTYPE html>
+<!--[if IE 8]><html class="no-js lt-ie9" lang="en" > <![endif]-->
+<!--[if gt IE 8]><!--> <html class="no-js" lang="en" > <!--<![endif]-->
+<head>
+  <meta charset="utf-8">
+  
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  
+  <title>owcsimpy.geoobjects.bases.rectplane_py &mdash; OWCsim-Py 0.0.1 documentation</title>
+  
+
+  
+  
+  
+  
+
+  
+  <script type="text/javascript" src="../../../../_static/js/modernizr.min.js"></script>
+  
+    
+      <script type="text/javascript" id="documentation_options" data-url_root="../../../../" src="../../../../_static/documentation_options.js"></script>
+        <script type="text/javascript" src="../../../../_static/jquery.js"></script>
+        <script type="text/javascript" src="../../../../_static/underscore.js"></script>
+        <script type="text/javascript" src="../../../../_static/doctools.js"></script>
+        <script type="text/javascript" src="../../../../_static/language_data.js"></script>
+        <script async="async" type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.5/latest.js?config=TeX-AMS-MML_HTMLorMML"></script>
+        <script type="text/x-mathjax-config">MathJax.Hub.Config({"tex2jax": {"inlineMath": [["$", "$"], ["\\(", "\\)"]], "processEscapes": true, "ignoreClass": "document", "processClass": "math|output_area"}})</script>
+    
+    <script type="text/javascript" src="../../../../_static/js/theme.js"></script>
+
+    
+
+  
+  <link rel="stylesheet" href="../../../../_static/css/theme.css" type="text/css" />
+  <link rel="stylesheet" href="../../../../_static/pygments.css" type="text/css" />
+  <link rel="stylesheet" href="../../../../_static/graphviz.css" type="text/css" />
+    <link rel="index" title="Index" href="../../../../genindex.html" />
+    <link rel="search" title="Search" href="../../../../search.html" /> 
+</head>
+
+<body class="wy-body-for-nav">
+
+   
+  <div class="wy-grid-for-nav">
+    
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side">
+      <div class="wy-side-scroll">
+        <div class="wy-side-nav-search" >
+          
+
+          
+            <a href="../../../../index.html" class="icon icon-home"> OWCsim-Py
+          
+
+          
+          </a>
+
+          
+            
+            
+          
+
+          
+<div role="search">
+  <form id="rtd-search-form" class="wy-form" action="../../../../search.html" method="get">
+    <input type="text" name="q" placeholder="Search docs" />
+    <input type="hidden" name="check_keywords" value="yes" />
+    <input type="hidden" name="area" value="default" />
+  </form>
+</div>
+
+          
+        </div>
+
+        <div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="main navigation">
+          
+            
+            
+              
+            
+            
+              <p class="caption"><span class="caption-text">Contents:</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../../../../modulerefs/index.html">OWCsim-Py’s Module References</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../../usecases/index.html">OWCsim-Py’s Use Cases</a></li>
+</ul>
+
+            
+          
+        </div>
+      </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap">
+
+      
+      <nav class="wy-nav-top" aria-label="top navigation">
+        
+          <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+          <a href="../../../../index.html">OWCsim-Py</a>
+        
+      </nav>
+
+
+      <div class="wy-nav-content">
+        
+        <div class="rst-content">
+        
+          
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<div role="navigation" aria-label="breadcrumbs navigation">
+
+  <ul class="wy-breadcrumbs">
+    
+      <li><a href="../../../../index.html">Docs</a> &raquo;</li>
+        
+          <li><a href="../../../index.html">Module code</a> &raquo;</li>
+        
+      <li>owcsimpy.geoobjects.bases.rectplane_py</li>
+    
+    
+      <li class="wy-breadcrumbs-aside">
+        
+      </li>
+    
+  </ul>
+
+  
+  <hr/>
+</div>
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+           <div itemprop="articleBody">
+            
+  <h1>Source code for owcsimpy.geoobjects.bases.rectplane_py</h1><div class="highlight"><pre>
+<span></span><span class="kn">import</span> <span class="nn">copy</span>
+<span class="kn">import</span> <span class="nn">math</span>
+<span class="kn">import</span> <span class="nn">numpy</span> <span class="k">as</span> <span class="nn">np</span>
+
+<span class="kn">from</span> <span class="nn">owcsimpy.geoobjects.bases.vector_py</span> <span class="k">import</span> <span class="n">Vector_py</span> <span class="k">as</span> <span class="n">Vector</span>
+<span class="kn">from</span> <span class="nn">owcsimpy.geoobjects.bases.paramline_py</span> <span class="k">import</span> <span class="n">ParamLine_py</span> <span class="k">as</span> <span class="n">Line</span>
+<span class="kn">from</span> <span class="nn">owcsimpy.geoutils.cutils</span> <span class="k">import</span> <span class="n">calcRodriguesMtx</span> <span class="k">as</span> <span class="n">getRodriguesMtx</span>
+<span class="kn">from</span> <span class="nn">owcsimpy.geoutils.cutils</span> <span class="k">import</span> <span class="n">calcAngle</span>
+
+<div class="viewcode-block" id="RectPlane_py"><a class="viewcode-back" href="../../../../modulerefs/geoobjects/basics/rectplane.html#owcsimpy.geoobjects.bases.rectplane_py.RectPlane_py">[docs]</a><span class="k">class</span> <span class="nc">RectPlane_py</span><span class="p">(</span><span class="nb">object</span><span class="p">):</span>
+    <span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">    A 3D rectangular plane.</span>
+
+<span class="sd">    Parameters</span>
+<span class="sd">    ----------</span>
+<span class="sd">    normalVect: Vector_py</span>
+<span class="sd">        Its normal vector.</span>
+<span class="sd">    ctrPoint: ndarray(3,)</span>
+<span class="sd">        Defines the center point of the rectangular plane.</span>
+<span class="sd">    RodriguesAngle: float</span>
+<span class="sd">        The angle of Rodrigues rotation w.r.t. the normal vector. This follows </span>
+<span class="sd">        the right-hand rule.</span>
+<span class="sd">    dimensions: array-like with 2 elements</span>
+<span class="sd">        The dimensions are defined as, for example, [L,W], where L is the length</span>
+<span class="sd">        and W is the width.</span>
+<span class="sd">    verts: ndarray(4,3)</span>
+<span class="sd">        The four vertices of the plane. </span>
+<span class="sd">    identity: list</span>
+<span class="sd">        Identity of the object. It is used to track down which parent object this object </span>
+<span class="sd">        is from. Mainly used for debugging purposes.</span>
+<span class="sd">    m: float</span>
+<span class="sd">        The Lambertian mode.</span>
+<span class="sd">    FoV: float</span>
+<span class="sd">        Field of view in rads.</span>
+<span class="sd">    reflectivity: float</span>
+<span class="sd">        Reflectivity of the surface.</span>
+
+<span class="sd">    Attributes</span>
+<span class="sd">    ----------</span>
+<span class="sd">    normalVect: ndarray(3,)</span>
+<span class="sd">        Normal vector as a **ndarray** type</span>
+<span class="sd">    ctrPoint: ndarray(3,)</span>
+<span class="sd">    verts: ndarray(4,3)</span>
+<span class="sd">    area: float</span>
+<span class="sd">        Area of the square plane</span>
+<span class="sd">    L: float</span>
+<span class="sd">        Length</span>
+<span class="sd">    W: float</span>
+<span class="sd">        Width</span>
+<span class="sd">    identity: list</span>
+<span class="sd">    m: float</span>
+<span class="sd">    FoV: float</span>
+<span class="sd">    reflectivity: float</span>
+<span class="sd">        </span>
+
+<span class="sd">    Raises</span>
+<span class="sd">    ------</span>
+<span class="sd">    NotImplementedError:   </span>
+<span class="sd">        When the parameters don&#39;t follow neither of two methods.</span>
+
+
+<span class="sd">    Notes</span>
+<span class="sd">    -----</span>
+<span class="sd">    There are two different ways of instantiating a rectangular plane, i.e.,:</span>
+<span class="sd">    </span>
+<span class="sd">    1.   defining its normal vector, its center point, its Rodrigues angle </span>
+<span class="sd">         (w.r.t. its normal vector), and its dimensions (length and width), </span>
+<span class="sd">    2.   defining its four vertices.</span>
+<span class="sd">    </span>
+<span class="sd">    Following is the original position of a rectangular plane, i.e., </span>
+<span class="sd">    the plane faces upwards.</span>
+
+<span class="sd">    .. code-block:: text</span>
+
+<span class="sd">                                    z                                                        </span>
+<span class="sd">                                    :                                               </span>
+<span class="sd">                                    *                                               </span>
+<span class="sd">                                    *                                               </span>
+<span class="sd">                                    *                                               </span>
+<span class="sd">                                    *                                               </span>
+<span class="sd">                                    *                                               </span>
+<span class="sd">                                    ^                                               </span>
+<span class="sd">                               n   +++                                               </span>
+<span class="sd">                                  +++++                                               </span>
+<span class="sd">                                    *                                               </span>
+<span class="sd">                                    *                              y                 </span>
+<span class="sd">                                    *                          :::                  </span>
+<span class="sd">                 W            :***: *                    :::::::                    </span>
+<span class="sd">                      :*IIVFNN$$$$$NNVII*:         ::::::                           </span>
+<span class="sd">               :**IV$$N$$$$$$$$$$$$$M$$$$NN$VVII*:::                                </span>
+<span class="sd">          *IVF$N$$$$$$$$$$$$$$$$$$$$M$$NNNNNNN$$N$FVI*::                            </span>
+<span class="sd">           :*IV$NN$$$$$$$$$$$$$$$$$$MNNN$$$$$$$$$$$$$$$N$VVI*:                      </span>
+<span class="sd">                 *II$NN$$$$$$$$$$$$$$$$NNNNNNN$$$$$$$$$$$$$$NN$I                    </span>
+<span class="sd">                      :*IF$N$$$$$$$$$$$$$$$$$NNNNNNN$$$NN$VI:                       </span>
+<span class="sd">                           :*IV$N$$$$$$$$$$$$$$$$$$N$VVI::                          </span>
+<span class="sd">                L             :*IV$NN$$$$$$$N$VI*:     :::::::                    </span>
+<span class="sd">                                      *IV$$VI*:                :::::::              </span>
+<span class="sd">                                                                     :::::::        </span>
+<span class="sd">                                                                           ::::::  x </span>
+<span class="sd">                                                                                    </span>
+
+<span class="sd">    See Also</span>
+<span class="sd">    --------</span>
+<span class="sd">    :mod:`~owcsimpy.geoutils.cutils.checkBlockage`</span>
+<span class="sd">    </span>
+<span class="sd">    Examples</span>
+<span class="sd">    --------</span>
+
+<span class="sd">    .. plot::</span>
+<span class="sd">       :format: doctest</span>
+<span class="sd">       :include-source: True</span>
+
+<span class="sd">        &gt;&gt;&gt; import matplotlib.pyplot as plt</span>
+<span class="sd">        &gt;&gt;&gt; import numpy as np</span>
+<span class="sd">        &gt;&gt;&gt; </span>
+<span class="sd">        &gt;&gt;&gt; from owcsimpy.geoobjects.bases.vector_py import Vector_py as Vector</span>
+<span class="sd">        &gt;&gt;&gt; from owcsimpy.geoobjects.bases.rectplane_py import RectPlane_py as RectPlane</span>
+<span class="sd">        &gt;&gt;&gt; from owcsimpy.geoutils.draw import draw</span>
+<span class="sd">        &gt;&gt;&gt; </span>
+<span class="sd">        &gt;&gt;&gt; def genPlane(polar,az,Rod,translation):</span>
+<span class="sd">        &gt;&gt;&gt;     </span>
+<span class="sd">        &gt;&gt;&gt;     v = Vector(np.array([1,np.deg2rad(polar),np.deg2rad(az)]))</span>
+<span class="sd">        &gt;&gt;&gt;     ctrPoint=np.array(3*[translation])</span>
+<span class="sd">        &gt;&gt;&gt;     plane = RectPlane(normalVect=v,ctrPoint=ctrPoint,</span>
+<span class="sd">        &gt;&gt;&gt;         RodriguesAngle=np.deg2rad(Rod),dimensions=[2,1])</span>
+<span class="sd">        &gt;&gt;&gt; </span>
+<span class="sd">        &gt;&gt;&gt;     return plane</span>
+<span class="sd">        &gt;&gt;&gt; </span>
+<span class="sd">        &gt;&gt;&gt; </span>
+<span class="sd">        &gt;&gt;&gt; # Will draw 4 different canvases</span>
+<span class="sd">        &gt;&gt;&gt; fig,axs = draw(subplots=True,figsize=(14,6),nrows=1,ncols=4,xlim=[-2,2],ylim=[-2,2],zlim=[-2,2])</span>
+<span class="sd">        &gt;&gt;&gt; </span>
+<span class="sd">        &gt;&gt;&gt; # Original position</span>
+<span class="sd">        &gt;&gt;&gt; polar,az,Rod=0,0,0 # polar, azimuth, Rodrigues</span>
+<span class="sd">        &gt;&gt;&gt; translation=0</span>
+<span class="sd">        &gt;&gt;&gt; plane = genPlane(polar,az,Rod,translation)</span>
+<span class="sd">        &gt;&gt;&gt; </span>
+<span class="sd">        &gt;&gt;&gt; fig,axs[0] = draw(figure=fig,axes=axs[0],planes=plane,colors=&#39;blue&#39;,facecolors=&#39;blue&#39;)</span>
+<span class="sd">        &gt;&gt;&gt; axs[0].set_title(&quot;angles=({},{},{}), x=y=z={}&quot;.format(polar,az,Rod,translation))</span>
+<span class="sd">        &gt;&gt;&gt; </span>
+<span class="sd">        &gt;&gt;&gt; # Polar and azimuth</span>
+<span class="sd">        &gt;&gt;&gt; # Copy previous object as a reference (black)</span>
+<span class="sd">        &gt;&gt;&gt; fig,axs[1] = draw(figure=fig,axes=axs[1],planes=plane,colors=&#39;black&#39;,facecolors=&#39;black&#39;)</span>
+<span class="sd">        &gt;&gt;&gt; </span>
+<span class="sd">        &gt;&gt;&gt; polar,az,Rod=90,45,0 # polar, azimuth, Rodrigues</span>
+<span class="sd">        &gt;&gt;&gt; translation=0</span>
+<span class="sd">        &gt;&gt;&gt; plane = genPlane(polar,az,Rod,translation)</span>
+<span class="sd">        &gt;&gt;&gt; </span>
+<span class="sd">        &gt;&gt;&gt; fig,axs[1] = draw(figure=fig,axes=axs[1],planes=plane,colors=&#39;blue&#39;,facecolors=&#39;blue&#39;)</span>
+<span class="sd">        &gt;&gt;&gt; axs[1].set_title(&quot;angles=({},{},{}), x=y=z={}&quot;.format(polar,az,Rod,translation))</span>
+<span class="sd">        &gt;&gt;&gt; </span>
+<span class="sd">        &gt;&gt;&gt; # Rodrigues</span>
+<span class="sd">        &gt;&gt;&gt; # Copy previous object as a reference (black)</span>
+<span class="sd">        &gt;&gt;&gt; fig,axs[2] = draw(figure=fig,axes=axs[2],planes=plane,colors=&#39;black&#39;,facecolors=&#39;black&#39;)</span>
+<span class="sd">        &gt;&gt;&gt; </span>
+<span class="sd">        &gt;&gt;&gt; polar,az,Rod=90,45,30 # polar, azimuth, Rodrigues</span>
+<span class="sd">        &gt;&gt;&gt; translation=0</span>
+<span class="sd">        &gt;&gt;&gt; plane = genPlane(polar,az,Rod,translation)</span>
+<span class="sd">        &gt;&gt;&gt; </span>
+<span class="sd">        &gt;&gt;&gt; fig,axs[2] = draw(figure=fig,axes=axs[2],planes=plane,colors=&#39;blue&#39;,facecolors=&#39;blue&#39;)</span>
+<span class="sd">        &gt;&gt;&gt; axs[2].set_title(&quot;angles=({},{},{}), x=y=z={}&quot;.format(polar,az,Rod,translation))</span>
+<span class="sd">        &gt;&gt;&gt; </span>
+<span class="sd">        &gt;&gt;&gt; # Translation</span>
+<span class="sd">        &gt;&gt;&gt; # Copy previous object as a reference (black)</span>
+<span class="sd">        &gt;&gt;&gt; fig,axs[3] = draw(figure=fig,axes=axs[3],planes=plane,colors=&#39;black&#39;,facecolors=&#39;black&#39;)</span>
+<span class="sd">        &gt;&gt;&gt; </span>
+<span class="sd">        &gt;&gt;&gt; polar,az,Rod=90,45,30 # polar, azimuth, Rodrigues</span>
+<span class="sd">        &gt;&gt;&gt; translation=0.5</span>
+<span class="sd">        &gt;&gt;&gt; plane = genPlane(polar,az,Rod,translation)</span>
+<span class="sd">        &gt;&gt;&gt; </span>
+<span class="sd">        &gt;&gt;&gt; fig,axs[3] = draw(figure=fig,axes=axs[3],planes=plane,colors=&#39;blue&#39;,facecolors=&#39;blue&#39;)</span>
+<span class="sd">        &gt;&gt;&gt; axs[3].set_title(&quot;angles=({},{},{}), x=y=z={}&quot;.format(polar,az,Rod,translation))</span>
+<span class="sd">        &gt;&gt;&gt; </span>
+<span class="sd">        &gt;&gt;&gt; </span>
+<span class="sd">        &gt;&gt;&gt; plt.show()</span>
+
+
+<span class="sd">    Angles are defined as polar, azimuth and Rodrigues&#39; angles in order. The left figure shows </span>
+<span class="sd">    a rectangular plane in its original position (no rotation and translation). Then, transformations </span>
+<span class="sd">    are carried out w.r.t. the spherical coordinates rotation, Rodrigues&#39; rotation and translation </span>
+<span class="sd">    in order. </span>
+<span class="sd">    </span>
+<span class="sd">    &quot;&quot;&quot;</span>
+
+
+    <span class="k">def</span> <span class="nf">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span><span class="n">normalVect</span><span class="p">,</span>
+                 <span class="n">ctrPoint</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span><span class="n">RodriguesAngle</span><span class="o">=</span><span class="mi">0</span><span class="p">,</span><span class="n">dimensions</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span>
+                 <span class="n">verts</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span>
+                 <span class="n">identity</span><span class="o">=</span><span class="p">[</span><span class="n">np</span><span class="o">.</span><span class="n">inf</span><span class="p">],</span><span class="n">m</span><span class="o">=</span><span class="mi">1</span><span class="p">,</span><span class="n">FoV</span><span class="o">=</span><span class="n">np</span><span class="o">.</span><span class="n">pi</span><span class="o">/</span><span class="mi">2</span><span class="p">,</span><span class="n">reflectivity</span><span class="o">=</span><span class="mi">1</span><span class="p">):</span>
+        
+        <span class="c1"># assert isinstance(normalVect,Vector)</span>
+        <span class="c1"># assert (RodriguesAngle != None and dimensions != None) or (verts != None), (</span>
+        <span class="c1"># assert (RodriguesAngle != None and dimensions != None) or (verts != None), (</span>
+            <span class="c1"># &quot;Please specify following the first or the second method&quot;)</span>
+        
+        <span class="k">assert</span> <span class="n">m</span> <span class="o">&gt;=</span> <span class="mi">0</span> <span class="ow">and</span> <span class="mi">0</span> <span class="o">&lt;=</span> <span class="n">FoV</span> <span class="o">&lt;=</span> <span class="n">np</span><span class="o">.</span><span class="n">pi</span><span class="o">/</span><span class="mi">2</span>
+
+        <span class="c1"># Make sure that normalVect is the instance of Vector</span>
+        <span class="k">if</span> <span class="ow">not</span> <span class="nb">isinstance</span><span class="p">(</span><span class="n">normalVect</span><span class="p">,</span><span class="n">Vector</span><span class="p">):</span>
+            <span class="c1"># If it is not the instance of Vector, assume it contains the cartesian </span>
+            <span class="c1"># coordinates</span>
+            <span class="n">normalVect</span> <span class="o">=</span> <span class="n">Vector</span><span class="p">(</span><span class="n">normalVect</span><span class="p">,</span><span class="n">which</span><span class="o">=</span><span class="s1">&#39;cartesian&#39;</span><span class="p">)</span>
+
+        <span class="k">if</span> <span class="p">(</span><span class="n">dimensions</span> <span class="o">!=</span> <span class="kc">None</span><span class="p">):</span>
+            <span class="c1"># The first method</span>
+            
+            <span class="c1"># Initial</span>
+            <span class="n">L</span><span class="p">,</span><span class="n">W</span> <span class="o">=</span> <span class="n">dimensions</span> <span class="c1"># must be size of 2</span>
+            
+            <span class="n">x</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">array</span><span class="p">([</span> <span class="n">L</span><span class="o">/</span><span class="mi">2</span><span class="p">,</span><span class="o">-</span><span class="n">L</span><span class="o">/</span><span class="mi">2</span><span class="p">,</span><span class="o">-</span><span class="n">L</span><span class="o">/</span><span class="mi">2</span><span class="p">,</span> <span class="n">L</span><span class="o">/</span><span class="mi">2</span><span class="p">])</span>
+            <span class="n">y</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">array</span><span class="p">([</span> <span class="n">W</span><span class="o">/</span><span class="mi">2</span><span class="p">,</span> <span class="n">W</span><span class="o">/</span><span class="mi">2</span><span class="p">,</span><span class="o">-</span><span class="n">W</span><span class="o">/</span><span class="mi">2</span><span class="p">,</span><span class="o">-</span><span class="n">W</span><span class="o">/</span><span class="mi">2</span><span class="p">])</span>
+            <span class="n">z</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">array</span><span class="p">([</span>   <span class="mi">0</span><span class="p">,</span>   <span class="mi">0</span><span class="p">,</span>   <span class="mi">0</span><span class="p">,</span>   <span class="mi">0</span><span class="p">])</span>
+            
+            <span class="n">verts</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">array</span><span class="p">([[</span><span class="n">xi</span><span class="p">,</span><span class="n">yi</span><span class="p">,</span><span class="n">zi</span><span class="p">]</span> <span class="k">for</span> <span class="n">xi</span><span class="p">,</span><span class="n">yi</span><span class="p">,</span><span class="n">zi</span> <span class="ow">in</span> <span class="nb">zip</span><span class="p">(</span><span class="n">x</span><span class="p">,</span><span class="n">y</span><span class="p">,</span><span class="n">z</span><span class="p">)])</span>
+            
+            <span class="c1"># Get polar and azimuth angles of the normalVect</span>
+            <span class="n">polar</span><span class="p">,</span><span class="n">azimuth</span> <span class="o">=</span> <span class="n">normalVect</span><span class="o">.</span><span class="n">spherical</span><span class="p">[</span><span class="mi">1</span><span class="p">:]</span>
+            
+            <span class="c1"># Rotate based on polar and azimuth</span>
+            <span class="c1"># Get rotation matrix</span>
+            <span class="n">R</span> <span class="o">=</span> <span class="n">getRodriguesMtx</span><span class="p">(</span><span class="n">azimuth</span><span class="p">,</span><span class="n">np</span><span class="o">.</span><span class="n">array</span><span class="p">([</span><span class="mi">0</span><span class="p">,</span><span class="mi">0</span><span class="p">,</span><span class="mi">1</span><span class="p">]))</span><span class="nd">@getRodriguesMtx</span><span class="p">(</span><span class="n">polar</span><span class="p">,</span><span class="n">np</span><span class="o">.</span><span class="n">array</span><span class="p">([</span><span class="mi">0</span><span class="p">,</span><span class="mi">1</span><span class="p">,</span><span class="mi">0</span><span class="p">]))</span>
+            <span class="n">verts</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">array</span><span class="p">([(</span><span class="n">R</span><span class="nd">@vert</span><span class="o">.</span><span class="n">reshape</span><span class="p">(</span><span class="mi">3</span><span class="p">,</span><span class="mi">1</span><span class="p">))</span><span class="o">.</span><span class="n">reshape</span><span class="p">(</span><span class="o">-</span><span class="mi">1</span><span class="p">)</span> <span class="k">for</span> <span class="n">vert</span> <span class="ow">in</span> <span class="n">verts</span><span class="p">])</span>
+            
+            <span class="c1"># Rodrigues&#39; rotation</span>
+            <span class="n">Rd</span> <span class="o">=</span> <span class="n">getRodriguesMtx</span><span class="p">(</span><span class="n">RodriguesAngle</span><span class="p">,</span><span class="n">normalVect</span><span class="p">())</span>
+            <span class="n">verts</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">array</span><span class="p">([(</span><span class="n">Rd</span><span class="nd">@vert</span><span class="o">.</span><span class="n">reshape</span><span class="p">(</span><span class="mi">3</span><span class="p">,</span><span class="mi">1</span><span class="p">))</span><span class="o">.</span><span class="n">reshape</span><span class="p">(</span><span class="o">-</span><span class="mi">1</span><span class="p">)</span> <span class="k">for</span> <span class="n">vert</span> <span class="ow">in</span> <span class="n">verts</span><span class="p">])</span>
+            
+            <span class="c1"># Translate each verts</span>
+            <span class="n">verts</span> <span class="o">=</span> <span class="n">verts</span><span class="o">+</span><span class="n">np</span><span class="o">.</span><span class="n">array</span><span class="p">(</span><span class="n">ctrPoint</span><span class="p">)</span>
+
+            <span class="bp">self</span><span class="o">.</span><span class="n">normalVect</span> <span class="o">=</span> <span class="n">normalVect</span><span class="p">()</span>
+            <span class="bp">self</span><span class="o">.</span><span class="n">ctrPoint</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">array</span><span class="p">(</span><span class="n">ctrPoint</span><span class="p">)</span> <span class="c1"># make sure that it is ndarray</span>
+            <span class="bp">self</span><span class="o">.</span><span class="n">verts</span> <span class="o">=</span> <span class="n">verts</span>
+            <span class="bp">self</span><span class="o">.</span><span class="n">area</span> <span class="o">=</span> <span class="n">L</span><span class="o">*</span><span class="n">W</span>
+            <span class="bp">self</span><span class="o">.</span><span class="n">L</span><span class="p">,</span><span class="bp">self</span><span class="o">.</span><span class="n">W</span> <span class="o">=</span> <span class="n">L</span><span class="p">,</span><span class="n">W</span>
+            
+        <span class="c1"># elif verts != None:</span>
+        <span class="k">elif</span> <span class="nb">isinstance</span><span class="p">(</span><span class="n">verts</span><span class="p">,</span><span class="n">np</span><span class="o">.</span><span class="n">ndarray</span><span class="p">):</span>
+            <span class="c1"># The second method</span>
+            <span class="bp">self</span><span class="o">.</span><span class="n">normalVect</span> <span class="o">=</span> <span class="n">normalVect</span><span class="p">()</span>
+            <span class="bp">self</span><span class="o">.</span><span class="n">verts</span> <span class="o">=</span> <span class="n">verts</span>
+            <span class="bp">self</span><span class="o">.</span><span class="n">area</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">linalg</span><span class="o">.</span><span class="n">norm</span><span class="p">(</span><span class="n">verts</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span><span class="o">-</span><span class="n">verts</span><span class="p">[</span><span class="mi">1</span><span class="p">])</span><span class="o">*</span><span class="n">np</span><span class="o">.</span><span class="n">linalg</span><span class="o">.</span><span class="n">norm</span><span class="p">(</span>
+                <span class="n">verts</span><span class="p">[</span><span class="mi">1</span><span class="p">]</span><span class="o">-</span><span class="n">verts</span><span class="p">[</span><span class="mi">2</span><span class="p">])</span> <span class="c1"># assuming that it is a rectangular</span>
+            
+            <span class="c1"># Adjust the center point</span>
+            <span class="bp">self</span><span class="o">.</span><span class="n">ctrPoint</span> <span class="o">=</span> <span class="p">(</span><span class="n">verts</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span><span class="o">+</span><span class="n">verts</span><span class="p">[</span><span class="mi">2</span><span class="p">])</span><span class="o">/</span><span class="mi">2</span>
+
+            <span class="bp">self</span><span class="o">.</span><span class="n">L</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">linalg</span><span class="o">.</span><span class="n">norm</span><span class="p">(</span><span class="n">verts</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span><span class="o">-</span><span class="n">verts</span><span class="p">[</span><span class="mi">1</span><span class="p">])</span>
+            <span class="bp">self</span><span class="o">.</span><span class="n">W</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">linalg</span><span class="o">.</span><span class="n">norm</span><span class="p">(</span><span class="n">verts</span><span class="p">[</span><span class="mi">1</span><span class="p">]</span><span class="o">-</span><span class="n">verts</span><span class="p">[</span><span class="mi">2</span><span class="p">])</span>
+        
+        <span class="k">else</span><span class="p">:</span>
+            <span class="k">raise</span> <span class="ne">NotImplementedError</span><span class="p">(</span><span class="s1">&#39;Undefined method!&#39;</span><span class="p">)</span>
+            
+        <span class="bp">self</span><span class="o">.</span><span class="n">identity</span> <span class="o">=</span> <span class="n">identity</span> <span class="k">if</span> <span class="nb">isinstance</span><span class="p">(</span><span class="n">identity</span><span class="p">,</span><span class="nb">list</span><span class="p">)</span> <span class="k">else</span> <span class="p">[</span><span class="n">identity</span><span class="p">]</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">m</span><span class="p">,</span><span class="bp">self</span><span class="o">.</span><span class="n">FoV</span><span class="p">,</span><span class="bp">self</span><span class="o">.</span><span class="n">reflectivity</span> <span class="o">=</span> <span class="n">m</span><span class="p">,</span><span class="n">FoV</span><span class="p">,</span><span class="n">reflectivity</span>
+
+        <span class="c1"># store the normal vector as an instance of the Vector class</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">__normalVect</span> <span class="o">=</span> <span class="n">normalVect</span>
+
+        <span class="c1"># Check whether normalVect and verts form a plane</span>
+        <span class="n">v1</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">normalVect</span>
+        
+        <span class="n">checkPlane</span> <span class="o">=</span> <span class="p">[</span><span class="n">math</span><span class="o">.</span><span class="n">isclose</span><span class="p">(</span><span class="n">np</span><span class="o">.</span><span class="n">pi</span><span class="o">/</span><span class="mi">2</span><span class="p">,</span><span class="n">calcAngle</span><span class="p">(</span><span class="n">v1</span><span class="p">,</span><span class="n">vert</span><span class="o">-</span><span class="bp">self</span><span class="o">.</span><span class="n">ctrPoint</span><span class="p">))</span> 
+                      <span class="k">for</span> <span class="n">vert</span> <span class="ow">in</span> <span class="bp">self</span><span class="o">.</span><span class="n">verts</span><span class="p">]</span>
+        
+        <span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">        A valid rectangular plane is the normal vector and </span>
+<span class="sd">        the vectors formed by the vertices and the center point are </span>
+<span class="sd">        orthogonal. Also, the lenghts of the opposite sides must be </span>
+<span class="sd">        the same.</span>
+
+<span class="sd">        &quot;&quot;&quot;</span>
+        <span class="k">if</span> <span class="ow">not</span> <span class="n">np</span><span class="o">.</span><span class="n">array</span><span class="p">(</span><span class="n">checkPlane</span><span class="p">)</span><span class="o">.</span><span class="n">all</span><span class="p">()</span> <span class="ow">and</span> <span class="p">(</span>
+            <span class="n">np</span><span class="o">.</span><span class="n">allclose</span><span class="p">(</span><span class="n">verts</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span><span class="o">-</span><span class="n">verts</span><span class="p">[</span><span class="mi">1</span><span class="p">],</span><span class="n">verts</span><span class="p">[</span><span class="mi">2</span><span class="p">]</span><span class="o">-</span><span class="n">verts</span><span class="p">[</span><span class="mi">3</span><span class="p">]))</span> <span class="ow">and</span> <span class="p">(</span>
+            <span class="n">np</span><span class="o">.</span><span class="n">allclose</span><span class="p">(</span><span class="n">verts</span><span class="p">[</span><span class="mi">1</span><span class="p">]</span><span class="o">-</span><span class="n">verts</span><span class="p">[</span><span class="mi">2</span><span class="p">],</span><span class="n">verts</span><span class="p">[</span><span class="mi">3</span><span class="p">]</span><span class="o">-</span><span class="n">verts</span><span class="p">[</span><span class="mi">0</span><span class="p">])):</span>
+            <span class="nb">print</span><span class="p">(</span><span class="s2">&quot;The vertices are </span><span class="si">{}</span><span class="s2">&quot;</span><span class="o">.</span><span class="n">format</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">verts</span><span class="p">))</span>
+            <span class="k">raise</span> <span class="ne">ValueError</span><span class="p">(</span><span class="s1">&#39;Not a valid plane!&#39;</span><span class="p">)</span>
+    
+<div class="viewcode-block" id="RectPlane_py.rotate"><a class="viewcode-back" href="../../../../modulerefs/geoobjects/basics/rectplane.html#owcsimpy.geoobjects.bases.rectplane_py.RectPlane_py.rotate">[docs]</a>    <span class="k">def</span> <span class="nf">rotate</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span><span class="n">theta</span><span class="p">,</span><span class="n">refVector</span><span class="p">):</span>
+        <span class="sd">&quot;&quot;&quot; Rotate the plane w.r.t. to a reference vector.</span>
+
+<span class="sd">        Parameters</span>
+<span class="sd">        ----------</span>
+<span class="sd">        theta: float</span>
+<span class="sd">        refVector: ndarray(3,) or Vector_py</span>
+
+<span class="sd">        Returns</span>
+<span class="sd">        -------</span>
+<span class="sd">        RectPlane_py</span>
+
+<span class="sd">        Examples</span>
+<span class="sd">        --------</span>
+<span class="sd">        </span>
+<span class="sd">        .. plot::</span>
+<span class="sd">            :format: doctest</span>
+<span class="sd">            :include-source: True</span>
+
+<span class="sd">            &gt;&gt;&gt; import matplotlib.pyplot as plt</span>
+<span class="sd">            &gt;&gt;&gt; import numpy as np</span>
+<span class="sd">            &gt;&gt;&gt; </span>
+<span class="sd">            &gt;&gt;&gt; from owcsimpy.geoobjects.bases.vector_py import Vector_py as Vector</span>
+<span class="sd">            &gt;&gt;&gt; from owcsimpy.geoobjects.bases.rectplane_py import RectPlane_py as RectPlane</span>
+<span class="sd">            &gt;&gt;&gt; from owcsimpy.geoutils.draw import draw</span>
+<span class="sd">            &gt;&gt;&gt; </span>
+<span class="sd">            &gt;&gt;&gt; # Prepare a canvas</span>
+<span class="sd">            &gt;&gt;&gt; fig,ax = draw(xlim=[-2,2],ylim=[-2,2],zlim=[-2,2])</span>
+<span class="sd">            &gt;&gt;&gt; v = Vector(np.array([1,np.deg2rad(90),np.deg2rad(90)]))</span>
+<span class="sd">            &gt;&gt;&gt; plane = RectPlane(normalVect=v,ctrPoint=np.zeros(3),dimensions=[2,1])</span>
+<span class="sd">            &gt;&gt;&gt; fig,ax = draw(figure=fig,axes=ax,planes=plane,facecolors=&#39;black&#39;,colors=&#39;black&#39;)</span>
+<span class="sd">            &gt;&gt;&gt; plane = plane.rotate(np.deg2rad(45),plane.normalVect)</span>
+<span class="sd">            &gt;&gt;&gt; fig,ax = draw(figure=fig,axes=ax,planes=plane,facecolors=&#39;red&#39;,colors=&#39;red&#39;)</span>
+
+<span class="sd">        &quot;&quot;&quot;</span>
+        <span class="k">if</span> <span class="ow">not</span> <span class="nb">isinstance</span><span class="p">(</span><span class="n">refVector</span><span class="p">,</span><span class="n">Vector</span><span class="p">):</span>
+            <span class="c1"># If it is not the instance of Vector, assume it contains the cartesian </span>
+            <span class="c1"># coordinates</span>
+            <span class="n">refVector</span> <span class="o">=</span> <span class="n">Vector</span><span class="p">(</span><span class="n">refVector</span><span class="p">,</span><span class="n">which</span><span class="o">=</span><span class="s1">&#39;cartesian&#39;</span><span class="p">)</span>
+
+        <span class="c1"># Rodrigues&#39; rotation</span>
+        <span class="n">Rd</span> <span class="o">=</span> <span class="n">getRodriguesMtx</span><span class="p">(</span><span class="n">theta</span><span class="p">,</span><span class="n">refVector</span><span class="p">())</span>
+        <span class="n">normalVect</span> <span class="o">=</span> <span class="p">(</span><span class="n">Rd</span><span class="nd">@self</span><span class="o">.</span><span class="n">normalVect</span><span class="o">.</span><span class="n">reshape</span><span class="p">(</span><span class="mi">3</span><span class="p">,</span><span class="mi">1</span><span class="p">))</span><span class="o">.</span><span class="n">reshape</span><span class="p">(</span><span class="o">-</span><span class="mi">1</span><span class="p">)</span>
+        <span class="n">verts</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">array</span><span class="p">([(</span><span class="n">Rd</span><span class="nd">@vert</span><span class="o">.</span><span class="n">reshape</span><span class="p">(</span><span class="mi">3</span><span class="p">,</span><span class="mi">1</span><span class="p">))</span><span class="o">.</span><span class="n">reshape</span><span class="p">(</span><span class="o">-</span><span class="mi">1</span><span class="p">)</span> <span class="k">for</span> <span class="n">vert</span> <span class="ow">in</span> <span class="bp">self</span><span class="o">.</span><span class="n">verts</span><span class="p">])</span>
+
+        <span class="n">newPlane</span> <span class="o">=</span> <span class="n">RectPlane_py</span><span class="p">(</span><span class="n">normalVect</span><span class="p">,</span><span class="n">verts</span><span class="o">=</span><span class="n">verts</span><span class="p">,</span>
+            <span class="n">identity</span><span class="o">=</span><span class="bp">self</span><span class="o">.</span><span class="n">identity</span><span class="p">,</span><span class="n">m</span><span class="o">=</span><span class="bp">self</span><span class="o">.</span><span class="n">m</span><span class="p">,</span><span class="n">FoV</span><span class="o">=</span><span class="bp">self</span><span class="o">.</span><span class="n">FoV</span><span class="p">,</span><span class="n">reflectivity</span><span class="o">=</span><span class="bp">self</span><span class="o">.</span><span class="n">reflectivity</span><span class="p">)</span>
+
+        <span class="n">newPlane</span><span class="o">.</span><span class="n">identity</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">identity</span>
+        <span class="k">return</span> <span class="n">newPlane</span></div>
+
+<div class="viewcode-block" id="RectPlane_py.translate"><a class="viewcode-back" href="../../../../modulerefs/geoobjects/basics/rectplane.html#owcsimpy.geoobjects.bases.rectplane_py.RectPlane_py.translate">[docs]</a>    <span class="k">def</span> <span class="nf">translate</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span><span class="n">newCtrPoint</span><span class="p">):</span>
+        <span class="sd">&quot;&quot;&quot; Translate the plane to a new center point.</span>
+
+<span class="sd">        Parameters</span>
+<span class="sd">        ----------</span>
+<span class="sd">        newCtrPoint: ndarray(3,)</span>
+
+<span class="sd">        Returns</span>
+<span class="sd">        -------</span>
+<span class="sd">        RectPlane_py</span>
+
+<span class="sd">        Examples</span>
+<span class="sd">        --------</span>
+<span class="sd">        .. plot::</span>
+<span class="sd">            :format: doctest</span>
+<span class="sd">            :include-source: True</span>
+
+<span class="sd">            &gt;&gt;&gt; import matplotlib.pyplot as plt</span>
+<span class="sd">            &gt;&gt;&gt; import numpy as np</span>
+<span class="sd">            &gt;&gt;&gt; </span>
+<span class="sd">            &gt;&gt;&gt; from owcsimpy.geoobjects.bases.vector_py import Vector_py as Vector</span>
+<span class="sd">            &gt;&gt;&gt; from owcsimpy.geoobjects.bases.rectplane_py import RectPlane_py as RectPlane</span>
+<span class="sd">            &gt;&gt;&gt; from owcsimpy.geoutils.draw import draw</span>
+<span class="sd">            &gt;&gt;&gt; </span>
+<span class="sd">            &gt;&gt;&gt; # Prepare a canvas</span>
+<span class="sd">            &gt;&gt;&gt; fig,ax = draw(xlim=[-2,2],ylim=[-2,2],zlim=[-2,2])</span>
+<span class="sd">            &gt;&gt;&gt; v = Vector(np.array([1,np.deg2rad(90),np.deg2rad(90)]))</span>
+<span class="sd">            &gt;&gt;&gt; plane = RectPlane(normalVect=v,ctrPoint=np.zeros(3),dimensions=[2,1])</span>
+<span class="sd">            &gt;&gt;&gt; fig,ax = draw(figure=fig,axes=ax,planes=plane,facecolors=&#39;black&#39;,colors=&#39;black&#39;)</span>
+<span class="sd">            &gt;&gt;&gt; plane = plane.translate(np.ones(3))</span>
+<span class="sd">            &gt;&gt;&gt; fig,ax = draw(figure=fig,axes=ax,planes=plane,facecolors=&#39;red&#39;,colors=&#39;red&#39;)</span>
+
+<span class="sd">        &quot;&quot;&quot;</span>
+
+        <span class="n">verts</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">verts</span><span class="o">+</span><span class="n">newCtrPoint</span>
+        <span class="n">newPlane</span> <span class="o">=</span>  <span class="n">RectPlane_py</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">normalVect</span><span class="p">,</span><span class="n">verts</span><span class="o">=</span><span class="n">verts</span><span class="p">,</span>
+            <span class="n">identity</span><span class="o">=</span><span class="bp">self</span><span class="o">.</span><span class="n">identity</span><span class="p">,</span><span class="n">m</span><span class="o">=</span><span class="bp">self</span><span class="o">.</span><span class="n">m</span><span class="p">,</span><span class="n">FoV</span><span class="o">=</span><span class="bp">self</span><span class="o">.</span><span class="n">FoV</span><span class="p">,</span><span class="n">reflectivity</span><span class="o">=</span><span class="bp">self</span><span class="o">.</span><span class="n">reflectivity</span><span class="p">)</span>
+
+        <span class="n">newPlane</span><span class="o">.</span><span class="n">identity</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">identity</span>
+        <span class="k">return</span> <span class="n">newPlane</span></div>
+
+<div class="viewcode-block" id="RectPlane_py.getSimplePlane"><a class="viewcode-back" href="../../../../modulerefs/geoobjects/basics/rectplane.html#owcsimpy.geoobjects.bases.rectplane_py.RectPlane_py.getSimplePlane">[docs]</a>    <span class="k">def</span> <span class="nf">getSimplePlane</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+        <span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">        Extract necessary information as ndarray without methods.</span>
+
+<span class="sd">        A simpleplane will be simply as a tuple of </span>
+<span class="sd">        normalVect, ctrPoint, verts and area. </span>
+<span class="sd">        </span>
+<span class="sd">        Returns</span>
+<span class="sd">        -------</span>
+<span class="sd">        (revised)</span>
+<span class="sd">        tuple:</span>
+<span class="sd">            (normalVect: ndarray(3,)</span>
+<span class="sd">                ctrPoint: ndarray(3,) </span>
+<span class="sd">                verts: ndarray(4,3)</span>
+<span class="sd">                area: double</span>
+<span class="sd">                m: double</span>
+<span class="sd">                FoV: double</span>
+<span class="sd">                reflectivity: double)</span>
+<span class="sd">        </span>
+<span class="sd">        (previous)</span>
+<span class="sd">        tuple:</span>
+<span class="sd">            (normalVect: ndarray(3,)</span>
+<span class="sd">            ctrPoint: ndarray(3,) </span>
+<span class="sd">            verts: ndarray(4,3)</span>
+<span class="sd">            area: double)</span>
+
+<span class="sd">        Notes</span>
+<span class="sd">        -----</span>
+<span class="sd">        The order of the output matters.</span>
+
+<span class="sd">        &quot;&quot;&quot;</span>
+
+        <span class="c1"># return (self.normalVect, </span>
+        <span class="c1">#     self.ctrPoint, </span>
+        <span class="c1">#     self.verts,</span>
+        <span class="c1">#     self.area)</span>
+
+        <span class="k">return</span> <span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">normalVect</span><span class="p">,</span> 
+            <span class="bp">self</span><span class="o">.</span><span class="n">ctrPoint</span><span class="p">,</span> 
+            <span class="bp">self</span><span class="o">.</span><span class="n">verts</span><span class="p">,</span>
+            <span class="bp">self</span><span class="o">.</span><span class="n">area</span><span class="p">,</span>
+            <span class="bp">self</span><span class="o">.</span><span class="n">m</span><span class="p">,</span>
+            <span class="bp">self</span><span class="o">.</span><span class="n">FoV</span><span class="p">,</span>
+            <span class="bp">self</span><span class="o">.</span><span class="n">reflectivity</span><span class="p">)</span></div>
+
+<div class="viewcode-block" id="RectPlane_py.getPartition"><a class="viewcode-back" href="../../../../modulerefs/geoobjects/basics/rectplane.html#owcsimpy.geoobjects.bases.rectplane_py.RectPlane_py.getPartition">[docs]</a>    <span class="k">def</span> <span class="nf">getPartition</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span><span class="n">Ps</span><span class="o">=</span><span class="p">[</span><span class="mi">1</span><span class="p">,</span><span class="mi">1</span><span class="p">],</span><span class="n">delta</span><span class="o">=</span><span class="kc">None</span><span class="p">):</span>
+        <span class="sd">&quot;&quot;&quot;Get a list of partitioned planes.</span>
+<span class="sd">        </span>
+<span class="sd">        Parameters</span>
+<span class="sd">        ----------</span>
+<span class="sd">        Ps: list</span>
+<span class="sd">            List of number of partition of each side. </span>
+<span class="sd">        delta: list</span>
+<span class="sd">            Define the partition based on partition lengths</span>
+
+<span class="sd">        Returns</span>
+<span class="sd">        -------</span>
+<span class="sd">        list:</span>
+<span class="sd">            A list of partitioned planes. Each plane is an instant of </span>
+<span class="sd">            RectPlane_py.</span>
+<span class="sd">        </span>
+<span class="sd">        Notes</span>
+<span class="sd">        -----</span>
+<span class="sd">        .. code-block:: text</span>
+
+<span class="sd">                  0                             1</span>
+<span class="sd">                   _________,_________,_________,</span>
+<span class="sd">                   |        |         |         |</span>
+<span class="sd">                   |        |         |         |</span>
+<span class="sd">                   |________|_________|_________|</span>
+<span class="sd">                   |        |         |         |</span>
+<span class="sd">            l_03   |        |         |         | l_12</span>
+<span class="sd">                   |________|_________|_________|</span>
+<span class="sd">                   |        |         |         |</span>
+<span class="sd">                   |        |         |         |</span>
+<span class="sd">                  \./_______|_________|________\./</span>
+<span class="sd">                 3                              2</span>
+<span class="sd">        </span>
+
+
+<span class="sd">        Steps:</span>
+<span class="sd">            1. Get parametric lines l_03 and l_12</span>
+<span class="sd">            2. Get row-major parametric lines whose initial </span>
+<span class="sd">               and end points are obtained from l_03 and l_12</span>
+<span class="sd">            3. Get matrix of vertices</span>
+<span class="sd">            4. Create a subplane from the matrix</span>
+
+<span class="sd">        For future works, it would be more efficient if we have private attributes </span>
+<span class="sd">        on the spherical and Rodrigues&#39; rotations, then we can partition the original </span>
+<span class="sd">        position rectangular plane and do rotation and translation afterwards.</span>
+
+<span class="sd">        Examples</span>
+<span class="sd">        --------</span>
+
+<span class="sd">        .. plot::</span>
+<span class="sd">            :format: doctest</span>
+<span class="sd">            :include-source: True</span>
+
+<span class="sd">            &gt;&gt;&gt; import matplotlib.pyplot as plt</span>
+<span class="sd">            &gt;&gt;&gt; import numpy as np</span>
+<span class="sd">            &gt;&gt;&gt; </span>
+<span class="sd">            &gt;&gt;&gt; from owcsimpy.geoobjects.bases.vector_py import Vector_py as Vector</span>
+<span class="sd">            &gt;&gt;&gt; from owcsimpy.geoobjects.bases.rectplane_py import RectPlane_py as RectPlane</span>
+<span class="sd">            &gt;&gt;&gt; from owcsimpy.geoutils.draw import draw</span>
+<span class="sd">            &gt;&gt;&gt; </span>
+<span class="sd">            &gt;&gt;&gt; # Original position</span>
+<span class="sd">            &gt;&gt;&gt; polar,az,Rod=90,-90,30 # polar, azimuth, Rodrigues</span>
+<span class="sd">            &gt;&gt;&gt; translation=0.5</span>
+<span class="sd">            &gt;&gt;&gt; v = Vector(np.array([1,np.deg2rad(polar),np.deg2rad(az)]))</span>
+<span class="sd">            &gt;&gt;&gt; ctrPoint=np.array(3*[translation])</span>
+<span class="sd">            &gt;&gt;&gt; plane = RectPlane(normalVect=v,ctrPoint=ctrPoint,</span>
+<span class="sd">            &gt;&gt;&gt;     RodriguesAngle=np.deg2rad(Rod),dimensions=[2,1])</span>
+<span class="sd">            &gt;&gt;&gt; </span>
+<span class="sd">            &gt;&gt;&gt; subplanes = plane.getPartition(2)</span>
+<span class="sd">            &gt;&gt;&gt; fig,ax = draw(planes=subplanes,xlim=[-2,2],ylim=[-2,2],zlim=[-2,2])</span>
+<span class="sd">            &gt;&gt;&gt; # For reference</span>
+<span class="sd">            &gt;&gt;&gt; draw(figure=fig,axes=ax,planes=plane,facecolors=&#39;black&#39;,colors=&#39;black&#39;)</span>
+<span class="sd">            &gt;&gt;&gt; </span>
+<span class="sd">            &gt;&gt;&gt; plt.show()</span>
+<span class="sd">        </span>
+<span class="sd">        &quot;&quot;&quot;</span>
+
+        <span class="k">if</span> <span class="n">delta</span> <span class="o">==</span> <span class="kc">None</span><span class="p">:</span>
+            <span class="c1"># Casting to list if it is a constant</span>
+            <span class="n">Ps</span> <span class="o">=</span> <span class="p">[</span><span class="n">Ps</span><span class="p">]</span> <span class="k">if</span> <span class="ow">not</span> <span class="nb">isinstance</span><span class="p">(</span><span class="n">Ps</span><span class="p">,</span><span class="nb">list</span><span class="p">)</span> <span class="k">else</span> <span class="n">Ps</span>
+
+            <span class="k">assert</span> <span class="nb">isinstance</span><span class="p">(</span><span class="n">Ps</span><span class="p">,</span><span class="nb">list</span><span class="p">)</span>
+            <span class="k">assert</span> <span class="mi">0</span> <span class="o">&lt;</span> <span class="nb">len</span><span class="p">(</span><span class="n">Ps</span><span class="p">)</span> <span class="o">&lt;=</span> <span class="mi">2</span>
+
+            <span class="k">if</span> <span class="nb">len</span><span class="p">(</span><span class="n">Ps</span><span class="p">)</span> <span class="o">==</span> <span class="mi">1</span><span class="p">:</span>
+                <span class="c1">#  If the length is one then replicate</span>
+                <span class="n">Ps</span> <span class="o">=</span> <span class="mi">2</span><span class="o">*</span><span class="n">Ps</span> 
+
+            <span class="c1"># Unpack</span>
+            <span class="n">Px</span><span class="p">,</span><span class="n">Py</span> <span class="o">=</span> <span class="n">Ps</span>
+        <span class="k">else</span><span class="p">:</span>
+            <span class="c1"># Casting to a list</span>
+            <span class="n">delta</span> <span class="o">=</span> <span class="p">[</span><span class="n">delta</span><span class="p">]</span> <span class="k">if</span> <span class="ow">not</span> <span class="nb">isinstance</span><span class="p">(</span><span class="n">delta</span><span class="p">,</span><span class="nb">list</span><span class="p">)</span> <span class="k">else</span> <span class="n">delta</span>
+            
+            <span class="k">assert</span> <span class="nb">isinstance</span><span class="p">(</span><span class="n">delta</span><span class="p">,</span><span class="nb">list</span><span class="p">)</span>
+            <span class="k">assert</span> <span class="mi">0</span> <span class="o">&lt;</span> <span class="nb">len</span><span class="p">(</span><span class="n">delta</span><span class="p">)</span> <span class="o">&lt;=</span> <span class="mi">2</span>
+
+            <span class="n">delta</span> <span class="o">=</span> <span class="mi">2</span><span class="o">*</span><span class="n">delta</span> <span class="k">if</span> <span class="nb">len</span><span class="p">(</span><span class="n">delta</span><span class="p">)</span> <span class="o">==</span> <span class="mi">1</span> <span class="k">else</span> <span class="n">delta</span>
+
+            <span class="c1"># Unpack</span>
+            <span class="n">delta_x</span><span class="p">,</span><span class="n">delta_y</span> <span class="o">=</span> <span class="n">delta</span>
+
+            <span class="k">assert</span> <span class="mi">0</span> <span class="o">&lt;</span> <span class="n">delta_x</span> <span class="o">&lt;=</span> <span class="bp">self</span><span class="o">.</span><span class="n">L</span> <span class="ow">and</span> <span class="mi">0</span> <span class="o">&lt;</span> <span class="n">delta_y</span> <span class="o">&lt;=</span> <span class="bp">self</span><span class="o">.</span><span class="n">W</span>
+
+            <span class="n">Px</span> <span class="o">=</span> <span class="nb">int</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">L</span><span class="o">/</span><span class="n">delta_x</span><span class="p">)</span>
+            <span class="n">Py</span> <span class="o">=</span> <span class="nb">int</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">W</span><span class="o">/</span><span class="n">delta_y</span><span class="p">)</span>
+
+        <span class="c1"># Get the parametric lines</span>
+        <span class="n">l_12</span> <span class="o">=</span> <span class="n">Line</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">verts</span><span class="p">[</span><span class="mi">1</span><span class="p">],</span><span class="bp">self</span><span class="o">.</span><span class="n">verts</span><span class="p">[</span><span class="mi">2</span><span class="p">])</span>
+        <span class="n">l_03</span> <span class="o">=</span> <span class="n">Line</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">verts</span><span class="p">[</span><span class="mi">0</span><span class="p">],</span><span class="bp">self</span><span class="o">.</span><span class="n">verts</span><span class="p">[</span><span class="mi">3</span><span class="p">])</span>
+
+        <span class="n">tx</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">linspace</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span><span class="mi">1</span><span class="p">,</span><span class="n">Px</span><span class="o">+</span><span class="mi">1</span><span class="p">)</span>
+        <span class="n">ty</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">linspace</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span><span class="mi">1</span><span class="p">,</span><span class="n">Py</span><span class="o">+</span><span class="mi">1</span><span class="p">)</span>
+
+        <span class="c1"># Get row-major lines</span>
+        <span class="n">lrow</span> <span class="o">=</span> <span class="p">[</span><span class="n">Line</span><span class="p">(</span><span class="n">l_03</span><span class="o">.</span><span class="n">getPoint</span><span class="p">(</span><span class="n">typ</span><span class="p">),</span><span class="n">l_12</span><span class="o">.</span><span class="n">getPoint</span><span class="p">(</span><span class="n">typ</span><span class="p">))</span> <span class="k">for</span> <span class="n">typ</span> <span class="ow">in</span> <span class="n">ty</span><span class="p">]</span>
+
+        <span class="c1"># Get matrix of vertices</span>
+        <span class="n">tmp</span> <span class="o">=</span> <span class="p">[</span><span class="nb">list</span><span class="p">(</span><span class="nb">map</span><span class="p">(</span><span class="k">lambda</span> <span class="n">t</span><span class="p">:</span> <span class="n">l</span><span class="o">.</span><span class="n">getPoint</span><span class="p">(</span><span class="n">t</span><span class="p">),</span> <span class="n">tx</span><span class="p">))</span> <span class="k">for</span> <span class="n">l</span> <span class="ow">in</span> <span class="n">lrow</span><span class="p">]</span>
+        <span class="n">M</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">array</span><span class="p">([[</span><span class="n">tmp</span><span class="p">[</span><span class="n">idr</span><span class="p">][</span><span class="n">idc</span><span class="p">]</span><span class="o">.</span><span class="n">tolist</span><span class="p">()</span> <span class="k">for</span> <span class="n">idc</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="n">Px</span><span class="o">+</span><span class="mi">1</span><span class="p">)]</span> <span class="k">for</span> <span class="n">idr</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="n">Py</span><span class="o">+</span><span class="mi">1</span><span class="p">)])</span>
+
+        <span class="c1"># Get list of indexex of vertices of each partitioned plane</span>
+        <span class="n">listIdxVerts</span> <span class="o">=</span> <span class="p">[[(</span><span class="n">idr</span><span class="p">,</span><span class="n">idc</span><span class="p">),(</span><span class="n">idr</span><span class="p">,</span><span class="n">idc</span><span class="o">+</span><span class="mi">1</span><span class="p">),(</span><span class="n">idr</span><span class="o">+</span><span class="mi">1</span><span class="p">,</span><span class="n">idc</span><span class="o">+</span><span class="mi">1</span><span class="p">),(</span><span class="n">idr</span><span class="o">+</span><span class="mi">1</span><span class="p">,</span><span class="n">idc</span><span class="p">)]</span> <span class="k">for</span> <span class="n">idr</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="n">Py</span><span class="p">)</span> <span class="k">for</span> <span class="n">idc</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="n">Px</span><span class="p">)]</span>
+        
+
+        <span class="c1"># FIXME: transform this into a list comprehension would </span>
+        <span class="c1"># make it faster in exchange for readibility</span>
+        <span class="n">subplanes</span> <span class="o">=</span> <span class="p">[]</span>
+        <span class="k">for</span> <span class="n">idxNum</span><span class="p">,</span><span class="n">idxVerts</span> <span class="ow">in</span> <span class="nb">enumerate</span><span class="p">(</span><span class="n">listIdxVerts</span><span class="p">):</span>
+            <span class="n">verts</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">array</span><span class="p">([</span><span class="n">M</span><span class="p">[</span><span class="n">idxVerts</span><span class="p">[</span><span class="n">idv</span><span class="p">][</span><span class="mi">0</span><span class="p">],</span><span class="n">idxVerts</span><span class="p">[</span><span class="n">idv</span><span class="p">][</span><span class="mi">1</span><span class="p">],:]</span><span class="o">.</span><span class="n">tolist</span><span class="p">()</span> <span class="k">for</span> <span class="n">idv</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="mi">4</span><span class="p">)])</span>
+            <span class="n">normalVect</span> <span class="o">=</span> <span class="n">Vector</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">normalVect</span><span class="p">,</span><span class="n">which</span><span class="o">=</span><span class="s1">&#39;cartesian&#39;</span><span class="p">)</span>
+            <span class="n">subplanes</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">RectPlane_py</span><span class="p">(</span><span class="n">normalVect</span><span class="p">,</span><span class="n">verts</span><span class="o">=</span><span class="n">verts</span><span class="p">,</span>
+                <span class="n">identity</span><span class="o">=</span><span class="bp">self</span><span class="o">.</span><span class="n">identity</span><span class="o">+</span><span class="p">[</span><span class="n">idxNum</span><span class="p">],</span><span class="n">m</span><span class="o">=</span><span class="bp">self</span><span class="o">.</span><span class="n">m</span><span class="p">,</span><span class="n">FoV</span><span class="o">=</span><span class="bp">self</span><span class="o">.</span><span class="n">FoV</span><span class="p">,</span><span class="n">reflectivity</span><span class="o">=</span><span class="bp">self</span><span class="o">.</span><span class="n">reflectivity</span><span class="p">))</span>
+        
+        <span class="k">return</span> <span class="n">subplanes</span></div></div>
+
+
+
+
+
+
+
+
+
+
+
+
+        
+       
+</pre></div>
+
+           </div>
+           
+          </div>
+          <footer>
+  
+
+  <hr/>
+
+  <div role="contentinfo">
+    <p>
+        &copy; Copyright 2019, Ardimas
+
+    </p>
+  </div>
+  Built with <a href="http://sphinx-doc.org/">Sphinx</a> using a <a href="https://github.com/rtfd/sphinx_rtd_theme">theme</a> provided by <a href="https://readthedocs.org">Read the Docs</a>. 
+
+</footer>
+
+        </div>
+      </div>
+
+    </section>
+
+  </div>
+  
+
+
+  <script type="text/javascript">
+      jQuery(function () {
+          SphinxRtdTheme.Navigation.enable(true);
+      });
+  </script>
+
+  
+  
+    
+   
+
+</body>
+</html>

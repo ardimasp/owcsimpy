@@ -14,6 +14,8 @@ from owcsimpy.geoutils.cutils import calcRodriguesMtx as getRodriguesMtx
 from owcsimpy.misc import flatten
 from scipy.spatial import Delaunay
 
+import mpl_toolkits.mplot3d.art3d as art3d
+
 class SimpleOfficeEnv_py(object):
     """ A model of simple office environments.
     
@@ -190,7 +192,11 @@ class SimpleOfficeEnv_py(object):
             self.pd = BareDetector(np.pi,0,
                                    np.array([self.room.L/2,self.room.W/2,self.room.H]),
                                    area=1e-4,FoV=np.deg2rad(85))
+
+        self.updateListPlanesAndCheckValidity()
         
+    def updateListPlanesAndCheckValidity(self):
+
         # Get all planes
         self.listPlanes = []
         self.listPlanes.append(self.human.listPlanes)
@@ -296,12 +302,20 @@ class SimpleOfficeEnv_py(object):
                          planes=listPlanes,
                          vectors=Vector(coord=self.human.normalVect,refPoint=self.human.ctrPoint,which='cartesian'),
                          enablevect=False,
+                         colors='black',
                          alphas=alphas);
         
+        # fig, ax = draw(figure=fig,axes=ax,
+        #      circles=[self.human.pd,self.pd],scales=5e3,
+        #      vectors=[self.human.led,self.led]);
         fig, ax = draw(figure=fig,axes=ax,
              circles=[self.human.pd,self.pd],scales=5e3,
-             vectors=[self.human.led,self.led]);
+             vectors=[self.human.led]);
+        fig, ax = draw(figure=fig,axes=ax,
+             vectors=[self.led],colors='blue');
 
         return fig,ax
+
+
 
         

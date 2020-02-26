@@ -12,3 +12,6 @@ conda install sphinx=2.0.1
 conda install numpydoc=0.9.1
 conda install -c conda-forge nbsphinx=0.4.2
 conda install sphinx_rtd_theme=0.4.3
+
+pip install JSAnimation
+pip install tqdm

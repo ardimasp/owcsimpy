@@ -1,1 +1,7 @@
 .DS_Store
+
+**/build
+**/dist
+installation.txt
+record.txt
+**/owcsimpy.egg-info

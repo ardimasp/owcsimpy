@@ -36,6 +36,13 @@ Figures below show frequency responses of the frequency domain approach ('FD'), 
 .. image:: ./notebooks/figs/cirsexample.png
   :width: 400
 
+3 Animation
+
+Some models of random mobility and orientation are also included. 
+
+.. image:: ./notebooks/rwp.gif
+  :width: 400
+
 Installation
 ------------
 

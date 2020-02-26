@@ -244,6 +244,9 @@ class HumanWithActivity_py(object):
         
         self.listPlanes = self.getPartition(Ps=1)
         
+        self.position = position
+        self.activity = activity
+
         self.mode = None
         self.pd = None
         self.led = None

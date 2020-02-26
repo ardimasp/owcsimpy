@@ -1,0 +1,53 @@
+[
+    {
+        "name": "standing_downlink_01",
+        "mode": "standing",
+        "loc_x": 2.0,
+        "loc_y": 1.5,
+        "direction_degree": 0.0,
+        "activity": "reading",
+        "downlink_uplink": "downlink"  
+    },
+    {
+        "name": "sitting_downlink_01",
+        "mode": "sitting",
+        "loc_x": 2.0,
+        "loc_y": 1.5,
+        "direction_degree": 0.0,
+        "activity": "reading",
+        "downlink_uplink": "downlink"  
+    },
+    {
+        "name": "rwp_downlink_01",
+        "mode": "walking",
+        "mobility_model": "rwp",
+        "velocity_min": 0.1,
+        "velocity_max": 1.0,
+        "wait_time_max": 1.0,
+        "excluded_area": 1.8,
+        "activity": "reading",
+        "downlink_uplink": "downlink"  
+    },
+    {
+        "name": "rd_downlink_01",
+        "mode": "walking",
+        "mobility_model": "rd",
+        "velocity_min": 0.1,
+        "velocity_max": 1.0,
+        "wait_time_max": 1.0,
+        "excluded_area": 1.8,
+        "activity": "reading",
+        "downlink_uplink": "downlink"  
+    },
+    {
+        "name": "lw_downlink_01",
+        "mode": "walking",
+        "mobility_model": "lw",
+        "velocity_min": 0.1,
+        "velocity_max": 1.0,
+        "wait_time_max": 1.0,
+        "excluded_area": 1.8,
+        "activity": "reading",
+        "downlink_uplink": "downlink"  
+    }
+]

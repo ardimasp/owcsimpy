@@ -1,0 +1,4 @@
+  File "testRwpSaveAnim.py", line 101
+    anim.save([activity '.gif'],  writer='imagemagick') # save it to a file
+                             ^
+SyntaxError: invalid syntax

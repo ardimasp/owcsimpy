@@ -100,8 +100,8 @@ class TypicalSimpleOfficeEnv_py(SimpleOfficeEnv):
             self.pdPolarInit = self.human.pd.polar
             self.pdAzimuthInit = self.human.pd.azimuth
         elif mode.lower() == 'tx':
-            self.ledPolarInit = self.human.led.polar
-            self.ledAzimuthInit = self.human.led.azimuth
+            self.ledPolarInit = self.human.led.spherical[1]
+            self.ledAzimuthInit = self.human.led.spherical[2]
 
     def updateHuman(self,newLoc,newDir,theta0,omega0):
 

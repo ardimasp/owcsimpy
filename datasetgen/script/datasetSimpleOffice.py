@@ -31,7 +31,7 @@ Collections of scripts related to the dataset for the simple office scenario.
 
 Options:
   -n                            the name of the working, default = SimpleOffice
-  --mode                        generate config, cir files, of animation, mode = ('config','cir','animation')
+  --mode                        generate config, cir files, of animation, mode = ('config','cir','animation','matlab')
   --config-name                 the name of configuration
   --config-list                 list of the available configuration name
   --config-generate             the number of config samples generated
@@ -78,11 +78,11 @@ def console():
         raise SystemExit
 
     if not os.path.exists(configDirName + configName):
-        logging.info("Create a folded named '%s' ", configDirName + configName)
+        logging.info("Create a folder named '%s' ", configDirName + configName)
         os.makedirs(configDirName + configName + '/',exist_ok=True)
 
     if not os.path.exists(datasetDirName + configName):
-        logging.info("Create a folded named '%s' ", datasetDirName + configName)
+        logging.info("Create a folder named '%s' ", datasetDirName + configName)
         os.makedirs(datasetDirName + configName + '/',exist_ok=True)
 
     idx = searchListDicts(json_data,configName)
@@ -418,6 +418,8 @@ def console():
 
                 logging.info("'%s' is created",datasetname+str(idx)+'.pickle')
 
+    elif outputParsing.get('mode').lower() == 'matlab':
+        
     else:
         logging.error("The entry of 'mode' is wrong")
         sys.stderr.write(__usage__)

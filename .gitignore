@@ -6,6 +6,9 @@
 installation.txt
 record.txt
 **/owcsimpy.egg-info
+<<<<<<< HEAD
 
 *.pickle
 *.mat
+=======
+>>>>>>> f5e4574ab6e9607422ca38821441e9f72f36c5d6

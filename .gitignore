@@ -6,3 +6,6 @@
 installation.txt
 record.txt
 **/owcsimpy.egg-info
+
+*.pickle
+*.mat
